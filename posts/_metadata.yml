@@ -1,0 +1,16 @@
+---
+author:
+  - name: Santiago Botero Sierra
+    email: sboteros@unal.edu.co
+date-modified: last-modified
+lang: es
+execute:
+  echo: true
+  warning: false
+format:
+  html:
+    code-fold: true
+    code-summary: 'Ver el código'
+    code-tools: true
+    source: repo
+---

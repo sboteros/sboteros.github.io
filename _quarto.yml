@@ -2,12 +2,29 @@ project:
   type: website
 
 website:
-  title: "website"
+  title: 'sboteros'
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - href: about.qmd
+        text: 'Sobre mí'
+      - href: posts.qmd
+        text: 'Blog'
+    logo: assets/img/logo_128.ico
+    theme:
+      light: flatly
+      dark: darkly
+  site-url: sboteros.github.io
+  repo-url: https://github.com/sboteros/sboteros.github.io
+  reader-mode: true
+  search: true
+  page-footer: '<a href="https://creativecommons.org">Página personal</a> © 2025 por <a href="https://creativecommons.org">Santiago Botero Sierra</a> está licenciada bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">'
+  page-navigation: true
+  favicon: assets/img/logo_128.ico
+  twitter-card: true
+  open-graph:
+    locale: es_ES
+    site-name: sboteros
+
 
 format:
   html:
