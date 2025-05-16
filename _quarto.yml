@@ -4,12 +4,16 @@ project:
 
 website:
   title: 'sboteros'
+  description: 'Análisis de datos, programación y opinión'
   navbar:
     left:
       - href: about.qmd
         text: 'Sobre mí'
       - href: posts.qmd
         text: 'Blog'
+    right:
+      - icon: rss
+        href: index.xml
     logo: assets/img/logo_128.ico
     theme:
       light: flatly
@@ -20,12 +24,11 @@ website:
   search: true
   page-footer: '<a href="https://creativecommons.org">Página personal</a> © 2025 por <a href="https://creativecommons.org">Santiago Botero Sierra</a> está licenciada bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">'
   page-navigation: true
-  favicon: assets/img/logo_128.ico
+  favicon: assets/img/logo_512.ico
   twitter-card: true
   open-graph:
     locale: es_ES
     site-name: sboteros
-
 
 format:
   html:

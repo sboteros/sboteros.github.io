@@ -1,0 +1,152 @@
+---
+title: 'Comparación de órdenes de crecimiento'
+date: '2025-01-14'
+jupyter: julia-1.11
+---
+
+```{julia}
+import Pkg
+Pkg.add("Plots")
+Pkg.add("LaTeXStrings")
+Pkg.add("DataFrames")
+Pkg.add("Printf")
+Pkg.add("MarkdownTables")
+using DataFrames, MarkdownTables, LaTeXStrings, Plots, Printf
+Base.show(io::IO, f::AbstractFloat) = @printf(io, "%1.3f", f)
+```
+
+# Introducción {#sec-introduccion}
+
+La notación asintótica determina un conjunto de funciones cuyo rango es positivo y se ubica entre, por debajo o por encima de una función determinada, que sirve como punto de comparación. En el segundo caso, se trata de definir un conjunto de funciones que se ubiquen por debajo de una función $g(n)$, posiblemente escalada, para observaciones $n$ suficientemente grandes [@sadit_algoritmos, sec. 2.4]. Formalmente, el conjunto se define como:
+
+\begin{equation}
+O(g(n)) = \{ f(n):\, \exists c, n_0 > 0 \, t.q.\, 0 \leq f(n) \leq c g(n)\, \forall\, n \geq n_0\}
+\end{equation}
+
+Usualmente, se eligen funciones $g(n)$ con un comportamiento conocido y se elige $c = 1$, de modo que el conjunto buscado es el de las funciones que se ubican por encima del eje $x$ y por debajo de la función señalada; en particular, se eligen funciones con un órden de crecimiento conocido, de forma que el conjunto sea fácilmente analizable. Algunas funciones de interés tienen los siguientes órdenes de crecimiento [@sadit_crecimiento]:
+
++ **Constante**. Se elige $g(n) = a, \, a \in \mathbb{R}$. Por ejemplo, $g(n) = 1$ es una función constante.
++ **Logarítmico**. Se elige $g(n) = \log_{a} n, \, a \in \mathbb{N}$. Por ejemplo, $g(n) = \log_2 n = \log n$ es una función logarítmica.
++ **Lineal**. Se elige $g(n) = a n, \, a \in \mathbb{R}$. Por ejemplo, $g(n) = n$ es una función lineal.
++ **Polilogarítmico**. Por ejemplo, la función $g(n) = n \log n$ es polilogarítmica.
++ **Polinomial**. Se elige $g(n) = \sum_i a_i n^{b_i}, \, a_i \in \mathbb{R},\, b_i \in \mathbb{N}$. Por ejemplo, las funciones $g(n) = n^2$ y $g(n) = n^3$ son polinomiales.
++ **Exponencial**. Se elige $g(n) = a^n, \, a \in \mathbb{R}$. Por ejejmplo, $g(n) = 3^n$ es una función exponencial.
++ **Factorial**. Por ejemplo, la función $g(n) = n!$.
++ **Tetración**. Por ejemplo, la función $g(n) = n^n$.
+
+En este documento se analizan las funciones señaladas y se concluye que, si estas describen el tiempo de ejecución de un algoritmo, entonces el orden de preferencia es igual al orden señalado. Es decir, se concluye que la función constante es la más preferible y que la función tetración es la más indeseada. Al respecto, en la @sec-comparacion se presenta el análisis realizado para arribar a dicha conclusión, que se formaliza en la @sec-conclusion.
+
+# Órdenes de crecimiento de funciones {#sec-comparacion}
+
+En esta sección se presentan dos esquemas de comparación de las funciones que fueron señaladas en la @sec-introduccion. En la @sec-grafico se realiza una comparación gráfica entre las funciones y en la @sec-tabular se muestra una tabla comparativa para valores selectos de $n$. Con base en los elementos observados a partir de estos dos esquemas de comparación, en la siguiente sección se realiza una síntesis de las conclusiones.
+
+## Comparación mediante el método gráfico {#sec-grafico}
+
+Como se observa en la @fig-constante_logaritmo, la función constante ($g(n) = 1$) es menor a la logarítmica ($g(n) = \log n$) para valores pequeños de $n$, pero es superada por esta a medida que crece $n$; no obstante, a medida que $n$ aumenta, el crecimiento de la función logarítmica se hace más pequeño. De la @fig-constante_logaritmo se observa que la función constante tiene un mejor rendimiento que la logarítmica para valores de $n$ suficientemente grandes.
+
+```{julia}
+#| label: fig-constante_logaritmo
+#| fig-cap: "Comparación entre las funciones de crecimiento constante y logarítmico"
+
+a = 10
+plot(1:a, [1 for n in 1:a], label = L"g(n) = 1")
+plot!(1:a, [log2(n) for n in 1:a], label = L"g(n) = \log n",
+      xlabel = L"n", ylabel = L"g(n)")
+```
+
+De forma similar, en la @fig-lineal_polilog se observa que la función lineal ($g(n) = n$) es menor que la polilogarítmica ($g(n) = n \log n$) para valores pequeños de $n$, pero es superada por esta a medida que crece $n$. Lo anterior pues, como se observa en la misma gráfica, el crecimiento de la función polilogarítmica es mayor a medida que crece $n$. Con base en lo observado, se concluye que la función lineal tiene un mejor rendimiento que la polilogarítmica para valores de $n$ suficientemente grandes.
+
+```{julia}
+#| label: fig-lineal_polilog
+#| fig-cap: "Comparación entre las funciones de crecimiento lineal y polilogarítmico"
+
+a = 5
+plot(1:a, [n for n in 1:a], label = L"g(n) = n")
+plot!(1:a, [n * log2(n) for n in 1:a], label = L"g(n) = n \log n",
+      xlabel = L"n", ylabel = L"g(n)")
+```
+
+Por su parte, en la @fig-cubica_cuadratica se nota que la eficiencia entre las funciones polinómicas depende del grado del polinomio. Así, la función cuadrática ($g(n) = n^2$) es menor que la cúbica ($g(n) = n^3$) para cualquier valor de $n$, y las diferencias aumentan a medida que $n$ crece. Lo anterior pues, a medida que aumenta $n$, el crecimiento de la función cúbica se hace mayor que el de la cuadrática. Con base en lo observado en la @fig-cubica_cuadratica, se concluye que la función cuadrática tiene un mejor rendimiento que la cúbica.
+
+```{julia}
+#| label: fig-cubica_cuadratica
+#| fig-cap: "Comparación entre dos funciones polinómicas: de crecimiento cadrático y cúbico"
+
+a = 10
+plot(1:a, [n^2 for n in 1:a], label = L"g(n) = n^2")
+plot!(1:a, [n^3 for n in 1:a], label = L"g(n) = n^3",
+      xlabel = L"n", ylabel = L"g(n)")
+```
+
+Análogamente, en la @fig-exponencial_factorial, se observa que la función exponencial ($g(n) = 3^n$) tiene un mejor rendimiento que la factorial ($g(n) = n!$). Así, aunque la función exponencial es inferior a la factorial para valores pequeños de $n$, crece a un ritmo superior; debido a esto, la función factorial es mucho mayor que la exponencial para valores de $n$ suficientemente grandes.
+
+```{julia}
+#| label: fig-exponencial_factorial
+#| fig-cap: "Comparación entre las funciones de crecimiento exponencial y factorial"
+
+a = 7
+plot(1:a, [3^n for n in 1:a], label = L"g(n) = 3^n")
+plot!(1:a, [factorial(n) for n in 1:a], label = L"g(n) = n!",
+      xlabel = L"n", ylabel = L"g(n)")
+```
+
+Un comportamiento similar al señalado para la @fig-cubica_cuadratica, se observa entre los órdenes de crecimiento factorial ($g(n) = n!$) y de la tetración ($g(n) = n^n$), que se muestran en la @fig-factorial_tetracion. En este caso, el rendimiento de la tetración es peor que el de la factorial para cualquier valor de $n$, pero dado su ritmo de crecimiento se degrada muy rápidamente. 
+
+```{julia}
+#| label: fig-factorial_tetracion
+#| fig-cap: "Comparación entre las funciones de crecimiento exponencial y de tetración"
+
+a = 4
+plot(1:a, [factorial(n) for n in 1:a], label = L"g(n) = n!")
+plot!(1:a, [n^n for n in 1:a], label = L"g(n) = n^n",
+      xlabel = L"n", ylabel = L"g(n)")
+```
+
+En resumen, el orden de crecimiento de las funciones mostradas es el siguiente: constante, logarítmico, lineal, polilogarítmico, polinomial, exponencial, factorial y tetración. En este sentido, las funciones que se ubican antes en el listado son preferibles a las que se ubican después, pues crecen menos a medida que aumenta $n$ y, por lo tanto, su comportamiento asintótico es mejor. Esta conclusión se puede observar en el @fig-ordenes_crecimiento.
+
+```{julia}
+#| label: fig-ordenes_crecimiento
+#| fig-cap: "Comparación entre todas las funciones de crecimiento analizadas"
+
+a = 10
+plot(1:a, [log10(1) for n in 1:a], label = L"g(n) = 1")
+plot!(1:a, [log10(log2(n)) for n in 1:a], label = L"\log n")
+plot!(1:a, [log10(n) for n in 1:a], label = L"g(n) = n")
+plot!(1:a, [log10(n * log2(n)) for n in 1:a], label = L"g(n) = n \log n")
+plot!(1:a, [log10(n^2) for n in 1:a], label = L"g(n) = n^2")
+plot!(1:a, [log10(n^3) for n in 1:a], label = L"g(n) = n^3")
+plot!(1:a, [log10(3^n) for n in 1:a], label = L"g(n) = 3^n")
+plot!(1:a, [log10(factorial(n)) for n in 1:a], label = L"g(n) = n!")
+plot!(1:a, [log10(n^n) for n in 1:a], label = L"g(n) = n^n",
+      xlabel = L"n", ylabel = L"\log_{10} g(n)")
+```
+
+## Comparación mediante el método tabular {#sec-tabular}
+
+En complemento con la @fig-ordenes_crecimiento, en la @tbl-ordenes_crecimiento se observa una información similar, al mostrar el tiempo que tardaría un computador en procesar cien, mil, diez mil y un millón de observciones con algoritmos cuyo tiempo de procesamiento (medido en nanosegundos) fuera descrito por las funciones analizadas. Para las columnas que se refieren a los algoritmos con órdenes de crecimiento constante, logarítmico, lineal y polilogarítmico, se muestra la cantidad total de nanosegundos que se demoraría el procesamiento. Para las demás columnas, debido a la magnitud que se señala, únicamente se muestra el número de ceros que tiene la cifra (por ejemplo, para un millón de nanosegundos, se señala el número 6).
+
+```{julia}
+#| label: tbl-ordenes_crecimiento
+#| tbl-cap: "Comparación entre todas las funciones de crecimiento, para tamaños de muestra seleccionados"
+
+a = [100, 1_000, 10_000, 1_000_000]
+DataFrame(n = a,
+          Constante = [1 for n in a], 
+          Logarítmico = [round(log2(n)) for n in a], 
+          Lineal = [n for n in a], 
+          Polilogarítmico = [round(n * log2(n); digits = 2) for n in a], 
+          Cuadrático = [log10(n^2) for n in a],
+          Cúbico = [log10(n^2) for n in a],
+          Exponencial = [round(log10(3^big(n))) for n in a],
+          Factorial = [round(log10(factorial(big(n)))) for n in a],
+          Tetración = [log10(big(n)^n) for n in a]) |> 
+markdown_table()
+```
+
+A partir de la información presentada en la @tbl-ordenes_crecimiento, se concluye que las funciones disponibles en las columnas de la izquierda son preferibles a las de las columnas de la derecha, de forma similar a lo observado en la @sec-grafico. Por ejemplo, al fijarse en la fila correspondiente a $n = 10000$ se observa que la cantidad de ceros que tienen las cifras son cero, uno, cuatro, cinco, ocho, ocho, casi 5,000, casi 36,000 y 40,000, respectivamente. Es decir, la diferencia en el rendimiento de la función constante es aproximadamente 40,000 veces superior a la función tetración, para $n = 10000$.
+
+# Conclusión {#sec-conclusion}
+
+Con base en los elementos señalados en este documento, se observa que para valores de $n$ suficientemente grandes, las funciones que tienen los siguientes órdenes de crecimiento, se organizan de menor a mayor así: constante, logarítmico, lineal, polilogarítmico, cuadrático, cúbico, exponencial, factorial y tetración. Por lo tanto, si estas funciones describen el tiempo de resolución de problemas de diversos algoritmos, el orden de preferencia entre ellos será el mismo señalado.
+
+# Referencias

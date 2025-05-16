@@ -1,4 +1,3 @@
----
 author:
   - name: Santiago Botero Sierra
     email: sboteros@unal.edu.co
@@ -13,4 +12,5 @@ format:
     code-summary: 'Ver el código'
     code-tools: true
     source: repo
----
+freeze: true
+bibliography: bibliografia.bib
