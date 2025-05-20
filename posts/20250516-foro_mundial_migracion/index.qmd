@@ -18,6 +18,7 @@ categories:
     - 'Migrante33'
     - 'Migración'
     - 'Foro Mundial sobre Migración y Desarrollo'
+image: portada_fmm.png
 ---
 
 S.E. Presidente Gustavo Petro 

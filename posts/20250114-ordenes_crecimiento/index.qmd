@@ -8,6 +8,7 @@ categories:
       - Julia
       - Notación asintótica
       - Órdenes de crecimiento
+image: orders_magnitude.png
 ---
 
 <a title="Pablo Carlos Budassi, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Orders_of_magnitude_(english_annotations,_horizontal_layout).png"><img width="512" alt="Orders of magnitude (english annotations, horizontal layout)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png/512px-Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png?20180823125235"></a>
