@@ -2,17 +2,24 @@
 title: 'Comparación de órdenes de crecimiento'
 date: '2025-01-14'
 jupyter: julia-1.11
+description: 'Análisis visual y tabular de órdenes de crecimiento: de funciones constantes a tetración, aplicado al rendimiento de algoritmos.'
+categories:
+      - Análisis de algoritmos
+      - Julia
+      - Notación asintótica
+      - Órdenes de crecimiento
 ---
+
+<a title="Pablo Carlos Budassi, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Orders_of_magnitude_(english_annotations,_horizontal_layout).png"><img width="512" alt="Orders of magnitude (english annotations, horizontal layout)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png/512px-Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png?20180823125235"></a>
 
 ```{julia}
 import Pkg
-Pkg.add("Plots")
-Pkg.add("LaTeXStrings")
 Pkg.add("DataFrames")
-Pkg.add("Printf")
+Pkg.add("Formatting")
+Pkg.add("LaTeXStrings")
 Pkg.add("MarkdownTables")
-using DataFrames, MarkdownTables, LaTeXStrings, Plots, Printf
-Base.show(io::IO, f::AbstractFloat) = @printf(io, "%1.3f", f)
+Pkg.add("Plots")
+using DataFrames, Formatting, MarkdownTables, LaTeXStrings, Plots
 ```
 
 # Introducción {#sec-introduccion}
@@ -20,7 +27,7 @@ Base.show(io::IO, f::AbstractFloat) = @printf(io, "%1.3f", f)
 La notación asintótica determina un conjunto de funciones cuyo rango es positivo y se ubica entre, por debajo o por encima de una función determinada, que sirve como punto de comparación. En el segundo caso, se trata de definir un conjunto de funciones que se ubiquen por debajo de una función $g(n)$, posiblemente escalada, para observaciones $n$ suficientemente grandes [@sadit_algoritmos, sec. 2.4]. Formalmente, el conjunto se define como:
 
 \begin{equation}
-O(g(n)) = \{ f(n):\, \exists c, n_0 > 0 \, t.q.\, 0 \leq f(n) \leq c g(n)\, \forall\, n \geq n_0\}
+O(g(n)) = \{ f(n):\, \exists \, c, n_0 > 0 \text{ t.q. } 0 \leq f(n) \leq c g(n)\, \forall\, n \geq n_0 \}.
 \end{equation}
 
 Usualmente, se eligen funciones $g(n)$ con un comportamiento conocido y se elige $c = 1$, de modo que el conjunto buscado es el de las funciones que se ubican por encima del eje $x$ y por debajo de la función señalada; en particular, se eligen funciones con un órden de crecimiento conocido, de forma que el conjunto sea fácilmente analizable. Algunas funciones de interés tienen los siguientes órdenes de crecimiento [@sadit_crecimiento]:
@@ -54,7 +61,7 @@ plot!(1:a, [log2(n) for n in 1:a], label = L"g(n) = \log n",
       xlabel = L"n", ylabel = L"g(n)")
 ```
 
-De forma similar, en la @fig-lineal_polilog se observa que la función lineal ($g(n) = n$) es menor que la polilogarítmica ($g(n) = n \log n$) para valores pequeños de $n$, pero es superada por esta a medida que crece $n$. Lo anterior pues, como se observa en la misma gráfica, el crecimiento de la función polilogarítmica es mayor a medida que crece $n$. Con base en lo observado, se concluye que la función lineal tiene un mejor rendimiento que la polilogarítmica para valores de $n$ suficientemente grandes.
+De forma similar, en la @fig-lineal_polilog se observa que la función lineal ($g(n) = n$) es menor que la polilogarítmica ($g(n) = n \log n$) para valores pequeños de $n$, pero es superada por esta a medida que $n$ crece. Lo anterior pues, como se observa en la misma gráfica, el crecimiento de la función polilogarítmica es mayor a medida que crece $n$. Con base en lo observado, se concluye que la función lineal tiene un mejor rendimiento que la polilogarítmica para valores de $n$ suficientemente grandes.
 
 ```{julia}
 #| label: fig-lineal_polilog
@@ -90,7 +97,7 @@ plot!(1:a, [factorial(n) for n in 1:a], label = L"g(n) = n!",
       xlabel = L"n", ylabel = L"g(n)")
 ```
 
-Un comportamiento similar al señalado para la @fig-cubica_cuadratica, se observa entre los órdenes de crecimiento factorial ($g(n) = n!$) y de la tetración ($g(n) = n^n$), que se muestran en la @fig-factorial_tetracion. En este caso, el rendimiento de la tetración es peor que el de la factorial para cualquier valor de $n$, pero dado su ritmo de crecimiento se degrada muy rápidamente. 
+Un comportamiento similar al señalado para la @fig-cubica_cuadratica, se observa entre los órdenes de crecimiento factorial ($g(n) = n!$) y de la tetración ($g(n) = n^n$), que se muestran en la @fig-factorial_tetracion. En este caso, el rendimiento de la tetración es peor que el de la factorial para cualquier valor de $n$ y, dado su ritmo de crecimiento, se degrada muy rápidamente. 
 
 ```{julia}
 #| label: fig-factorial_tetracion
@@ -123,7 +130,7 @@ plot!(1:a, [log10(n^n) for n in 1:a], label = L"g(n) = n^n",
 
 ## Comparación mediante el método tabular {#sec-tabular}
 
-En complemento con la @fig-ordenes_crecimiento, en la @tbl-ordenes_crecimiento se observa una información similar, al mostrar el tiempo que tardaría un computador en procesar cien, mil, diez mil y un millón de observciones con algoritmos cuyo tiempo de procesamiento (medido en nanosegundos) fuera descrito por las funciones analizadas. Para las columnas que se refieren a los algoritmos con órdenes de crecimiento constante, logarítmico, lineal y polilogarítmico, se muestra la cantidad total de nanosegundos que se demoraría el procesamiento. Para las demás columnas, debido a la magnitud que se señala, únicamente se muestra el número de ceros que tiene la cifra (por ejemplo, para un millón de nanosegundos, se señala el número 6).
+En complemento con la @fig-ordenes_crecimiento, en la @tbl-ordenes_crecimiento se observa una información similar, al mostrar el tiempo que tardaría un computador en procesar cien, mil, diez mil y un millón de observaciones con algoritmos cuyo tiempo de procesamiento (medido en nanosegundos) fuera descrito por las funciones analizadas. Debido a la magnitud que se señala, únicamente se muestra el número de ceros que tiene la cifra correspondiente a cada función (por ejemplo, para un millón de nanosegundos, se señala el número 6).
 
 ```{julia}
 #| label: tbl-ordenes_crecimiento
@@ -131,16 +138,16 @@ En complemento con la @fig-ordenes_crecimiento, en la @tbl-ordenes_crecimiento s
 
 a = [100, 1_000, 10_000, 1_000_000]
 DataFrame(n = a,
-          Constante = [1 for n in a], 
-          Logarítmico = [round(log2(n)) for n in a], 
-          Lineal = [n for n in a], 
-          Polilogarítmico = [round(n * log2(n); digits = 2) for n in a], 
+          Constante = [log10(1) for n in a], 
+          Logarítmico = [log10(log2(n)) for n in a], 
+          Lineal = [log10(n) for n in a], 
+          Polilogarítmico = [log10(n * log2(n)) for n in a], 
           Cuadrático = [log10(n^2) for n in a],
           Cúbico = [log10(n^2) for n in a],
-          Exponencial = [round(log10(3^big(n))) for n in a],
-          Factorial = [round(log10(factorial(big(n)))) for n in a],
+          Exponencial = [log10(3^big(n)) for n in a],
+          Factorial = [log10(factorial(big(n))) for n in a],
           Tetración = [log10(big(n)^n) for n in a]) |> 
-markdown_table()
+markdown_table(formatter = x -> sprintf1("%4.3E", x))
 ```
 
 A partir de la información presentada en la @tbl-ordenes_crecimiento, se concluye que las funciones disponibles en las columnas de la izquierda son preferibles a las de las columnas de la derecha, de forma similar a lo observado en la @sec-grafico. Por ejemplo, al fijarse en la fila correspondiente a $n = 10000$ se observa que la cantidad de ceros que tienen las cifras son cero, uno, cuatro, cinco, ocho, ocho, casi 5,000, casi 36,000 y 40,000, respectivamente. Es decir, la diferencia en el rendimiento de la función constante es aproximadamente 40,000 veces superior a la función tetración, para $n = 10000$.
