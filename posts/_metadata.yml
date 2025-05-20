@@ -12,5 +12,6 @@ format:
     code-summary: 'Ver el código'
     code-tools: true
     source: repo
+    number-sections: true
 freeze: true
 bibliography: bibliografia.bib

@@ -18,7 +18,7 @@ website:
     theme:
       light: flatly
       dark: darkly
-  site-url: sboteros.github.io
+  site-url: www.sboteros.com
   repo-url: https://github.com/sboteros/sboteros.github.io
   reader-mode: true
   search: true

@@ -1,1 +1,1 @@
-Sitemap: sboteros.github.io/sitemap.xml
+Sitemap: www.sboteros.com/sitemap.xml
