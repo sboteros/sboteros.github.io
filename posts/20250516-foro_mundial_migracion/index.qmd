@@ -21,6 +21,8 @@ categories:
 image: portada_fmm.png
 ---
 
+![](portada_fmm.png)
+
 S.E. Presidente Gustavo Petro 
 
 Ministra de Relaciones Exteriores, S.E. Laura Sarabia 
