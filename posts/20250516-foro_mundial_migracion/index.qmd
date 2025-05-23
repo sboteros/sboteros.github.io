@@ -7,6 +7,8 @@ author:
     - 'Comité Local del MSC del FMMD'
     - 'Migrante33'
     - 'Rostro Caribe'
+    - 'Fundación Empodérame'
+    - 'Internacional de Servicios Públicos'
     - 'Foro Internacional de Víctimas'
     - 'Diplomacia Feminista por la Paz'
     - 'SIMN'
@@ -108,3 +110,7 @@ Asegurémonos de que, cuando el mundo llegue a Riohacha este próximo septiembre
 Con solidaridad,
 
 Comité Local del MSC del FMMD
+
+[Organizaciones firmantes](https://bit.ly/firmantes_SC)
+
+[¿Quieres firmar esta carta?](https://bit.ly/Carta_SC_Firma)

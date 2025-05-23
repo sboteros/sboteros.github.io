@@ -1,7 +1,7 @@
 ---
 title: 'Comparación de órdenes de crecimiento'
 date: '2025-01-14'
-jupyter: julia-1.11
+jupyter: julia_mcdi_algoritmos-1.11
 description: 'Análisis visual y tabular de órdenes de crecimiento: de funciones constantes a tetración, aplicado al rendimiento de algoritmos.'
 categories:
       - Análisis de algoritmos
@@ -14,22 +14,18 @@ image: orders_magnitude.png
 <a title="Pablo Carlos Budassi, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Orders_of_magnitude_(english_annotations,_horizontal_layout).png"><img width="512" alt="Orders of magnitude (english annotations, horizontal layout)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png/512px-Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png?20180823125235"></a>
 
 ```{julia}
-import Pkg
-Pkg.add("DataFrames")
-Pkg.add("Formatting")
-Pkg.add("LaTeXStrings")
-Pkg.add("MarkdownTables")
-Pkg.add("Plots")
+#| label: software
+
 using DataFrames, Formatting, MarkdownTables, LaTeXStrings, Plots
 ```
 
 # Introducción {#sec-introduccion}
 
-La notación asintótica determina un conjunto de funciones cuyo rango es positivo y se ubica entre, por debajo o por encima de una función determinada, que sirve como punto de comparación. En el segundo caso, se trata de definir un conjunto de funciones que se ubiquen por debajo de una función $g(n)$, posiblemente escalada, para observaciones $n$ suficientemente grandes [@sadit_algoritmos, sec. 2.4]. Formalmente, el conjunto se define como:
+La notación asintótica determina un conjunto de funciones cuyo rango es positivo y se ubica entre, por debajo o por encima de una función determinada, que sirve como punto de comparación. En el segundo caso, se trata de definir un conjunto de funciones que se ubiquen por debajo de una función $g(n)$, posiblemente escalada, para observaciones $n$ suficientemente grandes [@sadit_algoritmos, sec. 2.4]. Formalmente, el conjunto se define como se señala en la @eq-notacionO.
 
-\begin{equation}
+$$
 O(g(n)) = \{ f(n):\, \exists \, c, n_0 > 0 \text{ t.q. } 0 \leq f(n) \leq c g(n)\, \forall\, n \geq n_0 \}.
-\end{equation}
+$${#eq-notacionO}
 
 Usualmente, se eligen funciones $g(n)$ con un comportamiento conocido y se elige $c = 1$, de modo que el conjunto buscado es el de las funciones que se ubican por encima del eje $x$ y por debajo de la función señalada; en particular, se eligen funciones con un órden de crecimiento conocido, de forma que el conjunto sea fácilmente analizable. Algunas funciones de interés tienen los siguientes órdenes de crecimiento [@sadit_crecimiento]:
 
