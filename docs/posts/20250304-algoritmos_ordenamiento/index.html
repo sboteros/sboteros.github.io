@@ -96,7 +96,7 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -128,10 +128,7 @@ div.csl-indent {
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-
-
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-
 <script>
 MathJax = {
   loader: {
@@ -228,9 +225,14 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../sitemap.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../legal.html"> <i class="bi bi-file-earmark-text-fill" role="img">
+</i> 
+<span class="menu-text">Información legal</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -305,7 +307,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de modificación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">22 de mayo de 2025</p>
+      <p class="date-modified">24 de mayo de 2025</p>
     </div>
   </div>
     
@@ -336,7 +338,7 @@ window.Quarto = {
 <section id="buble-sort" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="buble-sort"><span class="header-section-number">2.1</span> Buble sort</h2>
 <p>“<em>Bublesort</em>” es un algoritmo de ordenamiento popular, pero ineficiente, que intercambia repetidamente entradas adyacentes de un arreglo que se encuentran desordenadas <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 24</a>)</span>. El algoritmo “<em>Bublesort</em>” se describe en el <a href="#alg-burbuja" class="quarto-xref">Algoritmo 1</a> y se implementó en <code>Julia</code> mediante la función <code>burbuja!()</code>.</p>
-<div id="alg-burbuja" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="1" data-line-number="true">
+<div id="alg-burbuja" class="pseudocode-container quarto-float" data-pseudocode-number="1" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{BUBLESORT($A, n)$}\begin{algorithmic} \For{$i = 1$ a $n - 1$} \For{$j = n$ descendiendo hasta $i + 1$} \If{$A[j] &lt; A[j - 1]$} \State Intercambiar $A[j]$ con $A[j - 1]$ \EndIf \EndFor \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -369,7 +371,7 @@ window.Quarto = {
 <section id="merge-sort" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="merge-sort"><span class="header-section-number">2.2</span> Merge sort</h2>
 <p>El algoritmo “<em>merge sort</em>” (unifica-ordena) ordena el subarrego <code>A[p:r]</code>, comenzando desde el arreglo completo <code>A[1:n]</code> y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (<code>A[p:q]</code> y <code>A[q + 1, r]</code>), para obtener el arreglo <code>A[p:r]</code> ordenado, hasta llegar nuevamente al arreglo completo <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 34-35</a>)</span>. Esta segunda parte del procedimiento se implementa mediante el <a href="#alg-unir" class="quarto-xref">Algoritmo 2</a>, disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 36</a>)</span>, que fue implementado en <code>Julia</code> mediante la función <code>une!()</code>.</p>
-<div id="alg-unir" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="2" data-line-number="true">
+<div id="alg-unir" class="pseudocode-container quarto-float" data-pseudocode-number="2" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{UNIR($A, p, q, r)$}\begin{algorithmic} \State $n_L = q - p + 1$ \Comment{Tamaño de los subarreglos (ordenados)} \State $n_R = r - q$ \State Sean $L[0:n_L - 1]$ y $R[0:n_R - 1]$ nuevos arreglos \For{$i=0$ a $n_L -1$} \Comment{Copiar $A[p:q]$ en $L[0:n_L - 1]$} \State $L[i] = A[p + i]$ \EndFor \For{$j = 0$ a $n_R - 1$} \State $R[j] = A[q + j + 1]$ \EndFor \Comment{Índices de los mínimos restantes en $L$ y $R$, y de la posición de $A$ para llenar} \State $i = 0$ \State $j = 0$ \State $k = 0$ \While{$i &lt; n_L$ y $j &lt; n_R$} \Comment{Poner en la posición de $A$ al más pequeño de $L$ y $R$ cada vez, hasta que quede vacío alguno de los dos} \If{$L[i] &lt; R[j]$} \State $A[k] = L[i]$ \State $i = i + 1$ \Else \State $A[k] = R[j]$ \State $j = j + 1$ \EndIf \State $k = k + 1$ \EndWhile \Comment{Después de vaciar uno completamente, copiar el resto del que quede en lo que falte de $A$} \While{$i &lt; n_L$} \State $A[k] = L[i]$ \State $i = i + 1$ \State $k = k + 1$ \EndWhile \While{$j &lt; n_R$} \State $A[k] = R[j]$ \State $j = j + 1$ \State $k = k + 1$ \EndWhile \end{algorithmic} \end{algorithm}
 </div>
@@ -422,7 +424,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Por su parte, la primera parte del procedimiento, que realiza la recursión sobre <span class="math inline">\(A\)</span> desde el arreglo completo hasta el caso base, se implementa mediante el <span class="citation" data-cites="alg-ordenar_unir cormen">(<a href="#ref-alg-ordenar_unir" role="doc-biblioref"><strong>alg-ordenar_unir?</strong></a>; <a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 39</a>)</span>,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> que fue implementado en <code>Julia</code> mediante la función <code>ordena_une()</code>.</p>
-<div id="alg-ordenar_unir" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="3" data-line-number="true">
+<div id="alg-ordenar_unir" class="pseudocode-container quarto-float" data-pseudocode-number="3" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{ORDENAR-UNIR($A, p, r$)}\begin{algorithmic} \If{$p \geq r$} \State \Return $A$ \EndIf \State $q = \lfloor \frac{p + r}{2} \rfloor$ \State ORDENAR-UNIR($A, p, q$) \State ORDENAR-UNIR($A, q + 1, r)$ \State UNIR($A, p, q, r)$ \end{algorithmic} \end{algorithm}
 </div>
@@ -474,7 +476,7 @@ window.Quarto = {
 </details>
 </div>
 <p>El <a href="#alg-apilamax" class="quarto-xref">Algoritmo 4</a> aplica la propiedad de las pilas máximas a una pila binaria, a partir del índice <span class="math inline">\(i\)</span>. Es decir, asume que los árboles que se forman a partir de los hijos del índice <span class="math inline">\(i\)</span> de la pila son pilas máximas, pero que <span class="math inline">\(A[i]\)</span> puede violar la propiedad señalada, por lo que este algoritmo le permite a dicho índice bajar en el árbol hasta la posición adecuada para recuperar la propiedad <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, sec. 6.2</a>)</span>. Este algoritmo fue implementado en <code>Julia</code> mediante la función <code>apilamax!()</code>.</p>
-<div id="alg-apilamax" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="4" data-line-number="true">
+<div id="alg-apilamax" class="pseudocode-container quarto-float" data-pseudocode-number="4" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{APILAR-MAXIMO($A, i$)}\begin{algorithmic} \State $l = 2i$ \State $r = 2i + 1$ \If{$l \leq A.tamano\_pila$ y $A[l] &gt; A[i]$} \State $mayor = l$ \Else \State $mayor = i$ \EndIf \If{$r \leq A.tamano\_pila$ y $A[r] &gt; A[mayor]$} \State $mayor = r$ \EndIf \If{$mayor \neq i$} \State Intercambiar $A[i]$ con $A[mayor]$ \State APILAR-MAXIMO($A, mayor$) \EndIf \end{algorithmic} \end{algorithm}
 </div>
@@ -505,7 +507,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Por su parte, el <a href="#alg-contruye_pila_max" class="quarto-xref">Algoritmo 5</a> convierte una pila en una pila binaria máxima al utilizar el <a href="#alg-apilamax" class="quarto-xref">Algoritmo 4</a> en los primeros <span class="math inline">\(\lfloor n/2 \rfloor\)</span> elementos del arreglo. Este algoritmo se implementó en <code>Julia</code> mediante la función <code>construye_pila_max!()</code>, que tiene un argumento opcional para contabilizar el número de operaciones que se realizan en los diferentes llamados a la función <code>apilamax!()</code>. A diferencia del algoritmo, la función implementada no recibe como insumo a un arreglo, sino a una pila que, en todo caso, se construye a partir del arreglo mismo.</p>
-<div id="alg-contruye_pila_max" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="5" data-line-number="true">
+<div id="alg-contruye_pila_max" class="pseudocode-container quarto-float" data-pseudocode-number="5" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{CONTRUIR-PILA-MAXIMA($A, n)$}\begin{algorithmic} \State $A.tamano\_pila = n$ \For{$i = \lfloor n/2 \rfloor$ descendiendo hasta 1} \State APILAR-MAXIMO($A, i$) \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -525,7 +527,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Una vez que se cuenta con la estructura de la pila binaria máxima, explicada previamente, el algoritmo de ordenamiento simplemente toma la raíz de la pila, que es el elemento máximo y lo pone en su lugar correcto al final del arreglo, elimina ese nodo de la pila, reestablece la propiedad de apilamiento máximo, toma el nuevo nodo y lo pone en su lugar correcto en el penúltimo lugar del arreglo y continúa ejecutando este procedimiento iterativamente hasta haber reacomodado todos los elementos. Este procedimiento se implementa mediante el <span class="citation" data-cites="alg-heapsort cormen">(<a href="#ref-alg-heapsort" role="doc-biblioref"><strong>alg-heapsort?</strong></a>; <a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, sec. 6.4</a>)</span>.</p>
-<div id="alg-heapsort" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="6" data-line-number="true">
+<div id="alg-heapsort" class="pseudocode-container quarto-float" data-pseudocode-number="6" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{HEAPSORT($A, n)$}\begin{algorithmic} \State CONSTRUIR-PILA-MAXIMA($A, n$) \For{$i = n$ descendiendo hasta 2} \State Intercambiar $A[1]$ con $A[i]$ \State $A.tamano\_pila = A.tamano\_pila - 1$ \State APILAR-MAXIMO($A, 1$) \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -557,7 +559,7 @@ window.Quarto = {
 <section id="quicksort" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="quicksort"><span class="header-section-number">2.4</span> Quicksort</h2>
 <p>El algoritmo <em>quicksort</em> utiliza un procedimiento que particiona un subarreglo <span class="math inline">\(A[p:r]\)</span> en tres conjuntos determinados por el último elemento del arreglo original <span class="math inline">\(A[r]\)</span>,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> este elemento se ubica en el conjunto pivote, antes de él se encuentran los elementos que son menores y después los que son mayores, asimismo el procedimiento entrega el índice del elemento pivote. Dicho procedimiento se encuentra disponible en el <span class="citation" data-cites="alg-particion cormen">(<a href="#ref-alg-particion" role="doc-biblioref"><strong>alg-particion?</strong></a>; <a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 183-84</a>)</span>.</p>
-<div id="alg-particion" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="7" data-line-number="true">
+<div id="alg-particion" class="pseudocode-container quarto-float" data-pseudocode-number="7" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{PARTICIÓN($A, p, r$)}\begin{algorithmic} \State $x = A[r]$ \Comment{El pivote es el último} \State $i = p - 1$ \For{$j = p$ a $r - 1$} \If{$A[j] \leq x$} \Comment{Si es menor, va a la izquierda y se actualiza la posición del pivote} \State $i = i + 1$ \State Intercambiar $A[i]$ con $A[j]$ \EndIf \EndFor \State Intercambiar $A[i + 1]$ con $A[r]$ \Comment{El pivote va en la mitad de lo identificado} \State \Return $i + 1$ \end{algorithmic} \end{algorithm}
 </div>
@@ -598,7 +600,7 @@ window.Quarto = {
 </div>
 </div>
 <p>El <a href="#alg-quicksort" class="quarto-xref">Algoritmo 8</a> particiona el vector que recibe como entrada y ordena recursivamente los lados menores y mayores del pivote que identifica, de forma que termina por obtener el vector odenado.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<div id="alg-quicksort" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="8" data-line-number="true">
+<div id="alg-quicksort" class="pseudocode-container quarto-float" data-pseudocode-number="8" data-line-number="true" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{QUICKSORT($A, p, r$)}\begin{algorithmic} \If{$p &lt; r$} \State $q =\,$ PARTICIÓN($A, p, r$) \State QUICKSORT($A, p, q -1$) \State QUICKSORT($A, q + 1, r$) \EndIf \end{algorithmic} \end{algorithm}
 </div>
@@ -1556,7 +1558,7 @@ Simic, Milos, y Michal Aibin. 2024. <span>«The Skip List Data Structure»</span
 <div class="sourceCode" id="cb32" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> 'Algoritmos de ordenamiento'</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-03-04</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> julia_mcdi_algoritmos-1.11</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> julia-1.11</span></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> 'Comparativa de algoritmos de ordenamiento en Julia según eficiencia en tiempo y operaciones, usando vectores con distintos niveles de desorden.'</span></span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - Análisis de algoritmos</span></span>
@@ -2206,198 +2208,207 @@ Simic, Milos, y Michal Aibin. 2024. <span>«The Skip List Data Structure»</span
 <span id="cb32-687"><a href="#cb32-687" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">inserta_skiplist!</span>(</span>
 <span id="cb32-688"><a href="#cb32-688" aria-hidden="true" tabindex="-1"></a>    lista<span class="op">::</span><span class="dt">Lista_Salto{T}</span>, </span>
 <span id="cb32-689"><a href="#cb32-689" aria-hidden="true" tabindex="-1"></a>    valor<span class="op">::</span><span class="dt">T</span>, </span>
-<span id="cb32-690"><a href="#cb32-690" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{ Int64, Nothing } </span><span class="op">=</span> <span class="cn">nothing</span>) <span class="kw">where</span> {T}</span>
-<span id="cb32-691"><a href="#cb32-691" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb32-692"><a href="#cb32-692" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Asignar aleatoriamente un nivel</span></span>
-<span id="cb32-693"><a href="#cb32-693" aria-hidden="true" tabindex="-1"></a>    nivel <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb32-694"><a href="#cb32-694" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="fu">rand</span>() <span class="op">&lt;=</span> <span class="fl">0.5</span></span>
-<span id="cb32-695"><a href="#cb32-695" aria-hidden="true" tabindex="-1"></a>        nivel <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb32-696"><a href="#cb32-696" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-697"><a href="#cb32-697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-698"><a href="#cb32-698" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si la lista tiene menos niveles, adicionar los restantes a</span></span>
-<span id="cb32-699"><a href="#cb32-699" aria-hidden="true" tabindex="-1"></a>    <span class="co"># la cabecera</span></span>
-<span id="cb32-700"><a href="#cb32-700" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nivel <span class="op">&gt;</span> lista.nivel_maximo</span>
-<span id="cb32-701"><a href="#cb32-701" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> (lista.nivel_maximo <span class="op">+</span> <span class="fl">1</span>)<span class="op">:</span>nivel</span>
-<span id="cb32-702"><a href="#cb32-702" aria-hidden="true" tabindex="-1"></a>            <span class="fu">push!</span>(lista.cabeceras, <span class="cn">nothing</span>)</span>
-<span id="cb32-703"><a href="#cb32-703" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb32-704"><a href="#cb32-704" aria-hidden="true" tabindex="-1"></a>        lista.nivel_maximo <span class="op">=</span> nivel</span>
-<span id="cb32-705"><a href="#cb32-705" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-706"><a href="#cb32-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-707"><a href="#cb32-707" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Nuevo nodo</span></span>
-<span id="cb32-708"><a href="#cb32-708" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">Nodo</span><span class="dt">{T}</span>(valor, nivel)</span>
-<span id="cb32-709"><a href="#cb32-709" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb32-710"><a href="#cb32-710" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar los punteros desde el máximo nivel que estoy insertando</span></span>
-<span id="cb32-711"><a href="#cb32-711" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> nivel<span class="op">:-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span></span>
-<span id="cb32-712"><a href="#cb32-712" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Contabilizar el número de actualizaciones del puntero</span></span>
-<span id="cb32-713"><a href="#cb32-713" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> c isa <span class="dt">Int64</span></span>
-<span id="cb32-714"><a href="#cb32-714" aria-hidden="true" tabindex="-1"></a>            c <span class="op">+=</span> <span class="fl">1</span>            </span>
-<span id="cb32-715"><a href="#cb32-715" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb32-716"><a href="#cb32-716" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-717"><a href="#cb32-717" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> lista.cabeceras[k]</span>
-<span id="cb32-718"><a href="#cb32-718" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x isa <span class="dt">Nothing</span></span>
-<span id="cb32-719"><a href="#cb32-719" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si el nivel k de la cabecera está vacío, entonces apunta</span></span>
-<span id="cb32-720"><a href="#cb32-720" aria-hidden="true" tabindex="-1"></a>            <span class="co"># al nuevo nodo</span></span>
-<span id="cb32-721"><a href="#cb32-721" aria-hidden="true" tabindex="-1"></a>            lista.cabeceras[k] <span class="op">=</span> y</span>
-<span id="cb32-722"><a href="#cb32-722" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elseif</span> valor <span class="op">&lt;</span> x.valor</span>
-<span id="cb32-723"><a href="#cb32-723" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si lo que se inserta es pequeño, entonces se actualiza desde</span></span>
-<span id="cb32-724"><a href="#cb32-724" aria-hidden="true" tabindex="-1"></a>            <span class="co"># el principio</span></span>
-<span id="cb32-725"><a href="#cb32-725" aria-hidden="true" tabindex="-1"></a>            lista.cabeceras[k] <span class="op">=</span> y</span>
-<span id="cb32-726"><a href="#cb32-726" aria-hidden="true" tabindex="-1"></a>            y.sucesores[k] <span class="op">=</span> x</span>
-<span id="cb32-727"><a href="#cb32-727" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
-<span id="cb32-728"><a href="#cb32-728" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si no está vacío, buscamos hasta que el nivel de algún </span></span>
-<span id="cb32-729"><a href="#cb32-729" aria-hidden="true" tabindex="-1"></a>            <span class="co"># sucesor sea menor y quebramos los apuntadores</span></span>
-<span id="cb32-730"><a href="#cb32-730" aria-hidden="true" tabindex="-1"></a>            z <span class="op">=</span> x.sucesores[k]</span>
-<span id="cb32-731"><a href="#cb32-731" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> !(z isa <span class="dt">Nothing</span>) <span class="op">&amp;&amp;</span> (valor <span class="op">&gt;</span> z.valor)</span>
-<span id="cb32-732"><a href="#cb32-732" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> z</span>
-<span id="cb32-733"><a href="#cb32-733" aria-hidden="true" tabindex="-1"></a>                z <span class="op">=</span> z.sucesores[k]</span>
-<span id="cb32-734"><a href="#cb32-734" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
-<span id="cb32-735"><a href="#cb32-735" aria-hidden="true" tabindex="-1"></a>            x.sucesores[k] <span class="op">=</span> y</span>
-<span id="cb32-736"><a href="#cb32-736" aria-hidden="true" tabindex="-1"></a>            y.sucesores[k] <span class="op">=</span> z</span>
-<span id="cb32-737"><a href="#cb32-737" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb32-738"><a href="#cb32-738" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-739"><a href="#cb32-739" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
-<span id="cb32-740"><a href="#cb32-740" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb32-741"><a href="#cb32-741" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-742"><a href="#cb32-742" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-745"><a href="#cb32-745" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb32-746"><a href="#cb32-746" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: verificar_inserta_skiplist</span></span>
-<span id="cb32-747"><a href="#cb32-747" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb32-690"><a href="#cb32-690" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{ Int64, Nothing } </span><span class="op">=</span> <span class="cn">nothing</span>,</span>
+<span id="cb32-691"><a href="#cb32-691" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> <span class="cn">nothing</span>) <span class="kw">where</span> {T}</span>
+<span id="cb32-692"><a href="#cb32-692" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-693"><a href="#cb32-693" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Asignar aleatoriamente un nivel</span></span>
+<span id="cb32-694"><a href="#cb32-694" aria-hidden="true" tabindex="-1"></a>    nivel <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb32-695"><a href="#cb32-695" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rng isa <span class="dt">Nothing</span></span>
+<span id="cb32-696"><a href="#cb32-696" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="fu">rand</span>() <span class="op">&lt;=</span> <span class="fl">0.5</span></span>
+<span id="cb32-697"><a href="#cb32-697" aria-hidden="true" tabindex="-1"></a>            nivel <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb32-698"><a href="#cb32-698" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb32-699"><a href="#cb32-699" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb32-700"><a href="#cb32-700" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="fu">rand</span>(rng) <span class="op">&lt;=</span> <span class="fl">0.5</span></span>
+<span id="cb32-701"><a href="#cb32-701" aria-hidden="true" tabindex="-1"></a>            nivel <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb32-702"><a href="#cb32-702" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb32-703"><a href="#cb32-703" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-704"><a href="#cb32-704" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-705"><a href="#cb32-705" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si la lista tiene menos niveles, adicionar los restantes</span></span>
+<span id="cb32-706"><a href="#cb32-706" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nivel <span class="op">&gt;</span> lista.nivel_maximo</span>
+<span id="cb32-707"><a href="#cb32-707" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> (lista.nivel_maximo <span class="op">+</span> <span class="fl">1</span>)<span class="op">:</span>nivel</span>
+<span id="cb32-708"><a href="#cb32-708" aria-hidden="true" tabindex="-1"></a>            <span class="fu">push!</span>(lista.cabeceras, <span class="cn">nothing</span>)</span>
+<span id="cb32-709"><a href="#cb32-709" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb32-710"><a href="#cb32-710" aria-hidden="true" tabindex="-1"></a>        lista.nivel_maximo <span class="op">=</span> nivel</span>
+<span id="cb32-711"><a href="#cb32-711" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-712"><a href="#cb32-712" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-713"><a href="#cb32-713" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Nuevo nodo</span></span>
+<span id="cb32-714"><a href="#cb32-714" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">Nodo</span><span class="dt">{T}</span>(valor, nivel)</span>
+<span id="cb32-715"><a href="#cb32-715" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-716"><a href="#cb32-716" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar los punteros desde el máximo nivel que estoy insertando</span></span>
+<span id="cb32-717"><a href="#cb32-717" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> nivel<span class="op">:-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span></span>
+<span id="cb32-718"><a href="#cb32-718" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Contabilizar el número de actualizaciones del puntero</span></span>
+<span id="cb32-719"><a href="#cb32-719" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> c isa <span class="dt">Int64</span></span>
+<span id="cb32-720"><a href="#cb32-720" aria-hidden="true" tabindex="-1"></a>            c <span class="op">+=</span> <span class="fl">1</span>            </span>
+<span id="cb32-721"><a href="#cb32-721" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb32-722"><a href="#cb32-722" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-723"><a href="#cb32-723" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> lista.cabeceras[k]</span>
+<span id="cb32-724"><a href="#cb32-724" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x isa <span class="dt">Nothing</span></span>
+<span id="cb32-725"><a href="#cb32-725" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si el nivel k de la cabecera está vacío, entonces apunta</span></span>
+<span id="cb32-726"><a href="#cb32-726" aria-hidden="true" tabindex="-1"></a>            <span class="co"># al nuevo nodo</span></span>
+<span id="cb32-727"><a href="#cb32-727" aria-hidden="true" tabindex="-1"></a>            lista.cabeceras[k] <span class="op">=</span> y</span>
+<span id="cb32-728"><a href="#cb32-728" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elseif</span> valor <span class="op">&lt;</span> x.valor</span>
+<span id="cb32-729"><a href="#cb32-729" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si lo que se inserta es pequeño, entonces se actualiza desde</span></span>
+<span id="cb32-730"><a href="#cb32-730" aria-hidden="true" tabindex="-1"></a>            <span class="co"># el principio</span></span>
+<span id="cb32-731"><a href="#cb32-731" aria-hidden="true" tabindex="-1"></a>            lista.cabeceras[k] <span class="op">=</span> y</span>
+<span id="cb32-732"><a href="#cb32-732" aria-hidden="true" tabindex="-1"></a>            y.sucesores[k] <span class="op">=</span> x</span>
+<span id="cb32-733"><a href="#cb32-733" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb32-734"><a href="#cb32-734" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si no está vacío, buscamos hasta que el nivel de algún </span></span>
+<span id="cb32-735"><a href="#cb32-735" aria-hidden="true" tabindex="-1"></a>            <span class="co"># sucesor sea menor y quebramos los apuntadores</span></span>
+<span id="cb32-736"><a href="#cb32-736" aria-hidden="true" tabindex="-1"></a>            z <span class="op">=</span> x.sucesores[k]</span>
+<span id="cb32-737"><a href="#cb32-737" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> !(z isa <span class="dt">Nothing</span>) <span class="op">&amp;&amp;</span> (valor <span class="op">&gt;</span> z.valor)</span>
+<span id="cb32-738"><a href="#cb32-738" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> z</span>
+<span id="cb32-739"><a href="#cb32-739" aria-hidden="true" tabindex="-1"></a>                z <span class="op">=</span> z.sucesores[k]</span>
+<span id="cb32-740"><a href="#cb32-740" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb32-741"><a href="#cb32-741" aria-hidden="true" tabindex="-1"></a>            x.sucesores[k] <span class="op">=</span> y</span>
+<span id="cb32-742"><a href="#cb32-742" aria-hidden="true" tabindex="-1"></a>            y.sucesores[k] <span class="op">=</span> z</span>
+<span id="cb32-743"><a href="#cb32-743" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb32-744"><a href="#cb32-744" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-745"><a href="#cb32-745" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
+<span id="cb32-746"><a href="#cb32-746" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb32-747"><a href="#cb32-747" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb32-748"><a href="#cb32-748" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-749"><a href="#cb32-749" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">Lista_Salto</span><span class="dt">{Int64}</span>()</span>
-<span id="cb32-750"><a href="#cb32-750" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
-<span id="cb32-751"><a href="#cb32-751" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inserta_skiplist!</span>(x, <span class="fu">rand</span>(rng, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>))</span>
-<span id="cb32-752"><a href="#cb32-752" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb32-753"><a href="#cb32-753" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb32-754"><a href="#cb32-754" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-755"><a href="#cb32-755" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-756"><a href="#cb32-756" aria-hidden="true" tabindex="-1"></a>Como se señaló previamente, el algoritmo de inserción de nodos en la lista elige el lugar para incorporar cada elemento de forma que quede ordenado en cada nivel. Así, mediante el algoritmo implementado, el primer nivel tiene apuntadores a los nodos cuyos valores se encuentran organizados de menor a mayor. En este sentido, es sencillo construir un algoritmo para ordenar un arreglo que utilice "*skiplists*", pues simplemente se debe inicializar una lista vacía, insertar cada uno de los elementos del arreglo en la lista y obtener los valores de los nodos de la lista en el orden de sucesión establecido en el primer nivel. Este procedimiento se implementó en <span class="in">`Julia`</span> mediante la función <span class="in">`ordenar_skiplist()`</span>, que incorpora un argumento opcional para contabilizar los procedimientos que, en su caso, se contabilizan en cada llamada a la función <span class="in">`inserta_skiplist!()`</span>.</span>
-<span id="cb32-757"><a href="#cb32-757" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-760"><a href="#cb32-760" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb32-761"><a href="#cb32-761" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: funcion_ordenar_skiplist</span></span>
-<span id="cb32-762"><a href="#cb32-762" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-763"><a href="#cb32-763" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ordenar_skiplist</span>(a<span class="op">::</span><span class="dt">Vector</span>, c<span class="op">::</span><span class="dt">Union{ Int64, Nothing } </span><span class="op">=</span> <span class="cn">nothing</span>)</span>
-<span id="cb32-764"><a href="#cb32-764" aria-hidden="true" tabindex="-1"></a>    listado <span class="op">=</span> <span class="fu">Lista_Salto</span><span class="dt">{eltype(a)}</span>()</span>
-<span id="cb32-765"><a href="#cb32-765" aria-hidden="true" tabindex="-1"></a>    ordenar <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{eltype(a)}</span>(<span class="cn">undef</span>, <span class="fl">0</span>)</span>
-<span id="cb32-766"><a href="#cb32-766" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> elemento <span class="kw">in</span> a</span>
-<span id="cb32-767"><a href="#cb32-767" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="fu">inserta_skiplist!</span>(listado, elemento, c)</span>
-<span id="cb32-768"><a href="#cb32-768" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-769"><a href="#cb32-769" aria-hidden="true" tabindex="-1"></a>    siguiente <span class="op">=</span> listado.cabeceras[<span class="fl">1</span>]</span>
-<span id="cb32-770"><a href="#cb32-770" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> !(siguiente isa <span class="dt">Nothing</span>)</span>
-<span id="cb32-771"><a href="#cb32-771" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(ordenar, siguiente.valor)</span>
-<span id="cb32-772"><a href="#cb32-772" aria-hidden="true" tabindex="-1"></a>        siguiente <span class="op">=</span> siguiente.sucesores[<span class="fl">1</span>]</span>
-<span id="cb32-773"><a href="#cb32-773" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-774"><a href="#cb32-774" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c, ordenar</span>
-<span id="cb32-775"><a href="#cb32-775" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb32-776"><a href="#cb32-776" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-777"><a href="#cb32-777" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-780"><a href="#cb32-780" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb32-781"><a href="#cb32-781" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: verificar_ordenar_skiplist</span></span>
-<span id="cb32-782"><a href="#cb32-782" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb32-783"><a href="#cb32-783" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-784"><a href="#cb32-784" aria-hidden="true" tabindex="-1"></a><span class="co"># Parece que funciona bien para ordenar :)</span></span>
-<span id="cb32-785"><a href="#cb32-785" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="fu">ordenar_skiplist</span>(<span class="fu">rand</span>(rng, <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">10</span>)) )</span>
-<span id="cb32-786"><a href="#cb32-786" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="fu">ordenar_skiplist</span>(<span class="fu">rand</span>(rng, <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">10</span>), <span class="fl">0</span>) )</span>
-<span id="cb32-787"><a href="#cb32-787" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-788"><a href="#cb32-788" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-789"><a href="#cb32-789" aria-hidden="true" tabindex="-1"></a><span class="fu"># Experimentos de ordenamiento</span></span>
-<span id="cb32-790"><a href="#cb32-790" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-791"><a href="#cb32-791" aria-hidden="true" tabindex="-1"></a>En esta sección se muestran los resultados obtenidos de ejecutar los diferentes algoritmos de ordenamiento implmementados en <span class="in">`Julia`</span>, descritos en la sección anterior. Para ello, se ejecutaron en un conjunto de archivos (disponibles <span class="co">[</span><span class="ot">aquí</span><span class="co">](https://www.dropbox.com/scl/fo/kuy4oyqepbiuhru0h507k/AP4jjqX7khJFwJEIjArARw0?rlkey=fu8zospxn9sfedvyvz6xpiaok&amp;st=s13ugak7&amp;dl=0)</span>) que tienen diferentes niveles de desorden inicial.</span>
+<span id="cb32-751"><a href="#cb32-751" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb32-752"><a href="#cb32-752" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: verificar_inserta_skiplist</span></span>
+<span id="cb32-753"><a href="#cb32-753" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb32-754"><a href="#cb32-754" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-755"><a href="#cb32-755" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">Lista_Salto</span><span class="dt">{Int64}</span>()</span>
+<span id="cb32-756"><a href="#cb32-756" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
+<span id="cb32-757"><a href="#cb32-757" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inserta_skiplist!</span>(x, <span class="fu">rand</span>(rng, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>))</span>
+<span id="cb32-758"><a href="#cb32-758" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb32-759"><a href="#cb32-759" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb32-760"><a href="#cb32-760" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb32-761"><a href="#cb32-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-762"><a href="#cb32-762" aria-hidden="true" tabindex="-1"></a>Como se señaló previamente, el algoritmo de inserción de nodos en la lista elige el lugar para incorporar cada elemento de forma que quede ordenado en cada nivel. Así, mediante el algoritmo implementado, el primer nivel tiene apuntadores a los nodos cuyos valores se encuentran organizados de menor a mayor. En este sentido, es sencillo construir un algoritmo para ordenar un arreglo que utilice "*skiplists*", pues simplemente se debe inicializar una lista vacía, insertar cada uno de los elementos del arreglo en la lista y obtener los valores de los nodos de la lista en el orden de sucesión establecido en el primer nivel. Este procedimiento se implementó en <span class="in">`Julia`</span> mediante la función <span class="in">`ordenar_skiplist()`</span>, que incorpora un argumento opcional para contabilizar los procedimientos que, en su caso, se contabilizan en cada llamada a la función <span class="in">`inserta_skiplist!()`</span>.</span>
+<span id="cb32-763"><a href="#cb32-763" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-766"><a href="#cb32-766" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb32-767"><a href="#cb32-767" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: funcion_ordenar_skiplist</span></span>
+<span id="cb32-768"><a href="#cb32-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-769"><a href="#cb32-769" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ordenar_skiplist</span>(</span>
+<span id="cb32-770"><a href="#cb32-770" aria-hidden="true" tabindex="-1"></a>    a<span class="op">::</span><span class="dt">Vector</span>, </span>
+<span id="cb32-771"><a href="#cb32-771" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{ Int64, Nothing } </span><span class="op">=</span> <span class="cn">nothing</span>, </span>
+<span id="cb32-772"><a href="#cb32-772" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> <span class="cn">nothing</span>)</span>
+<span id="cb32-773"><a href="#cb32-773" aria-hidden="true" tabindex="-1"></a>    listado <span class="op">=</span> <span class="fu">Lista_Salto</span><span class="dt">{eltype(a)}</span>()</span>
+<span id="cb32-774"><a href="#cb32-774" aria-hidden="true" tabindex="-1"></a>    ordenar <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{eltype(a)}</span>()</span>
+<span id="cb32-775"><a href="#cb32-775" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> elemento <span class="kw">in</span> a</span>
+<span id="cb32-776"><a href="#cb32-776" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="fu">inserta_skiplist!</span>(listado, elemento, c, rng)</span>
+<span id="cb32-777"><a href="#cb32-777" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-778"><a href="#cb32-778" aria-hidden="true" tabindex="-1"></a>    siguiente <span class="op">=</span> listado.cabeceras[<span class="fl">1</span>]</span>
+<span id="cb32-779"><a href="#cb32-779" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> !(siguiente isa <span class="dt">Nothing</span>)</span>
+<span id="cb32-780"><a href="#cb32-780" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(ordenar, siguiente.valor)</span>
+<span id="cb32-781"><a href="#cb32-781" aria-hidden="true" tabindex="-1"></a>        siguiente <span class="op">=</span> siguiente.sucesores[<span class="fl">1</span>]</span>
+<span id="cb32-782"><a href="#cb32-782" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-783"><a href="#cb32-783" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c, ordenar, listado</span>
+<span id="cb32-784"><a href="#cb32-784" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb32-785"><a href="#cb32-785" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb32-786"><a href="#cb32-786" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-789"><a href="#cb32-789" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb32-790"><a href="#cb32-790" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: verificar_ordenar_skiplist</span></span>
+<span id="cb32-791"><a href="#cb32-791" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
 <span id="cb32-792"><a href="#cb32-792" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-795"><a href="#cb32-795" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb32-796"><a href="#cb32-796" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: importa_datos</span></span>
+<span id="cb32-793"><a href="#cb32-793" aria-hidden="true" tabindex="-1"></a><span class="co"># Parece que funciona bien para ordenar :)</span></span>
+<span id="cb32-794"><a href="#cb32-794" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="fu">ordenar_skiplist</span>(<span class="fu">rand</span>(rng, <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">10</span>)) )</span>
+<span id="cb32-795"><a href="#cb32-795" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="fu">ordenar_skiplist</span>(<span class="fu">rand</span>(rng, <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">10</span>), <span class="fl">0</span>) )</span>
+<span id="cb32-796"><a href="#cb32-796" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb32-797"><a href="#cb32-797" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-798"><a href="#cb32-798" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">Dict</span>()</span>
-<span id="cb32-799"><a href="#cb32-799" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="st">"016"</span>, <span class="st">"032"</span>, <span class="st">"064"</span>, <span class="st">"128"</span>, <span class="st">"256"</span>, <span class="st">"512"</span>]</span>
-<span id="cb32-800"><a href="#cb32-800" aria-hidden="true" tabindex="-1"></a>    datos[<span class="fu">parse</span>(<span class="dt">Int64</span>, numero)] <span class="op">=</span> JSON.<span class="fu">parsefile</span>(</span>
-<span id="cb32-801"><a href="#cb32-801" aria-hidden="true" tabindex="-1"></a>        <span class="st">"listas-posteo-con-perturbaciones-p=</span><span class="sc">$</span>(numero)<span class="st">.json"</span> )</span>
-<span id="cb32-802"><a href="#cb32-802" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb32-803"><a href="#cb32-803" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-804"><a href="#cb32-804" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-805"><a href="#cb32-805" aria-hidden="true" tabindex="-1"></a>Para mejorar el rendimiento de los algoritmos en el análisis que se desarrolla a continuación, se hicieron conversiones de las estrucutras en las que se representan los datos en memoria, al considerar que todas las entradas de los vectores son valores enteros.</span>
+<span id="cb32-798"><a href="#cb32-798" aria-hidden="true" tabindex="-1"></a><span class="fu"># Experimentos de ordenamiento</span></span>
+<span id="cb32-799"><a href="#cb32-799" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-800"><a href="#cb32-800" aria-hidden="true" tabindex="-1"></a>En esta sección se muestran los resultados obtenidos de ejecutar los diferentes algoritmos de ordenamiento implmementados en <span class="in">`Julia`</span>, descritos en la sección anterior. Para ello, se ejecutaron en un conjunto de archivos (disponibles <span class="co">[</span><span class="ot">aquí</span><span class="co">](https://www.dropbox.com/scl/fo/kuy4oyqepbiuhru0h507k/AP4jjqX7khJFwJEIjArARw0?rlkey=fu8zospxn9sfedvyvz6xpiaok&amp;st=s13ugak7&amp;dl=0)</span>) que tienen diferentes niveles de desorden inicial.^<span class="co">[</span><span class="ot">Datos originalmente disponibles en [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](legal.qmd).</span><span class="co">]</span></span>
+<span id="cb32-801"><a href="#cb32-801" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-804"><a href="#cb32-804" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb32-805"><a href="#cb32-805" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: importa_datos</span></span>
 <span id="cb32-806"><a href="#cb32-806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-809"><a href="#cb32-809" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb32-810"><a href="#cb32-810" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: datos_formate_entero</span></span>
-<span id="cb32-811"><a href="#cb32-811" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-812"><a href="#cb32-812" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> <span class="fu">keys</span>(datos)</span>
-<span id="cb32-813"><a href="#cb32-813" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos[numero])</span>
-<span id="cb32-814"><a href="#cb32-814" aria-hidden="true" tabindex="-1"></a>        datos[numero][asunto] <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Int64</span>}, datos[numero][asunto])</span>
-<span id="cb32-815"><a href="#cb32-815" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-816"><a href="#cb32-816" aria-hidden="true" tabindex="-1"></a>    datos[numero] <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">String</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}, datos[numero])</span>
-<span id="cb32-817"><a href="#cb32-817" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb32-818"><a href="#cb32-818" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">Int64</span>, <span class="dt">Dict</span>{<span class="dt">String</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}}, datos)</span>
-<span id="cb32-819"><a href="#cb32-819" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb32-807"><a href="#cb32-807" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">Dict</span>()</span>
+<span id="cb32-808"><a href="#cb32-808" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="st">"016"</span>, <span class="st">"032"</span>, <span class="st">"064"</span>, <span class="st">"128"</span>, <span class="st">"256"</span>, <span class="st">"512"</span>]</span>
+<span id="cb32-809"><a href="#cb32-809" aria-hidden="true" tabindex="-1"></a>    datos[<span class="fu">parse</span>(<span class="dt">Int64</span>, numero)] <span class="op">=</span> JSON.<span class="fu">parsefile</span>(</span>
+<span id="cb32-810"><a href="#cb32-810" aria-hidden="true" tabindex="-1"></a>        <span class="st">"listas-posteo-con-perturbaciones-p=</span><span class="sc">$</span>(numero)<span class="st">.json"</span> )</span>
+<span id="cb32-811"><a href="#cb32-811" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb32-812"><a href="#cb32-812" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb32-813"><a href="#cb32-813" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-814"><a href="#cb32-814" aria-hidden="true" tabindex="-1"></a>Para mejorar el rendimiento de los algoritmos en el análisis que se desarrolla a continuación, se hicieron conversiones de las estrucutras en las que se representan los datos en memoria, al considerar que todas las entradas de los vectores son valores enteros.</span>
+<span id="cb32-815"><a href="#cb32-815" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-818"><a href="#cb32-818" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb32-819"><a href="#cb32-819" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: datos_formate_entero</span></span>
 <span id="cb32-820"><a href="#cb32-820" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-821"><a href="#cb32-821" aria-hidden="true" tabindex="-1"></a>Los datos utilizados consisten en un conjunto de vectores, asociados a un número (16, 32, 64, 128, 256 y 512) que indica el nivel de desorden que tienen los elementos de estos. Para cada conjunto de vectores, se ejecutaron las funciones <span class="in">`burbuja!()`</span>, <span class="in">`ordena_une!()`</span>, <span class="in">`heapsort()`</span>, <span class="in">`quicksort!()`</span> y <span class="in">`ordenar_skiplist()`</span> y se obtuvo el tiempo total de ejecución para todos los listados de cada conjunto.</span>
-<span id="cb32-822"><a href="#cb32-822" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-823"><a href="#cb32-823" aria-hidden="true" tabindex="-1"></a>En la @tbl-tiempos se observan los resultados obtenidos. Se concluye que hay diferencias significativas en los tiempos de ejecución de los algoritmos y que estas son diferentes de las teóricamente esperadas. Así, el algoritmo <span class="in">`burbuja!()`</span> tarda menos tiempo de ejecución que el <span class="in">`ordenar_skiplist()`</span>, pese a que el primero tiene un tiempo de ejecución dominado por $n^2$ mientras que el segundo por $n \log_2 n$; por su parte, <span class="in">`heapsort()`</span> y <span class="in">`ordena_une!()`</span> obtuvieron los que mejores tiempos de ejecución. Por otra parte, se observa que a medida que aumenta el nivel de desorden de los vectores, también tiende a hacerlo el tiempo de ejecución de los algoritmos, aunque las diferencias son pequeñas y no son monótonas.</span>
-<span id="cb32-824"><a href="#cb32-824" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-827"><a href="#cb32-827" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb32-828"><a href="#cb32-828" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-tiempos</span></span>
-<span id="cb32-829"><a href="#cb32-829" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Tiempo de ejecución de los algoritmos analizados, en milisegundos</span></span>
-<span id="cb32-830"><a href="#cb32-830" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-831"><a href="#cb32-831" aria-hidden="true" tabindex="-1"></a>datos2 <span class="op">=</span> <span class="fu">deepcopy</span>(datos)</span>
-<span id="cb32-832"><a href="#cb32-832" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-833"><a href="#cb32-833" aria-hidden="true" tabindex="-1"></a>experimentos <span class="op">=</span> [<span class="st">"burbuja!"</span>, <span class="st">"ordena_une!"</span>, <span class="st">"heapsort"</span>, <span class="st">"quicksort!"</span>, <span class="st">"ordenar_skiplist"</span>]</span>
-<span id="cb32-834"><a href="#cb32-834" aria-hidden="true" tabindex="-1"></a>labsort_tiempo <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
-<span id="cb32-835"><a href="#cb32-835" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{String}</span>(), </span>
-<span id="cb32-836"><a href="#cb32-836" aria-hidden="true" tabindex="-1"></a>    desorden <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(),</span>
-<span id="cb32-837"><a href="#cb32-837" aria-hidden="true" tabindex="-1"></a>    tiempo <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>()</span>
-<span id="cb32-838"><a href="#cb32-838" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb32-821"><a href="#cb32-821" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> <span class="fu">keys</span>(datos)</span>
+<span id="cb32-822"><a href="#cb32-822" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos[numero])</span>
+<span id="cb32-823"><a href="#cb32-823" aria-hidden="true" tabindex="-1"></a>        datos[numero][asunto] <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Int64</span>}, datos[numero][asunto])</span>
+<span id="cb32-824"><a href="#cb32-824" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-825"><a href="#cb32-825" aria-hidden="true" tabindex="-1"></a>    datos[numero] <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">String</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}, datos[numero])</span>
+<span id="cb32-826"><a href="#cb32-826" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb32-827"><a href="#cb32-827" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">Int64</span>, <span class="dt">Dict</span>{<span class="dt">String</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}}, datos)</span>
+<span id="cb32-828"><a href="#cb32-828" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb32-829"><a href="#cb32-829" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-830"><a href="#cb32-830" aria-hidden="true" tabindex="-1"></a>Los datos utilizados consisten en un conjunto de vectores, asociados a un número (16, 32, 64, 128, 256 y 512) que indica el nivel de desorden que tienen los elementos de estos. Para cada conjunto de vectores, se ejecutaron las funciones <span class="in">`burbuja!()`</span>, <span class="in">`ordena_une!()`</span>, <span class="in">`heapsort()`</span>, <span class="in">`quicksort!()`</span> y <span class="in">`ordenar_skiplist()`</span> y se obtuvo el tiempo total de ejecución para todos los listados de cada conjunto.</span>
+<span id="cb32-831"><a href="#cb32-831" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-832"><a href="#cb32-832" aria-hidden="true" tabindex="-1"></a>En la @tbl-tiempos se observan los resultados obtenidos. Se concluye que hay diferencias significativas en los tiempos de ejecución de los algoritmos y que estas son diferentes de las teóricamente esperadas. Así, el algoritmo <span class="in">`burbuja!()`</span> tarda menos tiempo de ejecución que el <span class="in">`ordenar_skiplist()`</span>, pese a que el primero tiene un tiempo de ejecución dominado por $n^2$ mientras que el segundo por $n \log_2 n$; por su parte, <span class="in">`heapsort()`</span> y <span class="in">`ordena_une!()`</span> obtuvieron los que mejores tiempos de ejecución. Por otra parte, se observa que a medida que aumenta el nivel de desorden de los vectores, también tiende a hacerlo el tiempo de ejecución de los algoritmos, aunque las diferencias son pequeñas y no son monótonas.</span>
+<span id="cb32-833"><a href="#cb32-833" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-836"><a href="#cb32-836" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb32-837"><a href="#cb32-837" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-tiempos</span></span>
+<span id="cb32-838"><a href="#cb32-838" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Tiempo de ejecución de los algoritmos analizados, en milisegundos</span></span>
 <span id="cb32-839"><a href="#cb32-839" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-840"><a href="#cb32-840" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">64</span>, <span class="fl">128</span>, <span class="fl">256</span>, <span class="fl">512</span>]</span>
-<span id="cb32-841"><a href="#cb32-841" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> experimento <span class="kw">in</span> experimentos</span>
-<span id="cb32-842"><a href="#cb32-842" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">Symbol</span>(experimento)</span>
-<span id="cb32-843"><a href="#cb32-843" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">getfield</span>(<span class="bu">Main</span>, f)</span>
-<span id="cb32-844"><a href="#cb32-844" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="fu">now</span>()</span>
-<span id="cb32-845"><a href="#cb32-845" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos2[numero])</span>
-<span id="cb32-846"><a href="#cb32-846" aria-hidden="true" tabindex="-1"></a>            <span class="fu">f</span>(datos2[numero][asunto])</span>
-<span id="cb32-847"><a href="#cb32-847" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb32-848"><a href="#cb32-848" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_tiempo, (experimento, numero, <span class="bu">Dates</span>.<span class="fu">value</span>( <span class="fu">now</span>() <span class="op">-</span> x ) ))</span>
-<span id="cb32-849"><a href="#cb32-849" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-850"><a href="#cb32-850" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb32-851"><a href="#cb32-851" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_tiempo, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>tiempo)</span>
-<span id="cb32-852"><a href="#cb32-852" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-853"><a href="#cb32-853" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-854"><a href="#cb32-854" aria-hidden="true" tabindex="-1"></a>Se hizo el procedimiento análogo para obtener el número de operaciones promedio que realizó cada algoritmo en los arreglos de cada archivo electrónico. En la @tbl-operaciones se muestran los resultados obtenidos. En este caso, se obtuvieron resultados más cercanos a los teóricamente esperados pues el número de operaciones de <span class="in">`burbuja!()`</span> fue muy elevado en comparación con los demás, y los mejores rendimientos obtenidos fueron para <span class="in">`ordena_une!()`</span> y <span class="in">`skiplist()`</span>. Asimismo, se observa que, salvo para el caso de <span class="in">`burbuja!()`</span>, el nivel de desorden de los arreglos de entrada no afecta el desempeño de los algoritmos.</span>
-<span id="cb32-855"><a href="#cb32-855" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-858"><a href="#cb32-858" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb32-859"><a href="#cb32-859" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-operaciones</span></span>
-<span id="cb32-860"><a href="#cb32-860" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Número de operaciones ejecutadas por los algoritmos analizados</span></span>
-<span id="cb32-861"><a href="#cb32-861" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-862"><a href="#cb32-862" aria-hidden="true" tabindex="-1"></a>datos2 <span class="op">=</span> <span class="fu">deepcopy</span>(datos)</span>
-<span id="cb32-863"><a href="#cb32-863" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-864"><a href="#cb32-864" aria-hidden="true" tabindex="-1"></a>labsort_cuenta <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
-<span id="cb32-865"><a href="#cb32-865" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{String}</span>(), </span>
-<span id="cb32-866"><a href="#cb32-866" aria-hidden="true" tabindex="-1"></a>    desorden <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(),</span>
-<span id="cb32-867"><a href="#cb32-867" aria-hidden="true" tabindex="-1"></a>    operaciones <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>()</span>
-<span id="cb32-868"><a href="#cb32-868" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb32-869"><a href="#cb32-869" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">64</span>, <span class="fl">128</span>, <span class="fl">256</span>, <span class="fl">512</span>]</span>
-<span id="cb32-870"><a href="#cb32-870" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> experimento <span class="kw">in</span> experimentos</span>
-<span id="cb32-871"><a href="#cb32-871" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">Symbol</span>(experimento)</span>
-<span id="cb32-872"><a href="#cb32-872" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">getfield</span>(<span class="bu">Main</span>, f)</span>
-<span id="cb32-873"><a href="#cb32-873" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb32-874"><a href="#cb32-874" aria-hidden="true" tabindex="-1"></a>        iteraciones <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb32-875"><a href="#cb32-875" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos2[numero])</span>
-<span id="cb32-876"><a href="#cb32-876" aria-hidden="true" tabindex="-1"></a>            iteraciones <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb32-877"><a href="#cb32-877" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> experimento <span class="kw">in</span> [<span class="st">"heapsort"</span>, <span class="st">"ordenar_skiplist"</span>]</span>
-<span id="cb32-878"><a href="#cb32-878" aria-hidden="true" tabindex="-1"></a>                c1, _ <span class="op">=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
-<span id="cb32-879"><a href="#cb32-879" aria-hidden="true" tabindex="-1"></a>                c <span class="op">+=</span> c1</span>
-<span id="cb32-880"><a href="#cb32-880" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
-<span id="cb32-881"><a href="#cb32-881" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span></span>
-<span id="cb32-882"><a href="#cb32-882" aria-hidden="true" tabindex="-1"></a>                    c <span class="op">+=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
-<span id="cb32-883"><a href="#cb32-883" aria-hidden="true" tabindex="-1"></a>                <span class="cf">catch</span></span>
-<span id="cb32-884"><a href="#cb32-884" aria-hidden="true" tabindex="-1"></a>                    iteraciones <span class="op">-=</span> <span class="fl">1</span></span>
-<span id="cb32-885"><a href="#cb32-885" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
-<span id="cb32-886"><a href="#cb32-886" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
-<span id="cb32-887"><a href="#cb32-887" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb32-888"><a href="#cb32-888" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_cuenta, (experimento, numero, c <span class="op">/</span> iteraciones))</span>
-<span id="cb32-889"><a href="#cb32-889" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb32-890"><a href="#cb32-890" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb32-891"><a href="#cb32-891" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-892"><a href="#cb32-892" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_cuenta, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>operaciones)</span>
-<span id="cb32-893"><a href="#cb32-893" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-894"><a href="#cb32-894" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-895"><a href="#cb32-895" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referencias</span></span>
+<span id="cb32-840"><a href="#cb32-840" aria-hidden="true" tabindex="-1"></a>datos2 <span class="op">=</span> <span class="fu">deepcopy</span>(datos)</span>
+<span id="cb32-841"><a href="#cb32-841" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-842"><a href="#cb32-842" aria-hidden="true" tabindex="-1"></a>experimentos <span class="op">=</span> [<span class="st">"burbuja!"</span>, <span class="st">"ordena_une!"</span>, <span class="st">"heapsort"</span>, <span class="st">"quicksort!"</span>, <span class="st">"ordenar_skiplist"</span>]</span>
+<span id="cb32-843"><a href="#cb32-843" aria-hidden="true" tabindex="-1"></a>labsort_tiempo <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb32-844"><a href="#cb32-844" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{String}</span>(), </span>
+<span id="cb32-845"><a href="#cb32-845" aria-hidden="true" tabindex="-1"></a>    desorden <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(),</span>
+<span id="cb32-846"><a href="#cb32-846" aria-hidden="true" tabindex="-1"></a>    tiempo <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>()</span>
+<span id="cb32-847"><a href="#cb32-847" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb32-848"><a href="#cb32-848" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-849"><a href="#cb32-849" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">64</span>, <span class="fl">128</span>, <span class="fl">256</span>, <span class="fl">512</span>]</span>
+<span id="cb32-850"><a href="#cb32-850" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> experimento <span class="kw">in</span> experimentos</span>
+<span id="cb32-851"><a href="#cb32-851" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">Symbol</span>(experimento)</span>
+<span id="cb32-852"><a href="#cb32-852" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">getfield</span>(<span class="bu">Main</span>, f)</span>
+<span id="cb32-853"><a href="#cb32-853" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="fu">now</span>()</span>
+<span id="cb32-854"><a href="#cb32-854" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos2[numero])</span>
+<span id="cb32-855"><a href="#cb32-855" aria-hidden="true" tabindex="-1"></a>            <span class="fu">f</span>(datos2[numero][asunto])</span>
+<span id="cb32-856"><a href="#cb32-856" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb32-857"><a href="#cb32-857" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_tiempo, (experimento, numero, <span class="bu">Dates</span>.<span class="fu">value</span>( <span class="fu">now</span>() <span class="op">-</span> x ) ))</span>
+<span id="cb32-858"><a href="#cb32-858" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-859"><a href="#cb32-859" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb32-860"><a href="#cb32-860" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_tiempo, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>tiempo)</span>
+<span id="cb32-861"><a href="#cb32-861" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb32-862"><a href="#cb32-862" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-863"><a href="#cb32-863" aria-hidden="true" tabindex="-1"></a>Se hizo el procedimiento análogo para obtener el número de operaciones promedio que realizó cada algoritmo en los arreglos de cada archivo electrónico. En la @tbl-operaciones se muestran los resultados obtenidos. En este caso, se obtuvieron resultados más cercanos a los teóricamente esperados pues el número de operaciones de <span class="in">`burbuja!()`</span> fue muy elevado en comparación con los demás, y los mejores rendimientos obtenidos fueron para <span class="in">`ordena_une!()`</span> y <span class="in">`skiplist()`</span>. Asimismo, se observa que, salvo para el caso de <span class="in">`burbuja!()`</span>, el nivel de desorden de los arreglos de entrada no afecta el desempeño de los algoritmos.</span>
+<span id="cb32-864"><a href="#cb32-864" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-867"><a href="#cb32-867" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb32-868"><a href="#cb32-868" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-operaciones</span></span>
+<span id="cb32-869"><a href="#cb32-869" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Número de operaciones ejecutadas por los algoritmos analizados</span></span>
+<span id="cb32-870"><a href="#cb32-870" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-871"><a href="#cb32-871" aria-hidden="true" tabindex="-1"></a>datos2 <span class="op">=</span> <span class="fu">deepcopy</span>(datos)</span>
+<span id="cb32-872"><a href="#cb32-872" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-873"><a href="#cb32-873" aria-hidden="true" tabindex="-1"></a>labsort_cuenta <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb32-874"><a href="#cb32-874" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{String}</span>(), </span>
+<span id="cb32-875"><a href="#cb32-875" aria-hidden="true" tabindex="-1"></a>    desorden <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(),</span>
+<span id="cb32-876"><a href="#cb32-876" aria-hidden="true" tabindex="-1"></a>    operaciones <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>()</span>
+<span id="cb32-877"><a href="#cb32-877" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb32-878"><a href="#cb32-878" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">64</span>, <span class="fl">128</span>, <span class="fl">256</span>, <span class="fl">512</span>]</span>
+<span id="cb32-879"><a href="#cb32-879" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> experimento <span class="kw">in</span> experimentos</span>
+<span id="cb32-880"><a href="#cb32-880" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">Symbol</span>(experimento)</span>
+<span id="cb32-881"><a href="#cb32-881" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">getfield</span>(<span class="bu">Main</span>, f)</span>
+<span id="cb32-882"><a href="#cb32-882" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb32-883"><a href="#cb32-883" aria-hidden="true" tabindex="-1"></a>        iteraciones <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb32-884"><a href="#cb32-884" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos2[numero])</span>
+<span id="cb32-885"><a href="#cb32-885" aria-hidden="true" tabindex="-1"></a>            iteraciones <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb32-886"><a href="#cb32-886" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> experimento <span class="kw">in</span> [<span class="st">"heapsort"</span>, <span class="st">"ordenar_skiplist"</span>]</span>
+<span id="cb32-887"><a href="#cb32-887" aria-hidden="true" tabindex="-1"></a>                c1, _ <span class="op">=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
+<span id="cb32-888"><a href="#cb32-888" aria-hidden="true" tabindex="-1"></a>                c <span class="op">+=</span> c1</span>
+<span id="cb32-889"><a href="#cb32-889" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb32-890"><a href="#cb32-890" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span></span>
+<span id="cb32-891"><a href="#cb32-891" aria-hidden="true" tabindex="-1"></a>                    c <span class="op">+=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
+<span id="cb32-892"><a href="#cb32-892" aria-hidden="true" tabindex="-1"></a>                <span class="cf">catch</span></span>
+<span id="cb32-893"><a href="#cb32-893" aria-hidden="true" tabindex="-1"></a>                    iteraciones <span class="op">-=</span> <span class="fl">1</span></span>
+<span id="cb32-894"><a href="#cb32-894" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
+<span id="cb32-895"><a href="#cb32-895" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb32-896"><a href="#cb32-896" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb32-897"><a href="#cb32-897" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_cuenta, (experimento, numero, c <span class="op">/</span> iteraciones))</span>
+<span id="cb32-898"><a href="#cb32-898" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb32-899"><a href="#cb32-899" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb32-900"><a href="#cb32-900" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-901"><a href="#cb32-901" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_cuenta, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>operaciones)</span>
+<span id="cb32-902"><a href="#cb32-902" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb32-903"><a href="#cb32-903" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-904"><a href="#cb32-904" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referencias</span></span>
 </code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

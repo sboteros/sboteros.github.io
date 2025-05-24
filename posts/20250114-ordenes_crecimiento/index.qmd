@@ -1,7 +1,7 @@
 ---
 title: 'Comparación de órdenes de crecimiento'
 date: '2025-01-14'
-jupyter: julia_mcdi_algoritmos-1.11
+jupyter: julia-1.11
 description: 'Análisis visual y tabular de órdenes de crecimiento: de funciones constantes a tetración, aplicado al rendimiento de algoritmos.'
 categories:
       - Análisis de algoritmos

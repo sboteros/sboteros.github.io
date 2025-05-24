@@ -1,7 +1,7 @@
 ---
 title: Operaciones sobre matrices
 date: 2025-02-17
-jupyter: julia_mcdi_algoritmos-1.11
+jupyter: julia-1.11
 description: 'Comparación de algoritmos de álgebra lineal en Julia, evaluando rendimiento en multiplicación, reducción y cálculo de inversa de matrices.'
 categories:
     - Análisis de algoritmos

@@ -1,7 +1,7 @@
 ---
 title: 'Algoritmos de ordenamiento'
 date: 2025-03-04
-jupyter: julia_mcdi_algoritmos-1.11
+jupyter: julia-1.11
 description: 'Comparativa de algoritmos de ordenamiento en Julia según eficiencia en tiempo y operaciones, usando vectores con distintos niveles de desorden.'
 categories:
     - Análisis de algoritmos
@@ -651,16 +651,22 @@ De acuerdo con @skiplists, el nivel de complejidad de las inserciones en una "*S
 function inserta_skiplist!(
     lista::Lista_Salto{T}, 
     valor::T, 
-    c::Union{ Int64, Nothing } = nothing) where {T}
+    c::Union{ Int64, Nothing } = nothing,
+    rng = nothing) where {T}
     
     # Asignar aleatoriamente un nivel
     nivel = 1
-    while rand() <= 0.5
-        nivel += 1
+    if rng isa Nothing
+        while rand() <= 0.5
+            nivel += 1
+        end
+    else
+        while rand(rng) <= 0.5
+            nivel += 1
+        end
     end
 
-    # Si la lista tiene menos niveles, adicionar los restantes a
-    # la cabecera
+    # Si la lista tiene menos niveles, adicionar los restantes
     if nivel > lista.nivel_maximo
         for k in (lista.nivel_maximo + 1):nivel
             push!(lista.cabeceras, nothing)
@@ -720,18 +726,21 @@ Como se señaló previamente, el algoritmo de inserción de nodos en la lista el
 ```{julia}
 #| label: funcion_ordenar_skiplist
 
-function ordenar_skiplist(a::Vector, c::Union{ Int64, Nothing } = nothing)
+function ordenar_skiplist(
+    a::Vector, 
+    c::Union{ Int64, Nothing } = nothing, 
+    rng = nothing)
     listado = Lista_Salto{eltype(a)}()
-    ordenar = Vector{eltype(a)}(undef, 0)
+    ordenar = Vector{eltype(a)}()
     for elemento in a
-        c = inserta_skiplist!(listado, elemento, c)
+        c = inserta_skiplist!(listado, elemento, c, rng)
     end
     siguiente = listado.cabeceras[1]
     while !(siguiente isa Nothing)
         push!(ordenar, siguiente.valor)
         siguiente = siguiente.sucesores[1]
     end
-    return c, ordenar
+    return c, ordenar, listado
 end
 ```
 
@@ -746,7 +755,7 @@ println( ordenar_skiplist(rand(rng, 1:100, 10), 0) )
 
 # Experimentos de ordenamiento
 
-En esta sección se muestran los resultados obtenidos de ejecutar los diferentes algoritmos de ordenamiento implmementados en `Julia`, descritos en la sección anterior. Para ello, se ejecutaron en un conjunto de archivos (disponibles [aquí](https://www.dropbox.com/scl/fo/kuy4oyqepbiuhru0h507k/AP4jjqX7khJFwJEIjArARw0?rlkey=fu8zospxn9sfedvyvz6xpiaok&st=s13ugak7&dl=0)) que tienen diferentes niveles de desorden inicial.
+En esta sección se muestran los resultados obtenidos de ejecutar los diferentes algoritmos de ordenamiento implmementados en `Julia`, descritos en la sección anterior. Para ello, se ejecutaron en un conjunto de archivos (disponibles [aquí](https://www.dropbox.com/scl/fo/kuy4oyqepbiuhru0h507k/AP4jjqX7khJFwJEIjArARw0?rlkey=fu8zospxn9sfedvyvz6xpiaok&st=s13ugak7&dl=0)) que tienen diferentes niveles de desorden inicial.^[Datos originalmente disponibles en [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](legal.qmd).]
 
 ```{julia}
 #| label: importa_datos
