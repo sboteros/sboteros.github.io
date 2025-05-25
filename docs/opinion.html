@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.31">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sobre mí – sboteros</title>
+<title>Opinión – sboteros</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,10 +31,13 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./assets/img/logo_512.ico" rel="icon">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -54,35 +57,97 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Sobre mí – sboteros">
-<meta property="og:description" content="Ciencia de Datos - Economista/Abogado">
+<link rel="alternate" type="application/rss+xml" title="sboteros" href="opinion.xml" data-external="1"><meta property="og:title" content="Opinión – sboteros">
+<meta property="og:image" content="www.sboteros.com/posts/20250524-analisis_algoritmos/portada_analisis_algoritmos.png">
 <meta property="og:site_name" content="sboteros">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:title" content="Sobre mí – sboteros">
-<meta name="twitter:description" content="Ciencia de Datos - Economista/Abogado">
-<meta name="twitter:card" content="summary">
+<meta property="og:image:height" content="1024">
+<meta property="og:image:width" content="1024">
+<meta name="twitter:title" content="Opinión – sboteros">
+<meta name="twitter:image" content="www.sboteros.com/posts/20250524-analisis_algoritmos/portada_analisis_algoritmos.png">
+<meta name="twitter:image-height" content="1024">
+<meta name="twitter:image-width" content="1024">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -93,14 +158,14 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">sboteros</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">Sobre mí</span></a>
   </li>  
   <li class="nav-item">
@@ -108,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Ciencia de Datos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./opinion.html"> 
+    <a class="nav-link active" href="./opinion.html" aria-current="page"> 
 <span class="menu-text">Opinión</span></a>
   </li>  
 </ul>
@@ -126,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -136,42 +201,268 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Opinión</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYQ==">Algoritmos de búsqueda <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw==">Análisis de algoritmos <span class="quarto-category-count">(5)</span></div><div class="category" data-category="QnVibGUlMjBzb3J0">Buble sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=">Búsqueda acotada <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGJpbmFyaWE=">Búsqueda binaria <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWxpbWluYWNpJUMzJUIzbiUyMGdhdXNzaWFuYQ==">Eliminación gaussiana <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGVhcHNvcnQ=">Heapsort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SnVsaWE=">Julia <span class="quarto-category-count">(5)</span></div><div class="category" data-category="TWVyZ2UlMjBzb3J0">Merge sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMGRlJTIwbWF0cmljZXMlMjBkaXNwZXJzYXM=">Multiplicación de matrices dispersas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbA==">Multiplicación matricial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYQ==">Notación asintótica <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUMzJTkzcmRlbmVzJTIwZGUlMjBjcmVjaW1pZW50bw==">Órdenes de crecimiento <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVpY2tzb3J0">Quicksort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24=">Recuperación de Información <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVkdWNjaSVDMyVCM24lMjBkZSUyMEdhdXNzLUpvcmRhbg==">Reducción de Gauss-Jordan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2tpcGxpc3Q=">Skiplist <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="assets/img/perfil.jpg" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Sobre mí</h1>
-<p class="subtitle lead">Ciencia de Datos - Economista/Abogado</p>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header><main class="content" id="quarto-document-content">
-<p>Hola, soy Santiago Botero Sierra, economista, abogado y especialista en ciencia de datos, con más de 10 años de experiencia en el análisis de mercados y la implementación de metodologías estadísticas en el sector público mexicano. A lo largo de mi carrera, he liderado investigaciones en temas de competencia económica y desarrollado herramientas para transformar grandes volúmenes de datos en análisis útiles para la toma de decisiones. Me apasiona aprender cosas nuevas y aplicar ese conocimiento para resolver problemas complejos.</p>
-<p>Fuera del trabajo, disfruto mucho compartir tiempo con mi pareja, caminar con mis perros y organizar asados para mis amistades. También soy asociado de Migrante33, una organización de defensa de derechos de las y los migrantes. Siempre estoy buscando nuevas formas de crecer, tanto profesional como personalmente.</p>
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="https://github.com/sboteros" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="https://www.linkedin.com/in/sboteros/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1748066400000" data-listing-file-modified-sort="1748136585084" data-listing-date-modified-sort="1748136585000" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250523-union_interseccion/index.html" class="no-external">Algoritmos de unión e intersección</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
+XXXX
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250523-union_interseccion/index.html" class="no-external">
+<div class="listing-date">
+24 may 2025
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
 </div>
 </div>
- <!-- /main -->
+<div class="quarto-post image-right" data-index="1" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDUmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24lMkNNdWx0aXBsaWNhY2klQzMlQjNuJTIwZGUlMjBtYXRyaWNlcyUyMGRpc3BlcnNhcw==" data-listing-date-sort="1747980000000" data-listing-file-modified-sort="1748137155786" data-listing-date-modified-sort="1748137155000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1173">
+<div class="thumbnail"><a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20250524-analisis_algoritmos/portada_analisis_algoritmos.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">Introducción al análisis de algoritmos</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24='); return false;">Recuperación de Información</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlwbGljYWNpJUMzJUIzbiUyMGRlJTIwbWF0cmljZXMlMjBkaXNwZXJzYXM='); return false;">Multiplicación de matrices dispersas</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
+<p>Reseña del Curso Introductorio de Análisis de Algoritmos, del Dr.&nbsp;Sadit Téllez</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
+<div class="listing-date">
+23 may 2025
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYSUyQ0IlQzMlQkFzcXVlZGElMjBiaW5hcmlhJTJDQiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=" data-listing-date-sort="1743487200000" data-listing-file-modified-sort="1748135644353" data-listing-date-modified-sort="1748135644000" data-listing-reading-time-sort="27" data-listing-word-count-sort="5330">
+<div class="thumbnail"><a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20250401-busqueda_comparacion/portada_busqueda_comparacion.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">Algoritmos de búsqueda por comparación</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYQ=='); return false;">Algoritmos de búsqueda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QiVDMyVCQXNxdWVkYSUyMGJpbmFyaWE='); return false;">Búsqueda binaria</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE='); return false;">Búsqueda acotada</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">
+<p>Análisis de algoritmos de búsqueda adaptativa en Julia, comparando eficiencia entre métodos binarios, secuenciales y SkipLists.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">
+<div class="listing-date">
+1 abr 2025
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQnVibGUlMjBzb3J0JTJDTWVyZ2UlMjBzb3J0JTJDSGVhcHNvcnQlMkNRdWlja3NvcnQlMkNTa2lwbGlzdA==" data-listing-date-sort="1741068000000" data-listing-file-modified-sort="1748136707780" data-listing-date-modified-sort="1748136707000" data-listing-reading-time-sort="34" data-listing-word-count-sort="6696">
+<div class="thumbnail"><a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20250304-algoritmos_ordenamiento/portada_ordenamiento.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">Algoritmos de ordenamiento</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QnVibGUlMjBzb3J0'); return false;">Buble sort</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWVyZ2UlMjBzb3J0'); return false;">Merge sort</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SGVhcHNvcnQ='); return false;">Heapsort</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UXVpY2tzb3J0'); return false;">Quicksort</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2tpcGxpc3Q='); return false;">Skiplist</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">
+<p>Comparativa de algoritmos de ordenamiento en Julia según eficiencia en tiempo y operaciones, usando vectores con distintos niveles de desorden.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">
+<div class="listing-date">
+4 mar 2025
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDTXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbCUyQ0VsaW1pbmFjaSVDMyVCM24lMjBnYXVzc2lhbmElMkNSZWR1Y2NpJUMzJUIzbiUyMGRlJTIwR2F1c3MtSm9yZGFu" data-listing-date-sort="1739772000000" data-listing-file-modified-sort="1748042229697" data-listing-date-modified-sort="1748042229000" data-listing-reading-time-sort="26" data-listing-word-count-sort="5162">
+<div class="thumbnail"><a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20250217-operaciones_matriciales/portada_operacion_matrices.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">Operaciones sobre matrices</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbA=='); return false;">Multiplicación matricial</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWxpbWluYWNpJUMzJUIzbiUyMGdhdXNzaWFuYQ=='); return false;">Eliminación gaussiana</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVkdWNjaSVDMyVCM24lMjBkZSUyMEdhdXNzLUpvcmRhbg=='); return false;">Reducción de Gauss-Jordan</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">
+<p>Comparación de algoritmos de álgebra lineal en Julia, evaluando rendimiento en multiplicación, reducción y cálculo de inversa de matrices.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">
+<div class="listing-date">
+17 feb 2025
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDTm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYSUyQyVDMyU5M3JkZW5lcyUyMGRlJTIwY3JlY2ltaWVudG8=" data-listing-date-sort="1736834400000" data-listing-file-modified-sort="1748126443719" data-listing-date-modified-sort="1748126443000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1721">
+<div class="thumbnail"><a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20250114-ordenes_crecimiento/orders_magnitude.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">Comparación de órdenes de crecimiento</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Tm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYQ=='); return false;">Notación asintótica</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('JUMzJTkzcmRlbmVzJTIwZGUlMjBjcmVjaW1pZW50bw=='); return false;">Órdenes de crecimiento</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">
+<p>Análisis visual y tabular de órdenes de crecimiento: de funciones constantes a tetración, aplicado al rendimiento de algoritmos.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">
+<div class="listing-date">
+14 ene 2025
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No hay resultados</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -188,12 +479,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiado");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiado");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

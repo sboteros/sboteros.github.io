@@ -2,13 +2,14 @@
 title: 'Algoritmos de búsqueda por comparación'
 date: 2025-04-01
 jupyter: julia-1.11
-description: ''
+description: 'Análisis de algoritmos de búsqueda adaptativa en Julia, comparando eficiencia entre métodos binarios, secuenciales y SkipLists.'
 categories:
     - Análisis de algoritmos
     - Julia
     - Algoritmos de búsqueda
     - Búsqueda binaria
     - Búsqueda acotada
+image: portada_busqueda_comparacion.png
 ---
 
 ```{julia}
@@ -465,7 +466,7 @@ for numero in keys(datos)
 end
 ```
 
-Asimismo, se obtuvieron números para consultar en los diferentes arreglos a partir de 4 archivos electrónicos en formato JSON, [disponibles aquí](https://www.dropbox.com/scl/fo/8zrqyv1603qfxj2a3w29b/ALkCU_d2_-Ui5zVZ5BBd1DE?rlkey=mwkqer63q8uyzivplmg4ygwuh&st=wr2ej92s&dl=0).^[Datos originalmente disponibles [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](.../legal.qmd).] Estos se registraron en un diccionario denominado `consultas`, cuyas claves son asociadas al archivo electrónico correspondiente y cuyos valores son los arreglos con los números de consulta que se realizarán.
+Asimismo, se obtuvieron números para consultar en los diferentes arreglos a partir de 4 archivos electrónicos en formato JSON, [disponibles aquí](https://www.dropbox.com/scl/fo/8zrqyv1603qfxj2a3w29b/ALkCU_d2_-Ui5zVZ5BBd1DE?rlkey=mwkqer63q8uyzivplmg4ygwuh&st=wr2ej92s&dl=0).^[Datos originalmente disponibles [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](../../legal.qmd).] Estos se registraron en un diccionario denominado `consultas`, cuyas claves son asociadas al archivo electrónico correspondiente y cuyos valores son los arreglos con los números de consulta que se realizarán.
 
 ```{julia}
 #| label: consultas

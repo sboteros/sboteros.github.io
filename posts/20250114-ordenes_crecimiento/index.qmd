@@ -16,7 +16,7 @@ image: orders_magnitude.png
 ```{julia}
 #| label: software
 
-using DataFrames, Formatting, MarkdownTables, LaTeXStrings, Plots
+using DataFrames, Format, MarkdownTables, LaTeXStrings, Plots
 ```
 
 # Introducción {#sec-introduccion}
@@ -144,7 +144,7 @@ DataFrame(n = a,
           Exponencial = [log10(3^big(n)) for n in a],
           Factorial = [log10(factorial(big(n))) for n in a],
           Tetración = [log10(big(n)^n) for n in a]) |> 
-markdown_table(formatter = x -> x < 1000001 ? sprintf1("%.0f", x) : sprintf1("%4.2E", x))
+markdown_table(formatter = x -> x < 1000001 ? cfmt("%'.0f", x) : cfmt("%4.2E", x))
 ```
 
 A partir de la información presentada en la @tbl-ordenes_crecimiento, se concluye que las funciones disponibles en las columnas de la izquierda son preferibles a las de las columnas de la derecha, de forma similar a lo observado en la @sec-grafico. Por ejemplo, al fijarse en la fila correspondiente a $n = 10000$ se observa que la cantidad de ceros que tienen las cifras son cero, uno, cuatro, cinco, ocho, ocho, casi 5,000, casi 36,000 y 40,000, respectivamente. Es decir, la diferencia en el rendimiento de la función constante es de un orden de magnitud aproximadamente 40,000 veces superior a la función tetración, para $n = 10000$.

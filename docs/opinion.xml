@@ -6,8 +6,8 @@
       version="2.0">
 <channel>
 <title>sboteros</title>
-<link>www.sboteros.com/posts.html</link>
-<atom:link href="www.sboteros.com/posts.xml" rel="self" type="application/rss+xml"/>
+<link>www.sboteros.com/opinion.html</link>
+<atom:link href="www.sboteros.com/opinion.xml" rel="self" type="application/rss+xml"/>
 <description>Análisis de datos, programación y opinión</description>
 <generator>quarto-1.7.31</generator>
 <lastBuildDate>Sat, 24 May 2025 06:00:00 GMT</lastBuildDate>

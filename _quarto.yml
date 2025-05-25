@@ -10,7 +10,9 @@ website:
       - href: about.qmd
         text: 'Sobre mí'
       - href: posts.qmd
-        text: 'Blog'
+        text: 'Ciencia de Datos'
+      - href: opinion.qmd
+        text: 'Opinión'
     right:
       - icon: rss
         href: sitemap.xml

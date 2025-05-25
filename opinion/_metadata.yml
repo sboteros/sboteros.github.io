@@ -1,0 +1,9 @@
+author:
+  - name: Santiago Botero Sierra
+    email: sboteros@unal.edu.co
+date-modified: last-modified
+lang: es
+execute:
+  echo: true
+  warning: false
+freeze: true

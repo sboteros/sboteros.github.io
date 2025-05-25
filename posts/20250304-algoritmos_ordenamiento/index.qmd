@@ -593,7 +593,7 @@ De acuerdo con @skiplists_pugh[pp. 669-670], para insertar un nodo con valor $v$
 Para elegir el lugar de ubicación del nuevo elemento, se parte de la cabecera de la lista en el nivel que se le asignó al nuevo nodo y se buscan dos nodos consecutivos $x, \, z$ tales que $x.valor < v \leq z.valor$. Si estos nodos existen, se actualizan los punteros para que $x$ apunte al nuevo nodo y este, a su vez, apunte a $z$. Este procedimiento se repite en todos los niveles inferiores de la lista. Al respecto, @skiplists plantean un algoritmo para implementar este procedimiento, cuya adaptación se muestra en el @alg-skiplist. Este algoritmo se implementó en `Julia` mediante la función `inserta_skiplist!()`, que contiene un argumento opcional para contabilizar el número de actualizaciones de punteros que realiza el algoritmo.
 
 ```pseudocode
-#| label: alg-quicksort
+#| label: alg-skiplist
 #| html-line-number: true
 
 \begin{algorithm}
@@ -755,7 +755,7 @@ println( ordenar_skiplist(rand(rng, 1:100, 10), 0) )
 
 # Experimentos de ordenamiento
 
-En esta sección se muestran los resultados obtenidos de ejecutar los diferentes algoritmos de ordenamiento implmementados en `Julia`, descritos en la sección anterior. Para ello, se ejecutaron en un conjunto de archivos (disponibles [aquí](https://www.dropbox.com/scl/fo/kuy4oyqepbiuhru0h507k/AP4jjqX7khJFwJEIjArARw0?rlkey=fu8zospxn9sfedvyvz6xpiaok&st=s13ugak7&dl=0)) que tienen diferentes niveles de desorden inicial.^[Datos originalmente disponibles en [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](legal.qmd).]
+En esta sección se muestran los resultados obtenidos de ejecutar los diferentes algoritmos de ordenamiento implmementados en `Julia`, descritos en la sección anterior. Para ello, se ejecutaron en un conjunto de archivos (disponibles [aquí](https://www.dropbox.com/scl/fo/kuy4oyqepbiuhru0h507k/AP4jjqX7khJFwJEIjArARw0?rlkey=fu8zospxn9sfedvyvz6xpiaok&st=s13ugak7&dl=0)) que tienen diferentes niveles de desorden inicial.^[Datos originalmente disponibles en [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](../../legal.qmd).]
 
 ```{julia}
 #| label: importa_datos
