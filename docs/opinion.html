@@ -39,10 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e6987b654c55bcabac1e7ea4129f2820.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,9 +84,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -132,19 +136,181 @@ window.Quarto = {
 
 <link rel="stylesheet" href="styles.css">
 <link rel="alternate" type="application/rss+xml" title="sboteros" href="opinion.xml" data-external="1"><meta property="og:title" content="Opinión – sboteros">
-<meta property="og:image" content="www.sboteros.com/posts/20250524-analisis_algoritmos/portada_analisis_algoritmos.png">
+<meta property="og:image" content="www.sboteros.com/opinion/20250516-foro_mundial_migracion/portada_fmm.png">
 <meta property="og:site_name" content="sboteros">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1024">
-<meta property="og:image:width" content="1024">
+<meta property="og:image:width" content="1536">
 <meta name="twitter:title" content="Opinión – sboteros">
-<meta name="twitter:image" content="www.sboteros.com/posts/20250524-analisis_algoritmos/portada_analisis_algoritmos.png">
+<meta name="twitter:image" content="www.sboteros.com/opinion/20250516-foro_mundial_migracion/portada_fmm.png">
 <meta name="twitter:image-height" content="1024">
-<meta name="twitter:image-width" content="1024">
+<meta name="twitter:image-width" content="1536">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -191,6 +357,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -222,7 +389,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYQ==">Algoritmos de búsqueda <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw==">Análisis de algoritmos <span class="quarto-category-count">(5)</span></div><div class="category" data-category="QnVibGUlMjBzb3J0">Buble sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=">Búsqueda acotada <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGJpbmFyaWE=">Búsqueda binaria <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWxpbWluYWNpJUMzJUIzbiUyMGdhdXNzaWFuYQ==">Eliminación gaussiana <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGVhcHNvcnQ=">Heapsort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SnVsaWE=">Julia <span class="quarto-category-count">(5)</span></div><div class="category" data-category="TWVyZ2UlMjBzb3J0">Merge sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMGRlJTIwbWF0cmljZXMlMjBkaXNwZXJzYXM=">Multiplicación de matrices dispersas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbA==">Multiplicación matricial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYQ==">Notación asintótica <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUMzJTkzcmRlbmVzJTIwZGUlMjBjcmVjaW1pZW50bw==">Órdenes de crecimiento <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVpY2tzb3J0">Quicksort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24=">Recuperación de Información <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVkdWNjaSVDMyVCM24lMjBkZSUyMEdhdXNzLUpvcmRhbg==">Reducción de Gauss-Jordan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2tpcGxpc3Q=">Skiplist <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rm9ybyUyME11bmRpYWwlMjBzb2JyZSUyME1pZ3JhY2klQzMlQjNuJTIweSUyMERlc2Fycm9sbG8=">Foro Mundial sobre Migración y Desarrollo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlncmFjaSVDMyVCM24=">Migración <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlncmFudGUzMw==">Migrante33 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -234,219 +401,42 @@ window.Quarto = {
 
 
 
+
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1748066400000" data-listing-file-modified-sort="1748136585084" data-listing-date-modified-sort="1748136585000" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="0" data-categories="TWlncmFudGUzMyUyQ01pZ3JhY2klQzMlQjNuJTJDRm9ybyUyME11bmRpYWwlMjBzb2JyZSUyME1pZ3JhY2klQzMlQjNuJTIweSUyMERlc2Fycm9sbG8=" data-listing-date-sort="1747375200000" data-listing-file-modified-sort="1747966012901" data-listing-date-modified-sort="1747966012000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1884">
+<div class="thumbnail"><a href="./opinion/20250516-foro_mundial_migracion/index.html" class="no-external">
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250523-union_interseccion/index.html" class="no-external">Algoritmos de unión e intersección</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
-XXXX
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/20250523-union_interseccion/index.html" class="no-external">
-<div class="listing-date">
-24 may 2025
-</div>
-<div class="listing-author">
-Santiago Botero Sierra
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDUmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24lMkNNdWx0aXBsaWNhY2klQzMlQjNuJTIwZGUlMjBtYXRyaWNlcyUyMGRpc3BlcnNhcw==" data-listing-date-sort="1747980000000" data-listing-file-modified-sort="1748137155786" data-listing-date-modified-sort="1748137155000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1173">
-<div class="thumbnail"><a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250524-analisis_algoritmos/portada_analisis_algoritmos.png" class="thumbnail-image">
+<img loading="lazy" src="./opinion/20250516-foro_mundial_migracion/portada_fmm.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">Introducción al análisis de algoritmos</a>
+<a href="./opinion/20250516-foro_mundial_migracion/index.html" class="no-external">Carta abierta de la sociedad civil</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./opinion/20250516-foro_mundial_migracion/index.html" class="no-external">Foro Mundial sobre Migración y Desarrollo - Riohacha</a>
+</div>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TWlncmFudGUzMw=='); return false;">Migrante33</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TWlncmFjaSVDMyVCM24='); return false;">Migración</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('UmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24='); return false;">Recuperación de Información</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlwbGljYWNpJUMzJUIzbiUyMGRlJTIwbWF0cmljZXMlMjBkaXNwZXJzYXM='); return false;">Multiplicación de matrices dispersas</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Rm9ybyUyME11bmRpYWwlMjBzb2JyZSUyME1pZ3JhY2klQzMlQjNuJTIweSUyMERlc2Fycm9sbG8='); return false;">Foro Mundial sobre Migración y Desarrollo</div>
 
 </div>
-<div class="delink listing-description"><a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
-<p>Reseña del Curso Introductorio de Análisis de Algoritmos, del Dr.&nbsp;Sadit Téllez</p>
+<div class="delink listing-description"><a href="./opinion/20250516-foro_mundial_migracion/index.html" class="no-external">
+<p>Carta de la sociedad civil que celebra el liderazgo inclusivo de Colombia en el FMMD y urge preparación adecuada para la Cumbre en Riohacha.</p>
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
+<a href="./opinion/20250516-foro_mundial_migracion/index.html" class="no-external">
 <div class="listing-date">
-23 may 2025
+16 may 2025
 </div>
 <div class="listing-author">
-Santiago Botero Sierra
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYSUyQ0IlQzMlQkFzcXVlZGElMjBiaW5hcmlhJTJDQiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=" data-listing-date-sort="1743487200000" data-listing-file-modified-sort="1748135644353" data-listing-date-modified-sort="1748135644000" data-listing-reading-time-sort="27" data-listing-word-count-sort="5330">
-<div class="thumbnail"><a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250401-busqueda_comparacion/portada_busqueda_comparacion.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">Algoritmos de búsqueda por comparación</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYQ=='); return false;">Algoritmos de búsqueda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QiVDMyVCQXNxdWVkYSUyMGJpbmFyaWE='); return false;">Búsqueda binaria</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE='); return false;">Búsqueda acotada</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">
-<p>Análisis de algoritmos de búsqueda adaptativa en Julia, comparando eficiencia entre métodos binarios, secuenciales y SkipLists.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">
-<div class="listing-date">
-1 abr 2025
-</div>
-<div class="listing-author">
-Santiago Botero Sierra
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQnVibGUlMjBzb3J0JTJDTWVyZ2UlMjBzb3J0JTJDSGVhcHNvcnQlMkNRdWlja3NvcnQlMkNTa2lwbGlzdA==" data-listing-date-sort="1741068000000" data-listing-file-modified-sort="1748136707780" data-listing-date-modified-sort="1748136707000" data-listing-reading-time-sort="34" data-listing-word-count-sort="6696">
-<div class="thumbnail"><a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250304-algoritmos_ordenamiento/portada_ordenamiento.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">Algoritmos de ordenamiento</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QnVibGUlMjBzb3J0'); return false;">Buble sort</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWVyZ2UlMjBzb3J0'); return false;">Merge sort</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SGVhcHNvcnQ='); return false;">Heapsort</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVpY2tzb3J0'); return false;">Quicksort</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2tpcGxpc3Q='); return false;">Skiplist</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">
-<p>Comparativa de algoritmos de ordenamiento en Julia según eficiencia en tiempo y operaciones, usando vectores con distintos niveles de desorden.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">
-<div class="listing-date">
-4 mar 2025
-</div>
-<div class="listing-author">
-Santiago Botero Sierra
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDTXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbCUyQ0VsaW1pbmFjaSVDMyVCM24lMjBnYXVzc2lhbmElMkNSZWR1Y2NpJUMzJUIzbiUyMGRlJTIwR2F1c3MtSm9yZGFu" data-listing-date-sort="1739772000000" data-listing-file-modified-sort="1748042229697" data-listing-date-modified-sort="1748042229000" data-listing-reading-time-sort="26" data-listing-word-count-sort="5162">
-<div class="thumbnail"><a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250217-operaciones_matriciales/portada_operacion_matrices.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">Operaciones sobre matrices</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbA=='); return false;">Multiplicación matricial</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RWxpbWluYWNpJUMzJUIzbiUyMGdhdXNzaWFuYQ=='); return false;">Eliminación gaussiana</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVkdWNjaSVDMyVCM24lMjBkZSUyMEdhdXNzLUpvcmRhbg=='); return false;">Reducción de Gauss-Jordan</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">
-<p>Comparación de algoritmos de álgebra lineal en Julia, evaluando rendimiento en multiplicación, reducción y cálculo de inversa de matrices.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/20250217-operaciones_matriciales/index.html" class="no-external">
-<div class="listing-date">
-17 feb 2025
-</div>
-<div class="listing-author">
-Santiago Botero Sierra
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDTm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYSUyQyVDMyU5M3JkZW5lcyUyMGRlJTIwY3JlY2ltaWVudG8=" data-listing-date-sort="1736834400000" data-listing-file-modified-sort="1748126443719" data-listing-date-modified-sort="1748126443000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1721">
-<div class="thumbnail"><a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250114-ordenes_crecimiento/orders_magnitude.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">Comparación de órdenes de crecimiento</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Tm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYQ=='); return false;">Notación asintótica</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUMzJTkzcmRlbmVzJTIwZGUlMjBjcmVjaW1pZW50bw=='); return false;">Órdenes de crecimiento</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">
-<p>Análisis visual y tabular de órdenes de crecimiento: de funciones constantes a tetración, aplicado al rendimiento de algoritmos.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/20250114-ordenes_crecimiento/index.html" class="no-external">
-<div class="listing-date">
-14 ene 2025
-</div>
-<div class="listing-author">
-Santiago Botero Sierra
+Santiago Botero Sierra, Comité Local del MSC del FMMD, Migrante33 , Rostro Caribe, Fundación Empodérame, Internacional de Servicios Públicos, Foro Internacional de Víctimas, Diplomacia Feminista por la Paz, SIMN , Fundación Renacer, Fundación Tepuy, Plan País, CGT Colombia
 </div>
 </a>
 </div>
@@ -456,6 +446,19 @@ Santiago Botero Sierra
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

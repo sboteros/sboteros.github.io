@@ -206,7 +206,7 @@ c = une!(a, 1, 5, 10, 0)
 println( a, c )
 ```
 
-Por su parte, la primera parte del procedimiento, que realiza la recursión sobre $A$ desde el arreglo completo hasta el caso base, se implementa mediante el @alg-ordenar_unir disponible en@cormen[p. 39],^[Observe que este algoritmo hace un llamado al @alg-unir, en la línea 7 del pseudocódigo.] que fue implementado en `Julia` mediante la función `ordena_une()`.
+Por su parte, la primera parte del procedimiento, que realiza la recursión sobre $A$ desde el arreglo completo hasta el caso base, se implementa mediante el @alg-ordenar_unir disponible en @cormen[p. 39],^[Observe que este algoritmo hace un llamado al @alg-unir, en la línea 7 del pseudocódigo.] que fue implementado en `Julia` mediante la función `ordena_une()`.
 
 ```pseudocode
 #| label: alg-ordenar_unir
@@ -599,7 +599,7 @@ Para elegir el lugar de ubicación del nuevo elemento, se parte de la cabecera d
 \begin{algorithm}
 \caption{INSERTAR-NODO-SKIPLIST($L, \theta$)}
 \begin{algorithmic}[1]
-    \State Lista con $n$ niveles, con cabeceras ($L.n, L.c[1,\dots,n]$
+    \State Lista con $n$ niveles, con cabeceras $L.n, L.c[1,\dots,n]$
     \State Cabeceras apuntan a nodos $x$, con sucesores y valor ($x.s, x.\theta$)
     \State Insertar valor $\theta$ en el lugar adecuado
     

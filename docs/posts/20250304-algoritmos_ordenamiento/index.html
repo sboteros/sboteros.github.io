@@ -94,10 +94,14 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-e6987b654c55bcabac1e7ea4129f2820.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -195,7 +199,169 @@ window.Quarto = {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -242,6 +408,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -276,6 +443,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -317,7 +485,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de modificación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">24 de mayo de 2025</p>
+      <p class="date-modified">25 de mayo de 2025</p>
     </div>
   </div>
     
@@ -349,7 +517,7 @@ window.Quarto = {
 <section id="buble-sort" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="buble-sort"><span class="header-section-number">2.1</span> Buble sort</h2>
 <p>“<em>Bublesort</em>” es un algoritmo de ordenamiento popular, pero ineficiente, que intercambia repetidamente entradas adyacentes de un arreglo que se encuentran desordenadas <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 24</a>)</span>. “<em>Bublesort</em>” se describe en el <a href="#alg-burbuja" class="quarto-xref">Algoritmo 1</a> y se implementó en <code>Julia</code> mediante la función <code>burbuja!()</code>.</p>
-<div id="alg-burbuja" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="1">
+<div id="alg-burbuja" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="1" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{BUBLESORT($A, n)$}\begin{algorithmic} \For{$i = 1$ a $n - 1$} \For{$j = n$ descendiendo hasta $i + 1$} \If{$A[j] &lt; A[j - 1]$} \State Intercambiar $A[j]$ con $A[j - 1]$ \EndIf \EndFor \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -382,7 +550,7 @@ window.Quarto = {
 <section id="merge-sort" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="merge-sort"><span class="header-section-number">2.2</span> Merge sort</h2>
 <p>El algoritmo “<em>merge sort</em>” (unifica-ordena) ordena el subarrego <code>A[p:r]</code>, comenzando desde el arreglo completo <code>A[1:n]</code> y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (<code>A[p:q]</code> y <code>A[q + 1, r]</code>), para obtener el arreglo <code>A[p:r]</code> ordenado, hasta llegar nuevamente al arreglo completo <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 34-35</a>)</span>. Esta segunda parte del procedimiento se implementa mediante el <a href="#alg-unir" class="quarto-xref">Algoritmo 2</a>, disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 36</a>)</span>, que fue implementado en <code>Julia</code> mediante la función <code>une!()</code>.</p>
-<div id="alg-unir" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="2">
+<div id="alg-unir" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="2" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{UNIR($A, p, q, r)$}\begin{algorithmic} \State $n_L = q - p + 1$ \Comment{Tamaño de los subarreglos (ordenados)} \State $n_R = r - q$ \State Sean $L[0:n_L - 1]$ y $R[0:n_R - 1]$ nuevos arreglos \For{$i=0$ a $n_L -1$} \Comment{Copiar $A[p:q]$ en $L[0:n_L - 1]$} \State $L[i] = A[p + i]$ \EndFor \For{$j = 0$ a $n_R - 1$} \State $R[j] = A[q + j + 1]$ \EndFor \Comment{Índices de los mínimos restantes en $L$ y $R$, y de la posición de $A$ para llenar} \State $i = 0$ \State $j = 0$ \State $k = 0$ \While{$i &lt; n_L$ y $j &lt; n_R$} \Comment{Poner en la posición de $A$ al más pequeño de $L$ y $R$ cada vez, hasta que quede vacío alguno de los dos} \If{$L[i] &lt; R[j]$} \State $A[k] = L[i]$ \State $i = i + 1$ \Else \State $A[k] = R[j]$ \State $j = j + 1$ \EndIf \State $k = k + 1$ \EndWhile \Comment{Después de vaciar uno completamente, copiar el resto del que quede en lo que falte de $A$} \While{$i &lt; n_L$} \State $A[k] = L[i]$ \State $i = i + 1$ \State $k = k + 1$ \EndWhile \While{$j &lt; n_R$} \State $A[k] = R[j]$ \State $j = j + 1$ \State $k = k + 1$ \EndWhile \end{algorithmic} \end{algorithm}
 </div>
@@ -434,8 +602,8 @@ window.Quarto = {
 <pre><code>une! (generic function with 2 methods)</code></pre>
 </div>
 </div>
-<p>Por su parte, la primera parte del procedimiento, que realiza la recursión sobre <span class="math inline">\(A\)</span> desde el arreglo completo hasta el caso base, se implementa mediante el <a href="#alg-ordenar_unir" class="quarto-xref">Algoritmo 3</a> disponible en@cormen[p.&nbsp;39],<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> que fue implementado en <code>Julia</code> mediante la función <code>ordena_une()</code>.</p>
-<div id="alg-ordenar_unir" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="3">
+<p>Por su parte, la primera parte del procedimiento, que realiza la recursión sobre <span class="math inline">\(A\)</span> desde el arreglo completo hasta el caso base, se implementa mediante el <a href="#alg-ordenar_unir" class="quarto-xref">Algoritmo 3</a> disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 39</a>)</span>,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> que fue implementado en <code>Julia</code> mediante la función <code>ordena_une()</code>.</p>
+<div id="alg-ordenar_unir" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="3" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{ORDENAR-UNIR($A, p, r$)}\begin{algorithmic} \If{$p \geq r$} \Return $A$ \EndIf \State $q = \lfloor \frac{p + r}{2} \rfloor$ \State ORDENAR-UNIR($A, p, q$) \State ORDENAR-UNIR($A, q + 1, r)$ \State UNIR($A, p, q, r)$ \end{algorithmic} \end{algorithm}
 </div>
@@ -487,7 +655,7 @@ window.Quarto = {
 </details>
 </div>
 <p>El <a href="#alg-apilamax" class="quarto-xref">Algoritmo 4</a> aplica la propiedad de las pilas máximas a una pila binaria, a partir del índice <span class="math inline">\(i\)</span>. Es decir, asume que los árboles que se forman a partir de los hijos del índice <span class="math inline">\(i\)</span> de la pila son pilas máximas, pero que <span class="math inline">\(A[i]\)</span> puede violar la propiedad señalada, por lo que este algoritmo le permite a dicho índice bajar en el árbol hasta la posición adecuada para recuperar la propiedad <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, sec. 6.2</a>)</span>. Este algoritmo fue implementado en <code>Julia</code> mediante la función <code>apilamax!()</code>.</p>
-<div id="alg-apilamax" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="4">
+<div id="alg-apilamax" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="4" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{APILAR-MAXIMO($A, i$)}\begin{algorithmic} \State $l = 2i$ \State $r = 2i + 1$ \If{$l \leq A.tamano\_pila$ y $A[l] &gt; A[i]$} \State $mayor = l$ \Else \State $mayor = i$ \EndIf \If{$r \leq A.tamano\_pila$ y $A[r] &gt; A[mayor]$} \State $mayor = r$ \EndIf \If{$mayor \neq i$} \State Intercambiar $A[i]$ con $A[mayor]$ \State APILAR-MAXIMO($A, mayor$) \EndIf \end{algorithmic} \end{algorithm}
 </div>
@@ -518,7 +686,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Por su parte, el <a href="#alg-contruye_pila_max" class="quarto-xref">Algoritmo 5</a> convierte una pila en una pila binaria máxima al utilizar el <a href="#alg-apilamax" class="quarto-xref">Algoritmo 4</a> en los primeros <span class="math inline">\(\lfloor n/2 \rfloor\)</span> elementos del arreglo. Este algoritmo se implementó en <code>Julia</code> mediante la función <code>construye_pila_max!()</code>, que tiene un argumento opcional para contabilizar el número de operaciones que se realizan en los diferentes llamados a la función <code>apilamax!()</code>. A diferencia del algoritmo, la función implementada no recibe como insumo a un arreglo, sino a una pila que, en todo caso, se construye a partir del arreglo mismo.</p>
-<div id="alg-contruye_pila_max" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="5">
+<div id="alg-contruye_pila_max" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="5" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{CONTRUIR-PILA-MAXIMA($A, n)$}\begin{algorithmic} \State $A.tamano\_pila = n$ \For{$i = \lfloor n/2 \rfloor$ descendiendo hasta 1} \State APILAR-MAXIMO($A, i$) \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -538,7 +706,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Una vez que se cuenta con la estructura de la pila binaria máxima, explicada previamente, el algoritmo de ordenamiento simplemente toma la raíz de la pila, que es el elemento máximo y lo pone en su lugar correcto al final del arreglo, elimina ese nodo de la pila, reestablece la propiedad de apilamiento máximo, toma el nuevo nodo y lo pone en su lugar correcto en el penúltimo lugar del arreglo y continúa ejecutando este procedimiento iterativamente hasta haber reacomodado todos los elementos. Este procedimiento se implementa mediante el <a href="#alg-heapsort" class="quarto-xref">Algoritmo 6</a> disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, sec. 6.4</a>)</span>.</p>
-<div id="alg-heapsort" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="6">
+<div id="alg-heapsort" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="6" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{HEAPSORT($A, n)$}\begin{algorithmic} \State CONSTRUIR-PILA-MAXIMA($A, n$) \For{$i = n$ descendiendo hasta 2} \State Intercambiar $A[1]$ con $A[i]$ \State $A.tamano\_pila = A.tamano\_pila - 1$ \State APILAR-MAXIMO($A, 1$) \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -570,7 +738,7 @@ window.Quarto = {
 <section id="quicksort" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="quicksort"><span class="header-section-number">2.4</span> Quicksort</h2>
 <p>El algoritmo <em>quicksort</em> utiliza un procedimiento que particiona un subarreglo <span class="math inline">\(A[p:r]\)</span> en tres conjuntos determinados por el último elemento del arreglo original <span class="math inline">\(A[r]\)</span>,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> este elemento se ubica en el conjunto pivote, antes de él se encuentran los elementos que son menores y después los que son mayores, asimismo el procedimiento entrega el índice del elemento pivote. Dicho procedimiento se encuentra disponible en el <a href="#alg-particion" class="quarto-xref">Algoritmo 7</a> disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 183-84</a>)</span>.</p>
-<div id="alg-particion" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="7">
+<div id="alg-particion" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="7" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{PARTICIÓN($A, p, r$)}\begin{algorithmic} \State $x = A[r]$ \Comment{El pivote es el último} \State $i = p - 1$ \For{$j = p$ a $r - 1$} \If{$A[j] \leq x$} \Comment{Si es menor, va a la izquierda y se actualiza la posición del pivote} \State $i = i + 1$ \State Intercambiar $A[i]$ con $A[j]$ \EndIf \EndFor \State Intercambiar $A[i + 1]$ con $A[r]$ \Comment{El pivote va en la mitad de lo identificado} \State \Return $i + 1$ \end{algorithmic} \end{algorithm}
 </div>
@@ -611,7 +779,7 @@ window.Quarto = {
 </div>
 </div>
 <p>El <a href="#alg-quicksort" class="quarto-xref">Algoritmo 8</a> particiona el vector que recibe como entrada y ordena recursivamente los lados menores y mayores del pivote que identifica, de forma que termina por obtener el vector odenado.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<div id="alg-quicksort" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="8">
+<div id="alg-quicksort" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="8" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
 \begin{algorithm} \caption{QUICKSORT($A, p, r$)}\begin{algorithmic} \If{$p &lt; r$} \State $q =\,$ PARTICIÓN($A, p, r$) \State QUICKSORT($A, p, q -1$) \State QUICKSORT($A, q + 1, r$) \EndIf \end{algorithmic} \end{algorithm}
 </div>
@@ -686,9 +854,9 @@ window.Quarto = {
 <li>Actualizar el puntero que debe dirigirse hacia el nuevo nodo.</li>
 </ul>
 <p>Para elegir el lugar de ubicación del nuevo elemento, se parte de la cabecera de la lista en el nivel que se le asignó al nuevo nodo y se buscan dos nodos consecutivos <span class="math inline">\(x, \, z\)</span> tales que <span class="math inline">\(x.valor &lt; v \leq z.valor\)</span>. Si estos nodos existen, se actualizan los punteros para que <span class="math inline">\(x\)</span> apunte al nuevo nodo y este, a su vez, apunte a <span class="math inline">\(z\)</span>. Este procedimiento se repite en todos los niveles inferiores de la lista. Al respecto, <span class="citation" data-cites="skiplists">Simic y Aibin (<a href="#ref-skiplists" role="doc-biblioref">2024</a>)</span> plantean un algoritmo para implementar este procedimiento, cuya adaptación se muestra en el <a href="#alg-skiplist" class="quarto-xref">Algoritmo 9</a>. Este algoritmo se implementó en <code>Julia</code> mediante la función <code>inserta_skiplist!()</code>, que contiene un argumento opcional para contabilizar el número de actualizaciones de punteros que realiza el algoritmo.</p>
-<div id="alg-skiplist" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-line-number="true" data-pseudocode-number="9">
+<div id="alg-skiplist" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="9" data-caption-prefix="Algoritmo">
 <div class="pseudocode">
-\begin{algorithm} \caption{INSERTAR-NODO-SKIPLIST($L, \theta$)}\begin{algorithmic} \State Lista con $n$ niveles, con cabeceras ($L.n, L.c[1,\dots,n]$ \State Cabeceras apuntan a nodos $x$, con sucesores y valor ($x.s, x.\theta$) \State Insertar valor $\theta$ en el lugar adecuado \State k = 0 \Comment{Asignar un nivel aleatorio al nuevo nodo con valor $\theta$} \While{aleatorio $\leq 0.5$} \State $k = k + 1$ \EndWhile \If{$L.n \leq k$} \Comment{Adicionar niveles a la cabecera de la lista hasta $k$} \State Aumentar $n$ hasta $k$, apuntando a NIL desde $n + 1$ \State $L.n = k$ \Comment{Actualizar tamaño de la lista} \EndIf \State Crear un nodo vacío $y$ con $k$ niveles, su valor es $\theta$. \For{$i = k$ descendiendo hasta 1} \Comment{Actualizar apuntadores hasta el nivel $k$} $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera} \If{$x$ es NIL} $L.c[k] = y$ \Comment{Si apuntaba al final, apunta al nuevo} \ElsIf{$\theta &lt; x.\theta$} \Comment{Nuevo antes de $x$ en nivel $k$} \State $L.c[k] = y$ \State $y.s[k] = x$ \Else \Comment{Llegamos hasta el nodo cuyo valor es mayor} \State $z = x.s[k]$ \While{$\theta &gt; z.\theta$} \Comment{Nos vamos moviendo de uno a otro} \State $x = z$ \State $z = z.s[k]$ \EndWhile \State $x.s[k] = y$ \Comment{Acomodamos el nuevo en la mitad} \State $y.s[k] = z$ \EndIf \EndFor \end{algorithmic} \end{algorithm}
+\begin{algorithm} \caption{INSERTAR-NODO-SKIPLIST($L, \theta$)}\begin{algorithmic} \State Lista con $n$ niveles, con cabeceras $L.n, L.c[1,\dots,n]$ \State Cabeceras apuntan a nodos $x$, con sucesores y valor ($x.s, x.\theta$) \State Insertar valor $\theta$ en el lugar adecuado \State k = 0 \Comment{Asignar un nivel aleatorio al nuevo nodo con valor $\theta$} \While{aleatorio $\leq 0.5$} \State $k = k + 1$ \EndWhile \If{$L.n \leq k$} \Comment{Adicionar niveles a la cabecera de la lista hasta $k$} \State Aumentar $n$ hasta $k$, apuntando a NIL desde $n + 1$ \State $L.n = k$ \Comment{Actualizar tamaño de la lista} \EndIf \State Crear un nodo vacío $y$ con $k$ niveles, su valor es $\theta$. \For{$i = k$ descendiendo hasta 1} \Comment{Actualizar apuntadores hasta el nivel $k$} $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera} \If{$x$ es NIL} $L.c[k] = y$ \Comment{Si apuntaba al final, apunta al nuevo} \ElsIf{$\theta &lt; x.\theta$} \Comment{Nuevo antes de $x$ en nivel $k$} \State $L.c[k] = y$ \State $y.s[k] = x$ \Else \Comment{Llegamos hasta el nodo cuyo valor es mayor} \State $z = x.s[k]$ \While{$\theta &gt; z.\theta$} \Comment{Nos vamos moviendo de uno a otro} \State $x = z$ \State $z = z.s[k]$ \EndWhile \State $x.s[k] = y$ \Comment{Acomodamos el nuevo en la mitad} \State $y.s[k] = z$ \EndIf \EndFor \end{algorithmic} \end{algorithm}
 </div>
 </div>
 <p>De acuerdo con <span class="citation" data-cites="skiplists">Simic y Aibin (<a href="#ref-skiplists" role="doc-biblioref">2024</a>)</span>, el nivel de complejidad de las inserciones en una “<em>SkipList</em>” está dominado por la complejidad de las búsquedas y se espera que sea <span class="math inline">\(O(\log_2 n)\)</span>, aunque puede llegar a ser tan malo como <span class="math inline">\(O(n)\)</span>. De esta forma, se espera que el nivel de complejidad para insertar <span class="math inline">\(n\)</span> elementos de un arreglo sea <span class="math inline">\(O(n \log_2 n)\)</span>.</p>
@@ -882,56 +1050,56 @@ Tabla&nbsp;1: Tiempo de ejecución de los algoritmos analizados, en milisegundos
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
 <td style="text-align: right;">16</td>
-<td style="text-align: right;">2212.0</td>
-<td style="text-align: right;">19.0</td>
-<td style="text-align: right;">713.0</td>
-<td style="text-align: right;">1339.0</td>
-<td style="text-align: right;">22316.0</td>
+<td style="text-align: right;">815.0</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">482.0</td>
+<td style="text-align: right;">932.0</td>
+<td style="text-align: right;">12481.0</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
 <td style="text-align: right;">32</td>
-<td style="text-align: right;">1150.0</td>
-<td style="text-align: right;">16.0</td>
-<td style="text-align: right;">710.0</td>
-<td style="text-align: right;">2281.0</td>
-<td style="text-align: right;">35608.0</td>
+<td style="text-align: right;">704.0</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">447.0</td>
+<td style="text-align: right;">873.0</td>
+<td style="text-align: right;">12262.0</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
 <td style="text-align: right;">64</td>
-<td style="text-align: right;">1236.0</td>
-<td style="text-align: right;">29.0</td>
-<td style="text-align: right;">734.0</td>
-<td style="text-align: right;">1593.0</td>
-<td style="text-align: right;">18583.0</td>
+<td style="text-align: right;">712.0</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">436.0</td>
+<td style="text-align: right;">889.0</td>
+<td style="text-align: right;">12372.0</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
 <td style="text-align: right;">128</td>
-<td style="text-align: right;">866.0</td>
-<td style="text-align: right;">21.0</td>
-<td style="text-align: right;">551.0</td>
-<td style="text-align: right;">1095.0</td>
-<td style="text-align: right;">16816.0</td>
+<td style="text-align: right;">730.0</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">427.0</td>
+<td style="text-align: right;">873.0</td>
+<td style="text-align: right;">12194.0</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
 <td style="text-align: right;">256</td>
-<td style="text-align: right;">925.0</td>
-<td style="text-align: right;">24.0</td>
-<td style="text-align: right;">554.0</td>
-<td style="text-align: right;">1098.0</td>
-<td style="text-align: right;">15669.0</td>
+<td style="text-align: right;">826.0</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">450.0</td>
+<td style="text-align: right;">896.0</td>
+<td style="text-align: right;">12043.0</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
 <td style="text-align: right;">512</td>
-<td style="text-align: right;">959.0</td>
-<td style="text-align: right;">22.0</td>
-<td style="text-align: right;">556.0</td>
-<td style="text-align: right;">1110.0</td>
-<td style="text-align: right;">21867.0</td>
+<td style="text-align: right;">797.0</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">431.0</td>
+<td style="text-align: right;">864.0</td>
+<td style="text-align: right;">12563.0</td>
 </tr>
 </tbody>
 </table>
@@ -1014,7 +1182,7 @@ Tabla&nbsp;2: Número de operaciones ejecutadas por los algoritmos analizados
 <td style="text-align: right;">959.51</td>
 <td style="text-align: right;">4792.68</td>
 <td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3836.66</td>
+<td style="text-align: right;">3834.61</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
@@ -1023,7 +1191,7 @@ Tabla&nbsp;2: Número de operaciones ejecutadas por los algoritmos analizados
 <td style="text-align: right;">959.51</td>
 <td style="text-align: right;">4792.68</td>
 <td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3845.85</td>
+<td style="text-align: right;">3821.19</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
@@ -1032,7 +1200,7 @@ Tabla&nbsp;2: Número de operaciones ejecutadas por los algoritmos analizados
 <td style="text-align: right;">959.51</td>
 <td style="text-align: right;">4792.68</td>
 <td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3836.72</td>
+<td style="text-align: right;">3845.71</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
@@ -1041,7 +1209,7 @@ Tabla&nbsp;2: Número de operaciones ejecutadas por los algoritmos analizados
 <td style="text-align: right;">959.51</td>
 <td style="text-align: right;">4792.68</td>
 <td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3831.4</td>
+<td style="text-align: right;">3832.87</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
@@ -1050,7 +1218,7 @@ Tabla&nbsp;2: Número de operaciones ejecutadas por los algoritmos analizados
 <td style="text-align: right;">959.51</td>
 <td style="text-align: right;">4792.68</td>
 <td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3853.71</td>
+<td style="text-align: right;">3834.94</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
@@ -1059,7 +1227,7 @@ Tabla&nbsp;2: Número de operaciones ejecutadas por los algoritmos analizados
 <td style="text-align: right;">959.51</td>
 <td style="text-align: right;">4792.68</td>
 <td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3827.13</td>
+<td style="text-align: right;">3838.39</td>
 </tr>
 </tbody>
 </table>
@@ -1106,6 +1274,19 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1762,7 +1943,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-216"><a href="#cb31-216" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( a, c )</span>
 <span id="cb31-217"><a href="#cb31-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb31-218"><a href="#cb31-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-219"><a href="#cb31-219" aria-hidden="true" tabindex="-1"></a>Por su parte, la primera parte del procedimiento, que realiza la recursión sobre $A$ desde el arreglo completo hasta el caso base, se implementa mediante el @alg-ordenar_unir disponible en@cormen<span class="co">[</span><span class="ot">p. 39</span><span class="co">]</span>,^<span class="co">[</span><span class="ot">Observe que este algoritmo hace un llamado al @alg-unir, en la línea 7 del pseudocódigo.</span><span class="co">]</span> que fue implementado en <span class="in">`Julia`</span> mediante la función <span class="in">`ordena_une()`</span>.</span>
+<span id="cb31-219"><a href="#cb31-219" aria-hidden="true" tabindex="-1"></a>Por su parte, la primera parte del procedimiento, que realiza la recursión sobre $A$ desde el arreglo completo hasta el caso base, se implementa mediante el @alg-ordenar_unir disponible en @cormen<span class="co">[</span><span class="ot">p. 39</span><span class="co">]</span>,^<span class="co">[</span><span class="ot">Observe que este algoritmo hace un llamado al @alg-unir, en la línea 7 del pseudocódigo.</span><span class="co">]</span> que fue implementado en <span class="in">`Julia`</span> mediante la función <span class="in">`ordena_une()`</span>.</span>
 <span id="cb31-220"><a href="#cb31-220" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-221"><a href="#cb31-221" aria-hidden="true" tabindex="-1"></a><span class="in">```pseudocode</span></span>
 <span id="cb31-222"><a href="#cb31-222" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: alg-ordenar_unir</span></span>
@@ -2155,7 +2336,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-633"><a href="#cb31-633" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{algorithm}</span></span>
 <span id="cb31-634"><a href="#cb31-634" aria-hidden="true" tabindex="-1"></a><span class="in">\caption{INSERTAR-NODO-SKIPLIST($L, \theta$)}</span></span>
 <span id="cb31-635"><a href="#cb31-635" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{algorithmic}[1]</span></span>
-<span id="cb31-636"><a href="#cb31-636" aria-hidden="true" tabindex="-1"></a><span class="in">    \State Lista con $n$ niveles, con cabeceras ($L.n, L.c[1,\dots,n]$</span></span>
+<span id="cb31-636"><a href="#cb31-636" aria-hidden="true" tabindex="-1"></a><span class="in">    \State Lista con $n$ niveles, con cabeceras $L.n, L.c[1,\dots,n]$</span></span>
 <span id="cb31-637"><a href="#cb31-637" aria-hidden="true" tabindex="-1"></a><span class="in">    \State Cabeceras apuntan a nodos $x$, con sucesores y valor ($x.s, x.\theta$)</span></span>
 <span id="cb31-638"><a href="#cb31-638" aria-hidden="true" tabindex="-1"></a><span class="in">    \State Insertar valor $\theta$ en el lugar adecuado</span></span>
 <span id="cb31-639"><a href="#cb31-639" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>

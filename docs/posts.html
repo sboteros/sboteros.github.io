@@ -39,10 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e6987b654c55bcabac1e7ea4129f2820.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -144,7 +148,169 @@ window.Quarto = {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -191,6 +357,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -222,7 +389,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYQ==">Algoritmos de búsqueda <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw==">Análisis de algoritmos <span class="quarto-category-count">(5)</span></div><div class="category" data-category="QnVibGUlMjBzb3J0">Buble sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=">Búsqueda acotada <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGJpbmFyaWE=">Búsqueda binaria <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWxpbWluYWNpJUMzJUIzbiUyMGdhdXNzaWFuYQ==">Eliminación gaussiana <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGVhcHNvcnQ=">Heapsort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SnVsaWE=">Julia <span class="quarto-category-count">(5)</span></div><div class="category" data-category="TWVyZ2UlMjBzb3J0">Merge sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMGRlJTIwbWF0cmljZXMlMjBkaXNwZXJzYXM=">Multiplicación de matrices dispersas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbA==">Multiplicación matricial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYQ==">Notación asintótica <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUMzJTkzcmRlbmVzJTIwZGUlMjBjcmVjaW1pZW50bw==">Órdenes de crecimiento <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVpY2tzb3J0">Quicksort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24=">Recuperación de Información <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVkdWNjaSVDMyVCM24lMjBkZSUyMEdhdXNzLUpvcmRhbg==">Reducción de Gauss-Jordan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2tpcGxpc3Q=">Skiplist <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYQ==">Algoritmos de búsqueda <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw==">Análisis de algoritmos <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QnVibGUlMjBzb3J0">Buble sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=">Búsqueda acotada <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QiVDMyVCQXNxdWVkYSUyMGJpbmFyaWE=">Búsqueda binaria <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWxpbWluYWNpJUMzJUIzbiUyMGdhdXNzaWFuYQ==">Eliminación gaussiana <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGVhcHNvcnQ=">Heapsort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SnVsaWE=">Julia <span class="quarto-category-count">(6)</span></div><div class="category" data-category="TWVyZ2UlMjBzb3J0">Merge sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMGRlJTIwbWF0cmljZXMlMjBkaXNwZXJzYXM=">Multiplicación de matrices dispersas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVsdGlwbGljYWNpJUMzJUIzbiUyMG1hdHJpY2lhbA==">Multiplicación matricial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm90YWNpJUMzJUIzbiUyMGFzaW50JUMzJUIzdGljYQ==">Notación asintótica <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3BlcmFjaW9uZXMlMjBzb2JyZSUyMGNvbmp1bnRvcw==">Operaciones sobre conjuntos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUMzJTkzcmRlbmVzJTIwZGUlMjBjcmVjaW1pZW50bw==">Órdenes de crecimiento <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVpY2tzb3J0">Quicksort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24=">Recuperación de Información <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVkdWNjaSVDMyVCM24lMjBkZSUyMEdhdXNzLUpvcmRhbg==">Reducción de Gauss-Jordan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2tpcGxpc3Q=">Skiplist <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -234,34 +401,10 @@ window.Quarto = {
 
 
 
+
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1748066400000" data-listing-file-modified-sort="1748136585084" data-listing-date-modified-sort="1748136585000" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250523-union_interseccion/index.html" class="no-external">Algoritmos de unión e intersección</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
-XXXX
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/20250523-union_interseccion/index.html" class="no-external">
-<div class="listing-date">
-24 may 2025
-</div>
-<div class="listing-author">
-Santiago Botero Sierra
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDUmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24lMkNNdWx0aXBsaWNhY2klQzMlQjNuJTIwZGUlMjBtYXRyaWNlcyUyMGRpc3BlcnNhcw==" data-listing-date-sort="1747980000000" data-listing-file-modified-sort="1748137155786" data-listing-date-modified-sort="1748137155000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1173">
+<div class="quarto-post image-right" data-index="0" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDUmVjdXBlcmFjaSVDMyVCM24lMjBkZSUyMEluZm9ybWFjaSVDMyVCM24lMkNNdWx0aXBsaWNhY2klQzMlQjNuJTIwZGUlMjBtYXRyaWNlcyUyMGRpc3BlcnNhcw==" data-listing-date-sort="1748066400000" data-listing-file-modified-sort="1748179996504" data-listing-date-modified-sort="1748179996000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1470">
 <div class="thumbnail"><a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20250524-analisis_algoritmos/portada_analisis_algoritmos.png" class="thumbnail-image">
@@ -289,6 +432,42 @@ Santiago Botero Sierra
 <div class="metadata">
 <a href="./posts/20250524-analisis_algoritmos/index.html" class="no-external">
 <div class="listing-date">
+24 may 2025
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDT3BlcmFjaW9uZXMlMjBzb2JyZSUyMGNvbmp1bnRvcyUyQ0IlQzMlQkFzcXVlZGElMjBhY290YWRh" data-listing-date-sort="1747980000000" data-listing-file-modified-sort="1748138653036" data-listing-date-modified-sort="1748138653000" data-listing-reading-time-sort="36" data-listing-word-count-sort="7183">
+<div class="thumbnail"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
+
+<img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Boolean_union.PNG" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250523-union_interseccion/index.html" class="no-external">Algoritmos de unión e intersección</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcw=='); return false;">Análisis de algoritmos</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SnVsaWE='); return false;">Julia</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T3BlcmFjaW9uZXMlMjBzb2JyZSUyMGNvbmp1bnRvcw=='); return false;">Operaciones sobre conjuntos</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE='); return false;">Búsqueda acotada</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/20250523-union_interseccion/index.html" class="no-external">
+<p>Implementación en Julia de algoritmos eficientes para búsqueda, unión e intersección de conjuntos, con análisis de rendimiento.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250523-union_interseccion/index.html" class="no-external">
+<div class="listing-date">
 23 may 2025
 </div>
 <div class="listing-author">
@@ -297,7 +476,7 @@ Santiago Botero Sierra
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYSUyQ0IlQzMlQkFzcXVlZGElMjBiaW5hcmlhJTJDQiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=" data-listing-date-sort="1743487200000" data-listing-file-modified-sort="1748135644353" data-listing-date-modified-sort="1748135644000" data-listing-reading-time-sort="27" data-listing-word-count-sort="5330">
+<div class="quarto-post image-right" data-index="2" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQWxnb3JpdG1vcyUyMGRlJTIwYiVDMyVCQXNxdWVkYSUyQ0IlQzMlQkFzcXVlZGElMjBiaW5hcmlhJTJDQiVDMyVCQXNxdWVkYSUyMGFjb3RhZGE=" data-listing-date-sort="1743487200000" data-listing-file-modified-sort="1748138059754" data-listing-date-modified-sort="1748138059000" data-listing-reading-time-sort="27" data-listing-word-count-sort="5330">
 <div class="thumbnail"><a href="./posts/20250401-busqueda_comparacion/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20250401-busqueda_comparacion/portada_busqueda_comparacion.png" class="thumbnail-image">
@@ -335,7 +514,7 @@ Santiago Botero Sierra
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQnVibGUlMjBzb3J0JTJDTWVyZ2UlMjBzb3J0JTJDSGVhcHNvcnQlMkNRdWlja3NvcnQlMkNTa2lwbGlzdA==" data-listing-date-sort="1741068000000" data-listing-file-modified-sort="1748136707780" data-listing-date-modified-sort="1748136707000" data-listing-reading-time-sort="34" data-listing-word-count-sort="6696">
+<div class="quarto-post image-right" data-index="3" data-categories="QW4lQzMlQTFsaXNpcyUyMGRlJTIwYWxnb3JpdG1vcyUyQ0p1bGlhJTJDQnVibGUlMjBzb3J0JTJDTWVyZ2UlMjBzb3J0JTJDSGVhcHNvcnQlMkNRdWlja3NvcnQlMkNTa2lwbGlzdA==" data-listing-date-sort="1741068000000" data-listing-file-modified-sort="1748179852889" data-listing-date-modified-sort="1748179852000" data-listing-reading-time-sort="34" data-listing-word-count-sort="6697">
 <div class="thumbnail"><a href="./posts/20250304-algoritmos_ordenamiento/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20250304-algoritmos_ordenamiento/portada_ordenamiento.png" class="thumbnail-image">
@@ -456,6 +635,19 @@ Santiago Botero Sierra
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

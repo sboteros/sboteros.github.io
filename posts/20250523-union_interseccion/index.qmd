@@ -1,6 +1,796 @@
 ---
 title: 'Algoritmos de unión e intersección'
-date: 2025-05-24
+date: 2025-05-23
+jupyter: julia-1.11
+description: 'Implementación en Julia de algoritmos eficientes para búsqueda, unión e intersección de conjuntos, con análisis de rendimiento.'
+categories:
+    - Análisis de algoritmos
+    - Julia
+    - Operaciones sobre conjuntos
+    - Búsqueda acotada
+image: https://upload.wikimedia.org/wikipedia/commons/4/4a/Boolean_union.PNG
 ---
 
-XXXX
+<a title="User Captain Sprite on en.wikipedia, CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Boolean_union.PNG"><img width="256" alt="Boolean union" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Boolean_union.PNG?20230516200549"></a>
+
+```{julia}
+#| label: software
+
+using Dates, DataFrames, JSON, StatsPlots
+```
+
+# Introducción
+
+@sadit_algoritmos[capítulo 6] discute algoritmos de unión e intersección de conjuntos que pueden usar algoritmos de búsqueda adaptables. Cuando los conjuntos tienen tamaños muy diferentes entre sí, en lugar de realizar búsquedas paralelas entre ellos para encontrar el siguiente candidato a la inclusión en el resultado, se pueden buscar los elementos del conjunto pequeño en el grande, para alinearlo, de forma que se mejora el rendimiento de la unión e intersección. Adicionalmente, mediante el uso de diferentes algoritmos de búsqueda como los discutidos en @sadit_algoritmos[capítulo 5], se obtienen mejores resultados.
+
+Como consecuencia de la aplicación de esta clase de algoritmos, es posible realizar multiplicaciones rápidas en matrices dispersas. Lo anterior, pues la presencia de un elemento diferente de cero en una columna o fila de la matriz, se puede interpretar como el índice del mismo en un conjunto ordenado y, por lo tanto, el elemento $c_{ij} = \sum_k a_{ik} b_{kj}$ corresponde a la intersección de los elementos correspondientes de $A$ y $B$ en donde se buscan los índices $k$ para con entradas diferentes de cero.
+
+En la @sec-busquedas se presentan e implementan en `Julia` los algoritmos de búsqueda, descritos en @sadit_algoritmos[capítulo 5], tanto para el caso base (la búsqueda binaria), cuyo costo depende del tamaño del arreglo, como para los algoritmos adaptables. Como se observa en dicha sección, la particularidad de estos últimos es que su costo de ejecución depende del punto de inserción del valor buscado, $p$, y no del tamaño del arreglo.
+
+A continuación, en la @sec-union_interseccion se analizan algoritmos de unión e intersección de conjuntos. Se analiza un algoritmo base, cuando los conjuntos tienen tamaños similares; así como los algoritmos de @baeza2004fast y @BK2002, que tienen rendimientos mejorados para arreglos de tamaño dispar y pueden utilizar las funciones de la @sec-busquedas para aprovechar las instancias del problema.
+
+A continuación, en la @sec-experimentos se realizan diversos experimentos para probar cada algoritmo en cuanto al tiempo de ejecución y el número de operaciones de comparación requeridas. Con base en los resultados obtenidos, en la @sec-conclusion se observan similitudes y diferencias entre los experimentos realizados y la expectativa teórica con respecto al rendimiento de los algoritmos. Dichas diferencias ameritan continuar la investigación y mejorar la implementación en el futuro.
+
+# Búsqueda adaptativa {#sec-busquedas}
+
+Como se analizó en el documento denominado "*Reporte 4A. Búsqueda por comparación*", existen algoritmos de búsqueda bajo el modelo de comparación que identifican cuál es la posición de inserción de un valor $x$ dentro de un arreglo ordenado $A$, de forma tal que después de insertar el valor en el arreglo este último permanezca ordenado. En dicho documento se obtuvieron funciones de `Julia` para realizar búsquedas binarias y secuenciales.
+
+El costo del modelo básico para realizar esta búsqueda, $O(\log_2 n)$, depende del tamaño del arreglo y es obtenido por el algoritmo de búsqueda binaria no acotada. Esta se implementó en `Julia` mediante la función `busqueda_binaria()`.
+
+```{julia}
+#| label: busqueda_binaria
+
+function busqueda_binaria(
+    A::Vector{T}, 
+    x::T, 
+    c::Union{Nothing, Int64} = nothing,
+    inicio::Int64 = 1, 
+    final::Int64 = length(A) ) where {T}
+    while inicio < final
+        medio = (inicio + final) ÷ 2
+        if x <= A[medio]
+            final = medio
+        else
+            inicio = medio + 1
+        end
+        
+        if c isa Int64
+            c += 1
+        end
+    end
+    p = x <= A[inicio] ? inicio : inicio + 1
+    return p, c
+end
+```
+
+Sin embargo, este costo puede mejorarse mediante algoritmos de búsqueda adaptativos, que no dependan de $n$ sino de la solución al problema, $p$. Uno de estos algoritmos es el de búsqueda secuencial $B_0$, cuyo costo es $c(p) = p + 1$. Este algoritmo fue implementado en `Julia` mediante la función `busqueda_b0()`.[^ArgumentoInicio]
+
+[^ArgumentoInicio]: Se adicionó el argumento `inicio` a esta función y las que se presentan a continuación, en comparación con las funciones disponibles en el documento denominado "*Reporte 4A. Búsqueda por comparación*".
+
+```{julia}
+#| label: busqueda_b0
+
+function busqueda_b0(
+    A1::Vector{T},
+    x::T,
+    c::Union{Nothing, Int64} = nothing,
+    inicio::Int64 = 1 ) where {T}
+    punto = 1
+    A = A1[inicio:end]
+    n = length(A)
+    while punto <= n && x > A[punto]
+        punto += 1
+        if c isa Int64
+            c += 1
+        end
+    end
+    return punto, c
+end
+```
+
+Alternativamente, la búsqueda secuencial $B_1$ obtiene un mejor rendimiento, con costo de búsqueda $C_1(p) < 2 \log_2 p + O(1)$. Este algoritmo se implementó en `Julia` mediante la función `busqueda_b1()`.
+
+```{julia}
+#| label: busqueda_b1
+
+function busqueda_b1(
+    A1::Vector{T}, 
+    x::T,
+    c::Union{Nothing, Int64} = nothing,
+    inicio::Int64 = 1 ) where {T}
+    A = A1[inicio:end]
+    n = length(A)
+    p = 0
+
+    # Determinar el rango
+    # Duplicar la posición de búsqueda e ir actualizando la posición de inicio
+    iteracion = 1
+    while iteracion + 1 <= n && A[iteracion + 1] < x
+        p = iteracion
+        iteracion *= 2
+
+        if c isa Int64
+            c += 1
+        end
+    end
+
+    # Realizar la búsqueda dentro del rango
+    p, c = busqueda_binaria(A, x, c, p + 1, min(n, iteracion + 1))
+    
+    return p, c
+end
+```
+
+De forma similar, el costo puede ser mejorado hasta $C_2(p) < \log_2 p + 2 \log_2 \log_2 p + O(1)$ a través de la búqueda secuencial $B_2$, que fue implementada en `Julia` mediante la función `busqueda_b2()`.
+
+```{julia}
+#| label: busqueda_b2
+
+function busqueda_b2(
+    A1::Vector{T}, 
+    x::T,
+    c::Union{Nothing, Int64} = nothing,
+    inicio::Int64 = 1 ) where {T}
+    A = A1[inicio:end]
+    n = length(A)
+    p1 = 0
+
+    # Determinar el rango
+    # Duplicar la posición de búsqueda e ir actualizando la posición de inicio
+    iteracion = 1
+    valor = 2^(2^iteracion)
+    while valor + 1 <= n && A[valor + 1] < x
+        p1 = valor
+        iteracion += 1
+        valor = 2^(2^iteracion)
+
+        if c isa Int64
+            c += 1
+        end
+    end
+
+    # Realizar la búsqueda dentro del rango
+    p, c = busqueda_b1(A[(p1 + 1):min(valor, n)], x, c)
+    
+    return p + p1, c
+end
+```
+
+# Algoritmos de unión e intersección de conjuntos {#sec-union_interseccion}
+
+Suponga que se quiere unir o intersecar dos conjuntos de información de tamaños $m$ y $n$, representados como arreglos ordenados $A = [a_1, \dots, a_m],\, a_1 < \dots < a_m$, y $B = [b_1, \dots, b_n],\, b_1 < \dots < b_n$, para obtener un nuevo arreglo ordenado $C = [c_1, \dots, c_k],\, c_1 < \dots c_k$. En este caso, $c_i \in A \cup B,\, k \leq n + m$ para el caso de las uniones, o $c_i \in A \cap B,\, k \leq \min(\vert A \vert , \vert B \vert)$, para el caso de las intersecciones. El costo de este problema depende del número de comparaciones entre elementos de $A$ y $B$ que sea necesario realizar y está determinado por $\log_2 \binom{n + m}{m}$ [@sadit_algoritmos, sección 6.1.1]. Este costo se puede estimar mediante la aproximación de Stirling como se señala en la @eq-costo_problema.
+
+$$
+\log_2 \binom{n + m}{m} = n \log_2 \frac{n + m}{n} + m \log_2 \frac{n + m}{m}
+$${#eq-costo_problema}
+
+En términos generales, el problema para resolver estas intersecciones o uniones consiste en buscar el valor candidato en uno de los conjuntos. Este valor es el siguiente candidato para ser unido o intersecado. Cuando los conjuntos participantes del procedimiento tienen tamaños similares, se pueden recorrer cada uno de los vectores que los representan para buscar el siguiente elemento del conjunto resultado, como se explica en la @sec-similar. En la @sec-similar se plantea este problema a partir del algoritmo de unión simple descrito en @sadit_algoritmos[sección 6.2] y de una implementación propia de este algoritmo para la intersección simple.
+
+Sin embargo, el costo señalado en la @eq-costo_problema puede mejorarse considerablemente al implementar algoritmos adaptativos para el caso en que $m \ll n$ o visceversa. Al respecto, en la @sec-baeza_yates, se presenta la implementación del algoritmo de intersección de @baeza2004fast disponible en @sadit_algoritmos [sección 6.3.1], así como una implementación propia para la unión. Finalmente, en la @sec-barbay_kenyon se presenta el algoritmo de @BK2002 para la intersección simultánea de varios conjuntos, adaptado de @sadit_algoritmos[sección 6.4.2]. 
+
+Los algoritmos de la @sec-baeza_yates y la @sec-barbay_kenyon, utilizan como insumos a aquellos desarrollados en el documento denominado "*Reporte 4A. Búsqueda por comparación*", cuyas funciones se implementaron en la @sec-busquedas, que pueden reducir el costo del problema bajo análisis. 
+
+## Conjuntos de tamaño similar {#sec-similar}
+
+En esta sección se analiza el caso cuando $n \approx m$, por lo que no es necesario utilizar algoritmos de búsqueda en la solución del problema, sino que basta con recorrer ambos arreglos simultáneamente para acumular la información en el arreglo de unificación o intersección. Las funciones desarrolladas para la solución del problema fueron adaptadas a partir de la función `merge2!()`, que unifica dos arreglos ordenados, disponible en @sadit_algoritmos[sección 6.2].
+
+### Unión
+
+El procedimiento para realizar la unión de dos conjuntos de tamaño similar se programó en `Julia` mediante la función `union_simple()`, que entrega el arreglo ordenado resultante de unificar dos arreglos de entrada; asimismo, opcionalmente calcula el número de operaciones de comparación requeridas por el algoritmo. 
+
+```{julia}
+#| label: funcion_unir_conjuntos
+
+function union_simple(
+    A::Vector{T}, 
+    B::Vector{T},
+    c::Union{Nothing, Int64} = nothing ) where {T}
+    
+    C = Vector{T}(undef, 0)
+    m, n = length(A), length(B)
+
+    # Recorrer los vectores para ir guardando cada elemento de C,
+    # de forma que quede ordenado. Avanzar en A o B, dependiendo
+    # de cuál se haya insertado.
+    i = j = 1
+    @inbounds while i <= m || j <= n
+        a, b = A[i], B[j]
+        if a == b
+            push!(C, a)
+            i += 1
+            j += 1
+        elseif a < b
+            push!(C, a)
+            i += 1
+        else
+            push!(C, b)
+            j += 1
+        end
+        
+        if c isa Int64
+            c += 1
+        end
+    end
+
+    # Entrega los resultados
+    return C, c
+end
+```
+
+```{julia}
+#| label: verifica_unir_conjuntos
+#| include: false
+
+# Funciona bien :)
+A = [1, 4, 6, 8, 10, 12]
+B = [2, 3, 4, 5, 7, 9, 10, 11, 12, 13, 14, 15]
+println( union_simple(A, B, 0) )
+println( union_simple(A, B) )
+```
+
+### Intersección
+
+De forma similar, se programó en `Julia` la función `interseccion_simple()`, que entrega el arreglo ordenado resultante de la intersección de dos arreglos de entrada; asimismo, opcionalmente calcula el número de operaciones de comparación requeridas por el algoritmo.
+
+```{julia}
+#| label: funcion_intersecar_conjuntos
+
+function interseccion_simple(
+    A::Vector{T}, 
+    B::Vector{T},
+    c::Union{Nothing, Int64} = nothing ) where {T}
+    
+    C = Vector{T}(undef, 0)
+
+    m, n = length(A), length(B)
+
+    # Recorrer los vectores para ir guardando los elementos comunes en C,
+    # de forma que quede ordenado. Avanzar en A o B, dependiendo
+    # de cuál se haya insertado o descartado.
+    i = j = 1
+    @inbounds while i <= m || j <= n
+        a, b = A[i], B[j]
+        if a == b
+            push!(C, a)
+            i += 1
+            j += 1
+        elseif a < b
+            # El elemento de A queda descartado, ya no se une
+            i += 1
+        else
+            j += 1
+        end
+
+        if c isa Int64
+            c += 1
+        end
+    end
+
+    # Entrega los resultados
+    return C, c
+end
+```
+
+```{julia}
+#| label: verifica_intersecar_conjuntos
+#| include: false
+
+# Funciona bien :)
+println( interseccion_simple(A, B, 0) )
+println( interseccion_simple(A, B) )
+```
+
+## Algoritmo de @baeza2004fast {#sec-baeza_yates}
+
+Cuando los conjuntos no son de tamaño similar, por ejemplo, $m \ll n$, entonces el costo señalado en la @eq-costo_problema tiende a $O(n \log_2 m)$ [@sadit_algoritmos, sec. 6.3]. 
+
+En este caso, se pueden realizar $m$ búsquedas, mediante los algoritmos señalados en la @sec-busquedas para localizar el punto de inserción que correspondería a cada elemento del conjunto más pequeño, de forma que se puedan construir rápidamente las uniones o intersecciones mediante una estrategia de dividir y vencer. 
+
+Sin pérdida de generalidad, asúmase que $A$ es el conjunto mas pequeño. Entonces, el algoritmo consiste en:
+
++ Tomar la mediana de $A$, $A[M]$, y buscarla en $B$ para obtener su posición de inserción en este último, $p$.
++ Dividir el problema en tres:
+    - El conjunto inferior, que tiene los elementos de $A$ hasta antes de $M$ y los de $B$ hasta el ubicado en $p$ o una posición antes.
+    - El conjunto formado por $A[M]$ y $B[p]$.
+    - El conjunto posterior, que tiene los elementos de $A$ después de $M$ y los de $B$ desde el ubicado en $p$ o uno posterior.
++ Resolver la unión o intersección trivialmente para el segundo conjunto y recurrir los dos restantes hasta llegar al caso trivial.
+
+Cuando el tamaño de la lista $B$ es suficientemente alto, resulta útil el uso de algoritmos adaptativos para buscar la posición de inserción de $A[M]$ en dicho arreglo, pues ofrece mejoras en el rendimiento con respecto a una búsqueda secuencial o binaria [@sadit_algoritmos, cap. 5]. Por lo tanto, las funciones que se desarrollan en esta sección permiten elegir el algoritmo de búsqueda con el que se realiza el procedimiento descrito en el primer inciso anterior, para lo que pueden utilizarse las señaladas en la @sec-busquedas.
+
+A continuación se desarrollan estas ideas y se implementan en `Julia`, con base en el algoritmo de intersección y la función `baezayates!()` disponible en @sadit_algoritmos[sección 6.3.1].
+
+### Unión
+
+En el caso de la unión, el caso base es $C_= = \{ A[M] \cup B[p] \}$, que se resuelve trivialmente al entregar el arreglo ordenado de esos dos elementos en el orden adecuado, si son diferentes, o un solo elemento, si son iguales. En este caso, se consume tanto el elemento $M[A]$ como el elemento $B[p]$, por lo que estos no se encuentran en los otros dos subconjuntos sobre los que se realiza la recursión, que son $C_< = \{ A[1, \dots, M - 1] \cup B[1, \dots, p - 1]\}$ y $C_> = \{ A[M + 1, \dots, m] \cup B[p + 1, \dots, n] \}$. Este procedimiento se implementó en `Julia` mediante la función `union_baezayates!()`.
+
+```{julia}
+#| label: funcion_union_baezayates
+
+function union_baezayates!(
+    A::Vector{T}, 
+    a_inicio::Int64, a_fin::Int64, 
+    B::Vector{T}, 
+    b_inicio::Int64, b_fin::Int64, 
+    encuentra_posicion::Function,
+    C::Union{ Vector{T}, Nothing },
+    c::Union{ Int64, Nothing } ) where {T}
+
+    m, n = length(A), length(B)
+    # Si el más grande es B, cambiarlos
+    if n < m
+        A, B, a_inicio, a_fin, b_inicio, b_fin = B, A, b_inicio, b_fin, a_inicio, a_fin
+    end
+
+    if C isa Nothing
+        C = Vector{T}(undef, 0)
+    end
+
+    # Si ya se hizo todo, entregar el resultado
+    (a_fin < a_inicio && b_fin < b_inicio) && return C, c
+    @inbounds if a_fin < a_inicio || b_fin < b_inicio
+        for j in b_inicio:b_fin
+            push!(C, B[j])
+
+            if c isa Int64
+                c += 1
+            end
+        end
+        for i in a_inicio:a_fin
+            push!(C, A[i])
+            
+            if c isa Int64
+                c += 1
+            end
+        end
+        return C, c
+    end
+
+    # Identificar la mediana de A
+    pos_medianaA = ceil( Int64, (a_fin + a_inicio) / 2 )
+    mediana = A[pos_medianaA]
+    
+    # Encontrar su posición de inserción en B (que puede ser al final)
+    pos_medianaB, c = encuentra_posicion(B, mediana, c, b_inicio)
+    pos_medianaB = min( pos_medianaB, b_fin )
+
+    # Iterar en los conjuntos inferior y superior, y guardar el valor del conjunto igual
+    # en el orden correcto.
+    
+    C, c = union_baezayates!(
+        A, 
+        a_inicio, pos_medianaA - 1, 
+        B, 
+        b_inicio, pos_medianaB - 1, 
+        encuentra_posicion, 
+        C, c)
+
+    if mediana < B[pos_medianaB]
+        push!(C, mediana)
+        push!(C, B[pos_medianaB])
+    elseif mediana > B[pos_medianaB]
+        push!(C, B[pos_medianaB])
+        push!(C, mediana)
+    else 
+        push!(C, mediana)
+    end
+
+    C, c = union_baezayates!(
+        A, 
+        pos_medianaA + 1, a_fin, 
+        B, 
+        pos_medianaB + 1, b_fin, 
+        encuentra_posicion,
+        C, c)
+
+    return C, c
+end
+
+# Función simplificada - Valores por defecto
+function union_baezayates!(
+    A, B, 
+    c = nothing,
+    encuentra_posicion::Function = busqueda_binaria)
+    union_baezayates!(
+        A, 1, length(A), 
+        B, 1, length(B), 
+        encuentra_posicion, 
+        nothing, c)
+end
+```
+
+```{julia}
+#| label: verifica_union_baeza_yates
+#| include: false
+
+println( union_baezayates!(A, B) )
+println( union_baezayates!(A, B, 0) )
+```
+
+### Intersección
+
+En el caso de la intersección, el caso base es $C_= = \{ A[M] \cap B[p] \}$, que se resuelve trivialmente al entregar el conjunto unitario con el valor de esos elementos si son iguales, o el conjunto vacío si son diferentes. En ambos casos se consume un elemento de $A$, pues se entrega la intersección si se encuentra en $B$ o se determina que no existe, por lo que se puede proceder con el siguiente. Sin embargo, el elemento $B[p]$ se consume únicamente en el caso de igualdad, pues aunque no sea igual al elemento corriente de $A$ podría serlo con alguno de los subsiguientes. Sea $e$ una variable indicativa de la igualdad de estos elementos; entonces, los dos subconjuntos sobre los que se realiza la recursión son $C_< = \{ A[1, \dots, M - 1] \cap B[1, \dots, p - e]\}$ y $C_> = \{ A[M + 1, \dots, m] \cap B[p + e, \dots, n] \}$. Este procedimiento se implementó en `Julia` mediante la función `interseccion_baezayates!()`.
+
+```{julia}
+#| label: funcion_interseccion_baezayates
+
+function interseccion_baezayates!(
+    A::Vector{T}, 
+    a_inicio::Int64, a_fin::Int64, 
+    B::Vector{T}, 
+    b_inicio::Int64, b_fin::Int64, 
+    encuentra_posicion::Function,
+    C::Union{ Vector{T}, Nothing },
+    c::Union{ Int64, Nothing } ) where {T}
+
+    if C isa Nothing
+        C = Vector{T}(undef, 0)
+    end
+
+    m, n = length(A), length(B)
+    # Si el más grande es B,intercambiarlos
+    if n < m
+        A, B, a_inicio, a_fin, b_inicio, b_fin = B, A, b_inicio, b_fin, a_inicio, a_fin
+    end
+
+    # Si ya se hizo todo, entregar el resultado
+    (a_fin < a_inicio || b_fin < b_inicio) && return C, c
+
+    # Identificar la mediana de A
+    pos_medianaA = ceil( Int64, (a_fin + a_inicio) / 2 )
+    mediana = A[pos_medianaA]
+    
+    # Encontrar su posición de inserción en B (que puede ser al final)
+    pos_medianaB, c = encuentra_posicion(B, mediana, c, b_inicio)
+    pos_medianaB = min( pos_medianaB, b_fin )
+    
+    # Identificar si coinciden (es decir, si son un punto de la intersección)
+    coincidencia = ( mediana == B[pos_medianaB] ) 
+
+    # Iterar en los conjuntos inferior y superior, y guardar el valor del conjunto igual
+    # si hay coincidencia.
+    C, c = interseccion_baezayates!(
+        A, a_inicio,
+        pos_medianaA - 1, 
+        B, 
+        b_inicio, pos_medianaB - coincidencia, 
+        encuentra_posicion, 
+        C, c)
+
+    coincidencia && push!(C, mediana)
+
+    C, c = interseccion_baezayates!(
+        A, 
+        pos_medianaA + 1, a_fin, 
+        B, 
+        pos_medianaB + coincidencia, b_fin, 
+        encuentra_posicion,
+        C, c)
+
+    return C, c
+end
+
+# Función simplificada - Valores por defecto
+function interseccion_baezayates!(
+    A, B, 
+    c = nothing,
+    encuentra_posicion::Function = busqueda_binaria)
+    interseccion_baezayates!(
+        A, 1, length(A), 
+        B, 1, length(B), 
+        encuentra_posicion, 
+        nothing, c)
+end
+```
+
+```{julia}
+#| label: verifica_interseccion_baezayates
+#| include: false
+
+# Funciona bien :)
+println( interseccion_baezayates!(A, B) )
+println( interseccion_baezayates!(A, B, 0) )
+```
+
+## Algoritmo de intersección de @BK2002 {#sec-barbay_kenyon}
+
+El algoritmo de intersección de Barbay y Kenyon busca los elementos comunes en $k$ conjuntos ordenados, cada uno de los cuales es un arreglo ordenado dentro de una lista. El algoritmo parte del primer elemento de la primera lista y encuentra su posición de inserción en todas las demás. Guarda esta posición, para no buscar antes de ella en las siguientes iteraciones, al aprovechar que los arreglos están ordenados y, por lo tanto, no hay antes ningún valor de interés para la intersección. Cuando el valor disponible en la posición de inserción de la lista en la que se busca es igual al que se está buscando, se actualiza un contador; al final, este elemento es parte del conjunto solución únicamente si aparece en todas las listas (es decir, si el valor final del contador es igual $k$). En ese caso, se reinicia el contador y se continúa buscando otro elemento. Al final, el algoritmo termina cuando alguna posición de inserción es mayor al tamaño de la lista correspondiente. En la función `interseccion_barbaykenyon()` se adaptó la función `bk!()` disponible en @sadit_algoritmos [capítulo 6.4.2], que implementa este algoritmo.[^ConvergenciaBK]
+
+[^ConvergenciaBK]: Se detectaron instancias para las cuales la función `bk!()` no converge. En la adaptación disponible en este documento, la función entrega como resultado el valor `nothing` para el conjunto de intersección y la contabilización `Inf64` para el número de operaciones cuando el número de iteraciones se hace suficientemente grande. Sin embargo, es necesario realizar una investigación adicional para replantear la función de forma que converja para cualquier instancia del problema.
+
+```{julia}
+#| label: funcion_interseccion_barbaykenyon
+ 
+function interseccion_barbaykenyon(
+    Lista::Vector{Vector{T}},
+    encuentra_posicion::Function = busqueda_binaria,
+    c::Union{ Int64, Nothing } = nothing,
+    Posiciones::Union{ Vector{Int64}, Nothing} = nothing ) where {T}
+    
+    n = length(Lista)
+    if Posiciones isa Nothing
+        Posiciones = ones(Int64, n)
+    end
+
+    elemento = Lista[1][1]
+    encuentros = 0
+    Resultado = Vector{T}(undef, 0)
+
+    pasos = 0
+    @inbounds while pasos < 10_000
+        pasos += 1
+        for i in eachindex(Posiciones)
+            # Buscar la posición del inserción en la iésima lista del candidado 
+            # a estar en todos. Si esa posición es más grande que su tamaño, 
+            # entonces no está en la intersección.
+            posicion, _ = encuentra_posicion(Lista[i], elemento, c, Posiciones[i])
+            Posiciones[i] = posicion
+            posicion > length(Lista[i]) && return Resultado, c
+
+            # Si el elemento que está en esa posición de la lista i es el buscado,
+            # entonces actualizar el contador antes de pasar a la siguiente lista.
+            # Cuando se determine que está en todos, entonces ponerlo en la 
+            # intersección.
+            valor_posicion = Lista[i][posicion]
+            if valor_posicion == elemento
+                encuentros += 1
+                if encuentros == n
+                    push!(Resultado, elemento)
+                    # Reiniciar con el siguiente elemento
+                    encuentros = 0
+                    Posiciones[i] += 1
+                    Posiciones[i] > length(Lista[i]) && return Resultado, c
+                    elemento = Lista[i][Posiciones[i]]
+                end
+            else
+                encuentros = 0
+                elemento = valor_posicion
+            end
+
+            if c isa Int64
+                c += 1
+            end
+        end
+    end
+
+    return nothing, Inf64
+end
+```
+
+```{julia}
+#| label: verifica_interseccion_barbaykenyon
+#| include: false
+
+# Funciona bien :)
+println( interseccion_barbaykenyon([A, B, [10, 11]]) )
+println( interseccion_barbaykenyon([A, B, [10, 11]], busqueda_binaria, 0) )
+# También funciona con las otras búsquedas
+# println( interseccion_barbaykenyon([A, B, [10, 11]], busqueda_b0, 0) )
+# println( interseccion_barbaykenyon([A, B, [10, 11]], busqueda_b1, 0) )
+# println( interseccion_barbaykenyon([A, B, [10, 11]], busqueda_b2, 0) )
+```
+
+# Experimentos {#sec-experimentos}
+
+Se obtuvieron conjuntos de pares, grupos de tres o de cuatro vectores odenados a los que se aplicarán los algoritmos de unión e intersección descritos en la @sec-union_interseccion parametrizados, en su caso, con las funciones de búsqueda señaladas en la @sec-busquedas. En la @sec-datos se presentan estos datos. Posteriormente, en la @sec-tiempos se calculan los tiempos de ejecución de cada algoritmo, y en la @sec-cantidad se calcula el número de operaciones realizadas por ellos.
+
+## Datos {#sec-datos}
+
+Se obtuvieron diccionarios de arreglos ordenados disponibles en 3 archivos electrónicos en formato de Notación de Objetos de JavaScript (JSON, por sus siglas en inglés), [disponibles aquí](https://www.dropbox.com/scl/fo/bs85g2jqcu54icfeom1bj/AFvzDu1Pe3QwXbBPwqQ8ER8?rlkey=vljj3beohjmut920wus1tyvjz&st=grnd9fr4&dl=0).^[Datos originalmente disponibles [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](../../legal.qmd).]. Cada uno de estos diccionarios se incorporó como un diccionario interior de otro denominado `datos`, cuyas claves corresponden al número de conjuntos disponibles en cada observación. Las observaciones disponibles en cada entrada del diccionario son pares o grupos de 3 o 4 vectores ordenados.
+
+```{julia}
+#| label: datos
+
+datos = Dict()
+for (letra, k) in [("A", 2), ("B", 3), ("C", 4)]
+    datos[k] = JSON.parsefile(
+        "postinglists-for-intersection-$(letra)-k=$(k).json"
+        )
+end
+```
+
+Para mejorar el rendimiento de los algoritmos en el análisis que se desarrolla a continuación, se hicieron conversiones de las estrucutras en las que se representan los datos en memoria, al considerar que todas las entradas de los vectores son valores enteros.
+
+```{julia}
+#| label: datos_formatoentero
+
+for k in 2:4
+    for i in eachindex(datos[k])
+        for j in eachindex(datos[k][i])
+            datos[k][i][j] = convert(Vector{Int64}, datos[k][i][j])
+        end
+        datos[k][i] = convert(Vector{Vector{Int64}}, datos[k][i])
+    end
+end
+```
+
+## Tiempos de ejecución {#sec-tiempos}
+
+Se generó un `DataFrame` denominado `lab_tiempos` en el que se registran los tiempos promedio para ejecutar los algoritmos objeto de análisis con los datos obtenidos. `lab_tiempos` contiene registros para cada algoritmo y dato analizado, con los siguientes campos:
+
++ `funcion`, que registra una abreviación del nombre de la función implementada (disponible en la @sec-union_interseccion).
++ `busqueda`, que señala una abreviatura del algoritmo de búsqueda (disponible en la @sec-busquedas) implementado en la función correspondiente, si es que aplica, o un registro con una cadena de texto vacía, para el caso de las funciones descritas en la @sec-similar.
++ `tiempo`, que señala el tiempo total de ejecución de la observación durante 100 iteraciones.
+
+En primer lugar, se adicionaron observaciones para las funciones `union_simple()` e `interseccion_simple()` ejecutadas en cada una de las observaciones de dos conjuntos, disponibles en `datos`.
+
+```{julia}
+#| label: tiempos_noadaptativas
+
+lab_tiempos = DataFrame(
+    funcion = Vector{String}(), 
+    busqueda = Vector{String}(),
+    tiempo = Vector{Float64}()
+    )
+n_iter = 100
+
+for funcion in [("union_simple", "U-S"), ("interseccion_simple", "I-S")]
+    f = Symbol(funcion[1])
+    f = getfield(Main, f)
+    x = now()
+    # Iteramos en cada elemento del conjunto de duplas
+    for i in eachindex(datos[2])
+        for repeticion in 1:n_iter
+            f(datos[2][i][1], datos[2][i][2])
+        end
+        push!(lab_tiempos, (funcion[2], "", Dates.value( now() - x ) ))
+    end
+end
+```
+
+A continuación, se realizó el mismo ejercicio para contabilizar el tiempo de ejecución de las funciones `union_baezayates!()` e `interseccion_baeza_yates!()` con cada uno de los algoritmos de búsqueda señalados en la @sec-busquedas.
+
+```{julia}
+#| label: tiempos_baezayates
+
+busquedas = [
+    ("busqueda_binaria", "BB"), 
+    ("busqueda_b0", "B0"), 
+    ("busqueda_b1", "B1"), 
+    ("busqueda_b2", "B2")
+    ]
+
+for funcion in [("union_baezayates!", "U-BY"), ("interseccion_baezayates!", "I-BY")]
+    f = Symbol(funcion[1])
+    f = getfield(Main, f)
+    for busqueda in busquedas
+        b = Symbol(busqueda[1])
+        b = getfield(Main, b)
+        x = now()
+        for i in eachindex(datos[2])
+            for repeticion in 1:n_iter
+                f(datos[2][i][1], datos[2][i][2], nothing, b)
+            end
+            push!(lab_tiempos, (funcion[2], busqueda[2], Dates.value( now() - x ) ))
+        end
+    end
+end
+```
+
+Finalmente, se hizo el mismo ejercicio de medición del tiempo de ejecución con la función `interseccion_barbaykenyon`, pero para ella se consideraron los conjuntos de 2, 3 y 4 listas a intersecar, disponibles en `datos`.
+
+```{julia}
+#| label: tiempos_barbaykenyon
+
+for busqueda in busquedas
+    b = Symbol(busqueda[1])
+    b = getfield(Main, b)
+    x = now()
+    for k in 2:4
+        for i in eachindex(datos[k])
+            for repeticion in 1:n_iter
+                interseccion_barbaykenyon(datos[k][i], b)
+            end
+            push!(lab_tiempos, ("I-BK $(k)", busqueda[2], Dates.value( now() - x ) ))
+        end
+    end
+end
+```
+
+Con base en todos estos ejercicios, en la @fig-tiempos_ejecucion se muestran diagramas de cajas y bigotes para cada función de unión e intersección considerada.
+
+```{julia}
+#| label: fig-tiempos_ejecucion
+#| fig-cap: Logaritmo base 10 de los tiempos de ejecución de cada algoritmo, 100 iteraciones
+
+lab_tiempos = filter(row -> row.tiempo > 0, lab_tiempos)
+@df lab_tiempos boxplot(string.(:funcion), log10.(:tiempo), group = :busqueda) 
+```
+
+## Número de operaciones {#sec-cantidad}
+
+Se generó un `DataFrame` denominado `lab_cuentas` en el que se registra el número de operaciones requeridas para ejecutar los algoritmos objeto de análisis con los datos obtenidos. `lab_cuentas` contiene registros para cada algoritmo y dato analizado, con campos similares a los descritos previamente: `funcion`, `busqueda` y `contabilidad`.
+
+En primer lugar, se adicionaron observaciones para las funciones `union_simple()` e `interseccion_simple()` ejecutadas en cada una de las observaciones de dos conjuntos, disponibles en `datos`.
+
+```{julia}
+#| label: cuentas_noadaptativas
+
+lab_cuentas = DataFrame(
+    funcion = Vector{String}(), 
+    busqueda = Vector{String}(),
+    contabilidad = Vector{Int64}()
+    )
+
+for funcion in [("union_simple", "U-S"), ("interseccion_simple", "I-S")]
+    f = Symbol(funcion[1])
+    f = getfield(Main, f)
+    x = now()
+    # Iteramos en cada elemento del conjunto de duplas
+    for i in eachindex(datos[2])
+        _, c = f(datos[2][i][1], datos[2][i][2], 0)
+        push!(lab_cuentas, (funcion[2], "", c ))
+    end
+end
+```
+
+A continuación, se realizó el mismo ejercicio para contabilizar el número de operaciones de las funciones `union_baezayates!()` e `interseccion_baeza_yates!()` con cada uno de los algoritmos de búsqueda señalados en la @sec-busquedas.
+
+```{julia}
+#| label: cuentas_baezayates
+
+for funcion in [("union_baezayates!", "U-BY"), ("interseccion_baezayates!", "I-BY")]
+    f = Symbol(funcion[1])
+    f = getfield(Main, f)
+    for busqueda in busquedas
+        b = Symbol(busqueda[1])
+        b = getfield(Main, b)
+        for i in eachindex(datos[2])
+            _, c = f(datos[2][i][1], datos[2][i][2], 0, b)
+            push!(lab_cuentas, (funcion[2], busqueda[2], c ))
+        end
+    end
+end
+```
+
+Finalmente, se hizo el mismo ejercicio de contabilidad de operaciones con la función `interseccion_barbaykenyon`, pero para ella se consideraron los conjuntos de 2, 3 y 4 listas a intersecar, disponibles en `datos`.
+
+```{julia}
+#| label: cuentas_barbaykenyon
+
+for busqueda in busquedas
+    b = Symbol(busqueda[1])
+    b = getfield(Main, b)
+    x = now()
+    for k in 2:4
+        for i in eachindex(datos[k])
+            _, c = interseccion_barbaykenyon(datos[k][i], b, 0)
+            if isfinite(c)
+                push!(lab_cuentas, ("I-BK $(k)", busqueda[2], c ))
+            end
+        end
+    end
+end
+```
+
+Con base en todos estos ejercicios, en la @fig-cuentas_ejecucion se muestran diagramas de cajas y bigotes para cada función de unión e intersección considerada.
+
+```{julia}
+#| label: fig-cuentas_ejecucion
+#| fig-cap: Logaritmo base 10 de la contabilización de operaciones de cada algoritmo
+
+lab_cuentas = filter(row -> !isinf(row.contabilidad) && !isnan(row.contabilidad), 
+                     lab_cuentas)
+@df lab_cuentas boxplot(string.(:funcion), log10.(:contabilidad), group = :busqueda) 
+```
+
+# Conclusión {#sec-conclusion}
+
+Con base en los elementos descritos en la @sec-union_interseccion, a partir de los experimentos se esperaba observar que:
+
++ Las versiones para unir e intersectar conjuntos de cada algoritmo deberían tener costos similares. Es decir, se espera que tanto sus tiempos de ejecución como su contabilidad de operaciones sean similares. Sin embargo, con base en lo observado en la @fig-tiempos_ejecucion y la @fig-cuentas_ejecucion, se puede afirmar que:
+
+    - La unión y la intersección simple tiene un número cercano de operaciones, pero los tiempos de ejecución difieren.
+    - Sucede lo contrario con los algoritmos de @baeza2004fast: su tiempo de ejecución resultó en diferencias mucho menos dramáticas que su contabilidad de operaciones.
+
++ Los algoritmos para la unión e intersección de conjuntos de tamaño similar, `union_simple()` e `interseccion_simple()` no son mejores que los otros, pues los demás tienen un peor caso con costo similar a estos. Sin embargo, con base en lo observado en la @fig-tiempos_ejecucion y la @fig-cuentas_ejecucion, se puede afirmar que:
+
+    - Los tiempos de ejecución de la intersección simple son menores que los de los demás algoritmos. Con respecto a la unión, los tiempos de ejecución de la unión simple resultaron mejores que los de @baeza2004fast con los algoritmos de búsqueda $B_0$ y $B_2$ y fueron similares a los de la búsqueda $B_1$. Es decir, únicamente se satisfizo la expectativa con respecto al algoritmo de @baeza2004fast al implementar la búsqueda binaria.
+    - Sin embargo, en lo que respecta a la contabilida de operaciones, sí se observa el comportamiento teórico esperado.
+
++ Los algoritmos de @baeza2004fast y @BK2002 tienen un rendimiento que depende del algoritmo de búsqueda que implementen. Así, los algoritmos que utilicen las búsquedas acotadas $B_1$ y $B_2$ tienen un rendimiento esperado inferior a los que utilizan la búsqueda binaria.
+
+    - En la @fig-tiempos_ejecucion se observan diferencias considerables en el tiempo de ejecución de estos algoritmos con respecto a las funciones de búsqueda que utilizan. No obstante, se obtuvo una inversión de la expectativa: resultó con un peor rendimiento la búsqueda $B_2$ y con un mejor rendimiento la búsqueda binaria.
+
+Con base en estos elementos, se observa que existen similitudes y diferencias entre la expectativa teórica sobre el rendimiento de los algoritmos bajo consideración y los resultados de los experimentos desarrollados. Estas diferencias ameritan continuar con la investigación sobre estos elementos y mejorar la implementación futura de los algoritmos correspondientes.
+
+# Referencias

@@ -12,6 +12,8 @@ categories:
 image: portada_busqueda_comparacion.png
 ---
 
+![](portada_busqueda_comparacion.png)
+
 ```{julia}
 #| label: software
 
