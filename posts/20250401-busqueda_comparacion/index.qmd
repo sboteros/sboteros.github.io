@@ -125,7 +125,7 @@ end
 
 ## Búsqueda secuencial $B_1$
 
-Sea $F_1(n) = 2^1, 2^2, \dots, 2^{\log_2 \lfloor n \rfloor + 1}$ una secuencia de puntos en los que se harán comparaciones entre $x$ y $a_{F_1(n)}$, que servirán para determinar el rango en el que se realizará la búsqueda binaria $A[2^{\lfloor \log_2 p \rfloor + 1}:2^{\lfloor \log_2 (p + 1) \rfloor + 1}]$; entonces, dependiendo de la posición $p$, el número de comparaciones que se deben realizar para determinar este rango está determinado por $\lfloor \log_2 p + 1 \rfloor + 1$. Una vez determinado, el costo de la búsqueda en dicho rango está limitado por $O(\log_2 n^\prime)$ donde $n^\prime$ es el tamaño del arreglo en el que se realiza la búsqueda binaria. Por lo tanto, el costo total de la búsqueda implementada es $C_1(p) < 2 \log_2 p + O(1)$ [@sadit_algoritmos, sección 5.2.2].
+Sea $F_1(n) = 2^1, 2^2, \dots, 2^{\lfloor \log_2 n \rfloor + 1}$ una secuencia de puntos en los que se harán comparaciones entre $x$ y $a_{F_1(n)}$, que servirán para determinar el rango en el que se realizará la búsqueda binaria $A[2^{\lfloor \log_2 p \rfloor + 1}:2^{\lfloor \log_2 (p + 1) \rfloor + 1}]$; entonces, dependiendo de la posición $p$, el número de comparaciones que se deben realizar para determinar este rango está determinado por $\lfloor \log_2 p + 1 \rfloor + 1$. Una vez determinado, el costo de la búsqueda en dicho rango está limitado por $O(\log_2 n^\prime)$ donde $n^\prime$ es el tamaño del arreglo en el que se realiza la búsqueda binaria. Por lo tanto, el costo total de la búsqueda implementada es $C_1(p) < 2 \log_2 p + O(1)$ [@sadit_algoritmos, sección 5.2.2].
 
 Este algoritmo se implementó en `Julia` mediante la función `busqueda_b1()`, en la que se adicionó un argumento opcional para contabilizar el número de veces que se realizan comparaciones, que corresponde al costo del problema.
 
@@ -173,7 +173,7 @@ end
 
 ## Búsqueda secuencial $B_2$
 
-Sea $F_2(n) = 2^{2^1}, 2^{2^2}, \dots, 2^{2^{\lfloor \log_2 \lfloor \log_2 (p + 1) + 1 \rfloor + 1}}$ una secuencia de puntos en los que se harán comparaciones entre $x$ y $a_{F_2(n)}$, que servirán para determinar el rango en el que se realizará la búsqueda binaria $A[2^{2 \lfloor \log_2 \lfloor \log_2 p \rfloor + 1 \rfloor + 1}:2^{2 \lfloor \log_2 \lfloor \log_2 (p + 1) \rfloor + 1 \rfloor + 1}]$; entonces, dependiendo de la posición $p$, el número de comparaciones que se deben realizar para determinar este rango está determinado por $\lfloor \log_2 \lfloor \log_2 (p + 1) \rfloor + 1 \rfloor + 1$. Una vez determinado este rango, se puede aplicar la búsqueda $B_1$ sobre él. Por lo tanto, el costo total de la búsqueda implementada es $C_2(p) < \log_2 p + 2 \log_2 \log_2 p + O(1)$ [@sadit_algoritmos, sección 5.2.2].
+Sea $F_2(n) = 2^{2^1}, 2^{2^2}, \dots, 2^{2^{\lfloor \log_2 \lfloor \log_2 (p + 1) + 1 \rfloor + 1}}$ una secuencia de puntos en los que se harán comparaciones entre $x$ y $a_{F_2(n)}$, que servirán para determinar el rango en el que se realizará la búsqueda de información $A[2^{2 \lfloor \log_2 \lfloor \log_2 p \rfloor + 1 \rfloor + 1}:2^{2 \lfloor \log_2 \lfloor \log_2 (p + 1) \rfloor + 1 \rfloor + 1}]$; entonces, dependiendo de la posición $p$, el número de comparaciones que se deben realizar para determinar este rango está determinado por $\lfloor \log_2 \lfloor \log_2 (p + 1) \rfloor + 1 \rfloor + 1$. Una vez determinado este rango, se puede aplicar la búsqueda $B_1$ sobre él. Por lo tanto, el costo total de la búsqueda implementada es $C_2(p) < \log_2 p + 2 \log_2 \log_2 p + O(1)$ [@sadit_algoritmos, sección 5.2.2].
 
 Este algoritmo se implementó en `Julia` mediante la función `busqueda_b2()`, en la que se adicionó un argumento opcional para contabilizar el número de veces que se realizan comparaciones, que corresponde al costo del problema.
 
@@ -224,12 +224,13 @@ end
 
 ## Busqueda mediante SkipLists
 
-Como se explicó en [el post sobre algoritmos de ordenamiento](../20250304-algoritmos_ordenamiento/index.qmd), se puede implementar una "*SkipList*" en `Julia` mediante las estructuras mutables `Nodo` y `Lista_Salto`, como se muestra a continuación.
+Como se explicó en [el post sobre algoritmos de ordenamiento](../20250304-algoritmos_ordenamiento/index.qmd), se puede implementar una "*SkipList*" en `Julia` mediante las estructuras mutables `Nodo` y `Lista_Salto`, como se muestra a continuación. A partir de estas estructuras, se pueden definir funciones para modificar la lista al insertar elementos en ella, `inserta_skiplist!()`, y utilizar el resultado obtenido para ordenar un arreglo, `ordenar_skiplist()`.
 
 ```{julia}
 #| label: estructuras_skiplist
 #| code-fold: show
 
+# 1. Estructuras de datos
 # Nodos
 mutable struct Nodo{T}
     valor::T
@@ -251,13 +252,8 @@ Lista_Salto{T}() where {T} = Lista_Salto(
     1, 
     Vector{ Union{Nodo{T}, Nothing}}(nothing, 1) )
 Lista_Salto() = Lista_Salto{Float64}()
-```
 
-En ese post se formuló una función `inserta_skiplist!()` que recibe una lista y un valor como argumentos y cuyo resultado es la misma lista modificada al incluir el valor como uno de sus nodos. La construcción del nodo tiene un componente aleatorio que determina el número de punteros que tiene hacia otros nodos que contienen valores superiores al insertado. Para permitir la reproducibilidad de los resultados obtenidos, se adicionó un argumento opcional, `rng`, que permite indicar un generador de números aleatorio mediante el cual se determina dicho tamaño del nodo; este argumento no estaba disponible en el documento señalado.
-
-```{julia}
-#| label: funcion_inserta_skiplist
-
+# 2. Función inserta_skiplist!()
 function inserta_skiplist!(
     lista::Lista_Salto{T}, 
     valor::T, 
@@ -317,24 +313,8 @@ function inserta_skiplist!(
     end
     return c
 end
-```
 
-```{julia}
-#| label: verificar_inserta_skiplist
-#| include: false
-
-x = Lista_Salto{Int64}()
-for numero in 1:5
-    inserta_skiplist!(x, rand(rng, 1:5), nothing, rng)
-end
-x
-```
-
-Asimismo, en esa entrada del blog se señaló que para organizar un arreglo mediante una SkipList basta insertar cada elemento del arreglo en una lista nueva y, una vez generada, seguir los apuntadores en el nivel $k = 1$ desde la cabecera de la lista hasta encontrar el valor que indica el final. Este algoritmo se había implementado en `Julia` mediante la función `ordenar_skiplist()`.
-
-```{julia}
-#| label: funcion_ordenar_skiplist
-
+# 3. Función ordenar_skiplist()
 function ordenar_skiplist(
     a::Vector, 
     c::Union{ Int64, Nothing } = nothing, 
@@ -351,15 +331,6 @@ function ordenar_skiplist(
     end
     return c, ordenar, listado
 end
-```
-
-```{julia}
-#| label: verificar_ordenar_skiplist
-#| include: false
-
-# Parece que funciona bien para ordenar :)
-println( ordenar_skiplist(rand(1:100, 10), nothing, rng) )
-println( ordenar_skiplist(rand(1:100, 10), 0, rng) )
 ```
 
 En adición a los elementos señalados, que ya habían sido analizados en ese post, se generó la función `busqueda_skiplist()`, que implementa un algoritmo adaptativo para buscar un valor $x$ en una SkipList. A diferencia de los algoritmos señalados en las subsecciones anteriores, este no entrega la posición en la cual se debe insertar el valor para conservar el orden del arreglo, pues ello no tiene sentido para una SkipList, sino que entrega la referencia del nodo que sería antecesor al que se construya a partir del valor que se desea insertar, de forma que los apuntadores después de insertar el nodo con este valor mantengan el ordenamiento de la lista. El procedimiento implementado se describe a continuación:
@@ -449,7 +420,7 @@ end
 datos = convert(Dict{Int64, Dict{String, Vector{Int64}}}, datos)
 ```
 
-Como las fucniones `busqueda_binaria()`, `busqueda_b0()`, `busqueda_b1()` y `busqueda_b2()` requieren como entrada un arreglo ordenado y la función `busqueda_skiplist()` requiere una SkipList, entonces se procesaron los arreglos desordenados originalmente disponibles en cada diccionario interior para convertirlos en uno de estos dos tipos de insumo. Para ello, cada uno de los arreglos originales se procesó mediante la función `ordenar_skiplist()` y se conservaron las respuestas del arreglo ordenado y la SkipList que se obtienen a partir de esta función; estos arreglos se registraron en un diccionario ubicado en el lugar de memoria en que estaba originalmente disponible el insumo para esta función, que también se conservó en el mismo diccionario.
+Como las funciones `busqueda_binaria()`, `busqueda_b0()`, `busqueda_b1()` y `busqueda_b2()` requieren como entrada un arreglo ordenado y la función `busqueda_skiplist()` requiere una SkipList, entonces se procesaron los arreglos desordenados originalmente disponibles en cada diccionario interior para convertirlos en uno de estos dos tipos de insumo. Para ello, cada uno de los arreglos originales se procesó mediante la función `ordenar_skiplist()` y se conservaron las respuestas del arreglo ordenado y la SkipList que se obtienen a partir de esta función; estos arreglos se registraron en los diccionarios denominados `ordenado` y `skiplist`, respectivamente.
 
 ```{julia}
 #| label: arreglos_ordenados
@@ -468,7 +439,7 @@ for numero in keys(datos)
 end
 ```
 
-Asimismo, se obtuvieron números para consultar en los diferentes arreglos a partir de 4 archivos electrónicos en formato JSON, [disponibles aquí](https://www.dropbox.com/scl/fo/8zrqyv1603qfxj2a3w29b/ALkCU_d2_-Ui5zVZ5BBd1DE?rlkey=mwkqer63q8uyzivplmg4ygwuh&st=wr2ej92s&dl=0).^[Datos originalmente disponibles [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](../../legal.qmd).] Estos se registraron en un diccionario denominado `consultas`, cuyas claves son asociadas al archivo electrónico correspondiente y cuyos valores son los arreglos con los números de consulta que se realizarán.
+Asimismo, se obtuvieron números para consultar en los diferentes arreglos a partir de 4 archivos electrónicos, [disponibles aquí](https://www.dropbox.com/scl/fo/8zrqyv1603qfxj2a3w29b/ALkCU_d2_-Ui5zVZ5BBd1DE?rlkey=mwkqer63q8uyzivplmg4ygwuh&st=wr2ej92s&dl=0).^[Datos originalmente disponibles [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](../../legal.qmd).] Estos se registraron en un diccionario denominado `consultas`, cuyas claves son asociadas al archivo electrónico correspondiente y cuyos valores son los arreglos con los números de consulta que se realizarán.
 
 ```{julia}
 #| label: consultas
@@ -556,9 +527,13 @@ end
 ```
 
 ::: {#fig-labbusc_tiempo layout-ncol=2}
+
 ![Consultas 1](busquedas_1_tiempo.png)
+
 ![Consultas 2](busquedas_2_tiempo.png)
+
 ![Consultas 3](busquedas_3_tiempo.png)
+
 ![Consultas 4](busquedas_4_tiempo.png)
 
 Tiempos de ejecución
@@ -603,7 +578,7 @@ for num_consulta in 1:4
 end
 ```
 
-Con base en esta información se generaron gráficos de dispersión, para cada archivo de consultas, el número de comparaciones que requiere cada función para ejecutar las consultas en los vectores ordenados, como función del valor consultado $p$. Estas se muestran en la @fig-labbusc_cuenta.
+Con base en esta información se generaron gráficos de dispersión, para cada archivo de consultas, que muestran el número de comparaciones que requiere cada función para ejecutar las consultas en los vectores ordenados, como función del valor consultado $p$. Estas se muestran en la @fig-labbusc_cuenta.
 
 ```{julia}
 #| label: grafico-busquedas_cuenta
@@ -618,9 +593,13 @@ end
 ```
 
 ::: {#fig-labbusc_cuenta layout-ncol=2}
+
 ![Consultas 1](busquedas_1_cuenta.png)
+
 ![Consultas 2](busquedas_2_cuenta.png)
+
 ![Consultas 3](busquedas_3_cuenta.png)
+
 ![Consultas 4](busquedas_4_cuenta.png)
 
 Cantidad de operaciones
@@ -628,6 +607,6 @@ Cantidad de operaciones
 
 # Conclusión {#sec-conclusion}
 
-Se esperaba que los algoritmos implementados tuvieran un desempeño proporcional al logaritmo del valor buscado, por lo que tenían un desempeño óptimo. Sin embargo, los resultados obtenidos arrojaron un desempeño con una tendencia no discernible con respecto al valor buscado, situación que es diferente a la esperada. Es necesario una mayor profundización en el estudio de los algoritmos para determinar la causa de este comportamiento.
+Se esperaba que los algoritmos implementados tuvieran un desempeño proporcional al logaritmo del valor buscado, por lo que tenían un desempeño óptimo. Sin embargo, los resultados obtenidos arrojaron un desempeño con una tendencia no discernible con respecto al valor buscado y orden de los ejes inesperado: en el caso de los tiempos de ejecución, el eje es igual para cada consulta, mientras qque en el de la contabilidad de operaciones, este tiene la misma escala que el eje horizontal. Esta situación es diferente a la esperada y puede obedecer a errores en la implementación de los algoritmos o a un rendimiento inesperado de estos. Es necesario una mayor profundización en el estudio de los algoritmos para determinar la causa de este comportamiento.
 
 # Referencia

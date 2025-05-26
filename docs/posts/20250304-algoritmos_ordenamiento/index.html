@@ -80,7 +80,7 @@ div.csl-indent {
 }</style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -131,9 +131,6 @@ div.csl-indent {
     "search-label": "Buscar"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script>
 MathJax = {
   loader: {
@@ -500,7 +497,7 @@ window.Quarto = {
 <div id="cell-software" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span>, <span class="bu">DataFrames</span>, <span class="bu">JSON</span>, <span class="bu">Random</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span>, <span class="bu">DataFrames</span>, <span class="bu">Format</span>, <span class="bu">MarkdownTables</span>, <span class="bu">JSON</span>, <span class="bu">Random</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> <span class="fu">Xoshiro</span>(<span class="fl">20250304</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="software" class="cell-output cell-output-display" data-execution_count="2">
@@ -517,7 +514,7 @@ window.Quarto = {
 <section id="buble-sort" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="buble-sort"><span class="header-section-number">2.1</span> Buble sort</h2>
 <p>“<em>Bublesort</em>” es un algoritmo de ordenamiento popular, pero ineficiente, que intercambia repetidamente entradas adyacentes de un arreglo que se encuentran desordenadas <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 24</a>)</span>. “<em>Bublesort</em>” se describe en el <a href="#alg-burbuja" class="quarto-xref">Algoritmo 1</a> y se implementó en <code>Julia</code> mediante la función <code>burbuja!()</code>.</p>
-<div id="alg-burbuja" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="1" data-caption-prefix="Algoritmo">
+<div id="alg-burbuja" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="1">
 <div class="pseudocode">
 \begin{algorithm} \caption{BUBLESORT($A, n)$}\begin{algorithmic} \For{$i = 1$ a $n - 1$} \For{$j = n$ descendiendo hasta $i + 1$} \If{$A[j] &lt; A[j - 1]$} \State Intercambiar $A[j]$ con $A[j - 1]$ \EndIf \EndFor \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -549,8 +546,8 @@ window.Quarto = {
 </section>
 <section id="merge-sort" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="merge-sort"><span class="header-section-number">2.2</span> Merge sort</h2>
-<p>El algoritmo “<em>merge sort</em>” (unifica-ordena) ordena el subarrego <code>A[p:r]</code>, comenzando desde el arreglo completo <code>A[1:n]</code> y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (<code>A[p:q]</code> y <code>A[q + 1, r]</code>), para obtener el arreglo <code>A[p:r]</code> ordenado, hasta llegar nuevamente al arreglo completo <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 34-35</a>)</span>. Esta segunda parte del procedimiento se implementa mediante el <a href="#alg-unir" class="quarto-xref">Algoritmo 2</a>, disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 36</a>)</span>, que fue implementado en <code>Julia</code> mediante la función <code>une!()</code>.</p>
-<div id="alg-unir" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="2" data-caption-prefix="Algoritmo">
+<p>El algoritmo “<em>merge sort</em>” (unifica-ordena) ordena el subarrego <code>A[p:r]</code>, comenzando desde el arreglo completo <code>A[1:n]</code> y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (<code>A[p:q]</code> y <code>A[q + 1:r]</code>), para obtener el arreglo <code>A[p:r]</code> ordenado, hasta llegar nuevamente al arreglo completo <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 34-35</a>)</span>. Esta segunda parte del procedimiento se implementa mediante el <a href="#alg-unir" class="quarto-xref">Algoritmo 2</a>, disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 36</a>)</span>, que fue implementado en <code>Julia</code> mediante la función <code>une!()</code>.</p>
+<div id="alg-unir" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="2">
 <div class="pseudocode">
 \begin{algorithm} \caption{UNIR($A, p, q, r)$}\begin{algorithmic} \State $n_L = q - p + 1$ \Comment{Tamaño de los subarreglos (ordenados)} \State $n_R = r - q$ \State Sean $L[0:n_L - 1]$ y $R[0:n_R - 1]$ nuevos arreglos \For{$i=0$ a $n_L -1$} \Comment{Copiar $A[p:q]$ en $L[0:n_L - 1]$} \State $L[i] = A[p + i]$ \EndFor \For{$j = 0$ a $n_R - 1$} \State $R[j] = A[q + j + 1]$ \EndFor \Comment{Índices de los mínimos restantes en $L$ y $R$, y de la posición de $A$ para llenar} \State $i = 0$ \State $j = 0$ \State $k = 0$ \While{$i &lt; n_L$ y $j &lt; n_R$} \Comment{Poner en la posición de $A$ al más pequeño de $L$ y $R$ cada vez, hasta que quede vacío alguno de los dos} \If{$L[i] &lt; R[j]$} \State $A[k] = L[i]$ \State $i = i + 1$ \Else \State $A[k] = R[j]$ \State $j = j + 1$ \EndIf \State $k = k + 1$ \EndWhile \Comment{Después de vaciar uno completamente, copiar el resto del que quede en lo que falte de $A$} \While{$i &lt; n_L$} \State $A[k] = L[i]$ \State $i = i + 1$ \State $k = k + 1$ \EndWhile \While{$j &lt; n_R$} \State $A[k] = R[j]$ \State $j = j + 1$ \State $k = k + 1$ \EndWhile \end{algorithmic} \end{algorithm}
 </div>
@@ -603,7 +600,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Por su parte, la primera parte del procedimiento, que realiza la recursión sobre <span class="math inline">\(A\)</span> desde el arreglo completo hasta el caso base, se implementa mediante el <a href="#alg-ordenar_unir" class="quarto-xref">Algoritmo 3</a> disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 39</a>)</span>,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> que fue implementado en <code>Julia</code> mediante la función <code>ordena_une()</code>.</p>
-<div id="alg-ordenar_unir" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="3" data-caption-prefix="Algoritmo">
+<div id="alg-ordenar_unir" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="3">
 <div class="pseudocode">
 \begin{algorithm} \caption{ORDENAR-UNIR($A, p, r$)}\begin{algorithmic} \If{$p \geq r$} \Return $A$ \EndIf \State $q = \lfloor \frac{p + r}{2} \rfloor$ \State ORDENAR-UNIR($A, p, q$) \State ORDENAR-UNIR($A, q + 1, r)$ \State UNIR($A, p, q, r)$ \end{algorithmic} \end{algorithm}
 </div>
@@ -641,7 +638,7 @@ window.Quarto = {
 <section id="heapsort" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="heapsort"><span class="header-section-number">2.3</span> Heapsort</h2>
 <p>Una pila binaria (<em>binary heap</em>) es una estructura de datos en un arreglo que puede verse como un árbol binario (<em>binary tree</em>) que se encuentra completamente lleno en todos los niveles excepto, probablemente, en el inferior (que se encuentra lleno desde la izquierda hasta un determinado punto). Un arreglo <span class="math inline">\(A[1:n]\)</span> que representa a una pila es un objeto con el atributo <span class="math inline">\(A.tamano\_pila\)</span> que señala cuántos elementos de la pila están almacenados en el arreglo <span class="math inline">\(A\)</span>. En la pila, el elemento <span class="math inline">\(A[1]\)</span> es la raíz del árbol y cada elemento con índice <span class="math inline">\(i = 1, \dots, n\)</span> tiene un padre (con índice <span class="math inline">\(\lfloor i/2 \rfloor\)</span>), un hijo a la izquierda (con índice <span class="math inline">\(2i\)</span>) y un hijo a la derecha (con índice <span class="math inline">\(2i + 1\)</span>). Existen dos clases de pilas: máximas y mínimas; las primeras tienen la propiedad de que el padre de cualquier elemento es mayor o igual que este (<span class="math inline">\(A[\lfloor i/2 \rfloor] \geq A[i], \forall i\)</span>) <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, sec. 6.1</a>)</span>.</p>
-<p>Para implementar esta estructura de datos se generó una estructura mutable en <code>Julia</code> denominada <code>Pila</code>, que contiene los atributos <code>tamano</code> y <code>arreglo</code>; esta estructura puede construirse a partir de un arreglo, que se convierte en el segundo atributo, mientras que el primero es el tamaño del propio arreglo que construye la estructura. A continuación, se muestra la estructura y su constructor.</p>
+<p>Para implementar esta estructura de datos se generó una estructura mutable en <code>Julia</code> denominada <code>Pila</code>, que contiene los atributos <code>tamano</code> y <code>arreglo</code>; esta estructura puede construirse a partir de un arreglo, que se convierte en el segundo atributo, mientras que el primero es el tamaño del propio arreglo que la construye. A continuación, se muestra la estructura y su constructor.</p>
 <div id="estructura_pila" class="cell" data-execution_count="8">
 <details open="" class="code-fold">
 <summary>Ver el código</summary>
@@ -655,7 +652,7 @@ window.Quarto = {
 </details>
 </div>
 <p>El <a href="#alg-apilamax" class="quarto-xref">Algoritmo 4</a> aplica la propiedad de las pilas máximas a una pila binaria, a partir del índice <span class="math inline">\(i\)</span>. Es decir, asume que los árboles que se forman a partir de los hijos del índice <span class="math inline">\(i\)</span> de la pila son pilas máximas, pero que <span class="math inline">\(A[i]\)</span> puede violar la propiedad señalada, por lo que este algoritmo le permite a dicho índice bajar en el árbol hasta la posición adecuada para recuperar la propiedad <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, sec. 6.2</a>)</span>. Este algoritmo fue implementado en <code>Julia</code> mediante la función <code>apilamax!()</code>.</p>
-<div id="alg-apilamax" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="4" data-caption-prefix="Algoritmo">
+<div id="alg-apilamax" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="4">
 <div class="pseudocode">
 \begin{algorithm} \caption{APILAR-MAXIMO($A, i$)}\begin{algorithmic} \State $l = 2i$ \State $r = 2i + 1$ \If{$l \leq A.tamano\_pila$ y $A[l] &gt; A[i]$} \State $mayor = l$ \Else \State $mayor = i$ \EndIf \If{$r \leq A.tamano\_pila$ y $A[r] &gt; A[mayor]$} \State $mayor = r$ \EndIf \If{$mayor \neq i$} \State Intercambiar $A[i]$ con $A[mayor]$ \State APILAR-MAXIMO($A, mayor$) \EndIf \end{algorithmic} \end{algorithm}
 </div>
@@ -686,7 +683,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Por su parte, el <a href="#alg-contruye_pila_max" class="quarto-xref">Algoritmo 5</a> convierte una pila en una pila binaria máxima al utilizar el <a href="#alg-apilamax" class="quarto-xref">Algoritmo 4</a> en los primeros <span class="math inline">\(\lfloor n/2 \rfloor\)</span> elementos del arreglo. Este algoritmo se implementó en <code>Julia</code> mediante la función <code>construye_pila_max!()</code>, que tiene un argumento opcional para contabilizar el número de operaciones que se realizan en los diferentes llamados a la función <code>apilamax!()</code>. A diferencia del algoritmo, la función implementada no recibe como insumo a un arreglo, sino a una pila que, en todo caso, se construye a partir del arreglo mismo.</p>
-<div id="alg-contruye_pila_max" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="5" data-caption-prefix="Algoritmo">
+<div id="alg-contruye_pila_max" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="5">
 <div class="pseudocode">
 \begin{algorithm} \caption{CONTRUIR-PILA-MAXIMA($A, n)$}\begin{algorithmic} \State $A.tamano\_pila = n$ \For{$i = \lfloor n/2 \rfloor$ descendiendo hasta 1} \State APILAR-MAXIMO($A, i$) \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -706,7 +703,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Una vez que se cuenta con la estructura de la pila binaria máxima, explicada previamente, el algoritmo de ordenamiento simplemente toma la raíz de la pila, que es el elemento máximo y lo pone en su lugar correcto al final del arreglo, elimina ese nodo de la pila, reestablece la propiedad de apilamiento máximo, toma el nuevo nodo y lo pone en su lugar correcto en el penúltimo lugar del arreglo y continúa ejecutando este procedimiento iterativamente hasta haber reacomodado todos los elementos. Este procedimiento se implementa mediante el <a href="#alg-heapsort" class="quarto-xref">Algoritmo 6</a> disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, sec. 6.4</a>)</span>.</p>
-<div id="alg-heapsort" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="6" data-caption-prefix="Algoritmo">
+<div id="alg-heapsort" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="6">
 <div class="pseudocode">
 \begin{algorithm} \caption{HEAPSORT($A, n)$}\begin{algorithmic} \State CONSTRUIR-PILA-MAXIMA($A, n$) \For{$i = n$ descendiendo hasta 2} \State Intercambiar $A[1]$ con $A[i]$ \State $A.tamano\_pila = A.tamano\_pila - 1$ \State APILAR-MAXIMO($A, 1$) \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -738,12 +735,12 @@ window.Quarto = {
 <section id="quicksort" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="quicksort"><span class="header-section-number">2.4</span> Quicksort</h2>
 <p>El algoritmo <em>quicksort</em> utiliza un procedimiento que particiona un subarreglo <span class="math inline">\(A[p:r]\)</span> en tres conjuntos determinados por el último elemento del arreglo original <span class="math inline">\(A[r]\)</span>,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> este elemento se ubica en el conjunto pivote, antes de él se encuentran los elementos que son menores y después los que son mayores, asimismo el procedimiento entrega el índice del elemento pivote. Dicho procedimiento se encuentra disponible en el <a href="#alg-particion" class="quarto-xref">Algoritmo 7</a> disponible en <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 183-84</a>)</span>.</p>
-<div id="alg-particion" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="7" data-caption-prefix="Algoritmo">
+<div id="alg-particion" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="7">
 <div class="pseudocode">
-\begin{algorithm} \caption{PARTICIÓN($A, p, r$)}\begin{algorithmic} \State $x = A[r]$ \Comment{El pivote es el último} \State $i = p - 1$ \For{$j = p$ a $r - 1$} \If{$A[j] \leq x$} \Comment{Si es menor, va a la izquierda y se actualiza la posición del pivote} \State $i = i + 1$ \State Intercambiar $A[i]$ con $A[j]$ \EndIf \EndFor \State Intercambiar $A[i + 1]$ con $A[r]$ \Comment{El pivote va en la mitad de lo identificado} \State \Return $i + 1$ \end{algorithmic} \end{algorithm}
+\begin{algorithm} \caption{PARTICIÓN($A, p, r$)}\begin{algorithmic} \State $x = A[r]$ \Comment{El pivote es el último} \State $i = p - 1$ \For{$j = p$ a $r - 1$} \If{$A[j] \leq x$} \Comment{Si es menor, va a la izquierda y se actualiza la posición del pivote} \State $i = i + 1$ \State Intercambiar $A[i]$ con $A[j]$ \EndIf \EndFor \State Intercambiar $A[i + 1]$ con $A[r]$ \Comment{El pivote va en la mitad de lo identificado} \Return $i + 1$ \end{algorithmic} \end{algorithm}
 </div>
 </div>
-<p>Este algoritmo se implementó en <code>Julia</code> mediante la función <code>particion!()</code>, que tiene un argumento opcional para contabilizar el número de veces que se itera el procedimiento en la línea 4 del <a href="#alg-particion" class="quarto-xref">Algoritmo 7</a> y un argumento opcional para correr la versión aleatorizada.</p>
+<p>Este algoritmo se implementó en <code>Julia</code> mediante la función <code>particion!()</code>, que tiene argumentos opcionales para contabilizar el número de veces que se itera el procedimiento en la línea 4 del <a href="#alg-particion" class="quarto-xref">Algoritmo 7</a> y para correr la versión aleatorizada.</p>
 <div id="cell-particion" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Ver el código</summary>
@@ -779,12 +776,12 @@ window.Quarto = {
 </div>
 </div>
 <p>El <a href="#alg-quicksort" class="quarto-xref">Algoritmo 8</a> particiona el vector que recibe como entrada y ordena recursivamente los lados menores y mayores del pivote que identifica, de forma que termina por obtener el vector odenado.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<div id="alg-quicksort" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="8" data-caption-prefix="Algoritmo">
+<div id="alg-quicksort" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="8">
 <div class="pseudocode">
 \begin{algorithm} \caption{QUICKSORT($A, p, r$)}\begin{algorithmic} \If{$p &lt; r$} \State $q =\,$ PARTICIÓN($A, p, r$) \State QUICKSORT($A, p, q -1$) \State QUICKSORT($A, q + 1, r$) \EndIf \end{algorithmic} \end{algorithm}
 </div>
 </div>
-<p>Este algoritmo se implementó en <code>Julia</code> mediante la función <code>quicksort!()</code>, que tiene un argumento opcional para contabilizar el número de veces que se itera el procedimiento de la línea 4 del <a href="#alg-particion" class="quarto-xref">Algoritmo 7</a> invocado recursivamente, así como un argumento opcional para ejecutar la versión aleatorizada.</p>
+<p>Este algoritmo se implementó en <code>Julia</code> mediante la función <code>quicksort!()</code>, que tiene argumentos opcionales para contabilizar el número de veces que se itera el procedimiento de la línea 4 del <a href="#alg-particion" class="quarto-xref">Algoritmo 7</a> invocado recursivamente, así como para ejecutar la versión aleatorizada.</p>
 <p>De acuerdo con <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 193-94</a>)</span>, el tiempo esperado de ejecución de “<em>quicksort</em>” es <span class="math inline">\(\Theta(n \log_2 n)\)</span>, aunque puede llegar a requerir hasta <span class="math inline">\(\Theta (n^2)\)</span> en el peor caso.</p>
 <div id="cell-funcion_quicksort" class="cell" data-execution_count="15">
 <details class="code-fold">
@@ -850,13 +847,13 @@ window.Quarto = {
 <p>De acuerdo con <span class="citation" data-cites="skiplists_pugh">Pugh (<a href="#ref-skiplists_pugh" role="doc-biblioref">1990, 669-70</a>)</span>, para insertar un nodo con valor <span class="math inline">\(v\)</span> simplemente se realiza una búsqueda y un empalme. Al respecto, <span class="citation" data-cites="skiplists">Simic y Aibin (<a href="#ref-skiplists" role="doc-biblioref">2024</a>)</span> señalan que se debe:</p>
 <ul>
 <li>Buscar el lugar en donde se acomodará el elemento</li>
-<li>Elegir su nivel, que se elige de forma aleatoria aumentándolo en una unidad cada vez que un ensayo de Bernoulli con probabilidad <span class="math inline">\(p\)</span> arroje un éxito (por lo tanto, el número de niveles de cada nodo se distribuirá como una distribución de probabilidad geométrica).</li>
+<li>Elegir su nivel de forma aleatoria, aumentándolo en una unidad cada vez que un ensayo de Bernoulli con probabilidad <span class="math inline">\(p\)</span> arroje un éxito (por lo tanto, el número de niveles de cada nodo se distribuirá como una distribución de probabilidad geométrica).</li>
 <li>Actualizar el puntero que debe dirigirse hacia el nuevo nodo.</li>
 </ul>
 <p>Para elegir el lugar de ubicación del nuevo elemento, se parte de la cabecera de la lista en el nivel que se le asignó al nuevo nodo y se buscan dos nodos consecutivos <span class="math inline">\(x, \, z\)</span> tales que <span class="math inline">\(x.valor &lt; v \leq z.valor\)</span>. Si estos nodos existen, se actualizan los punteros para que <span class="math inline">\(x\)</span> apunte al nuevo nodo y este, a su vez, apunte a <span class="math inline">\(z\)</span>. Este procedimiento se repite en todos los niveles inferiores de la lista. Al respecto, <span class="citation" data-cites="skiplists">Simic y Aibin (<a href="#ref-skiplists" role="doc-biblioref">2024</a>)</span> plantean un algoritmo para implementar este procedimiento, cuya adaptación se muestra en el <a href="#alg-skiplist" class="quarto-xref">Algoritmo 9</a>. Este algoritmo se implementó en <code>Julia</code> mediante la función <code>inserta_skiplist!()</code>, que contiene un argumento opcional para contabilizar el número de actualizaciones de punteros que realiza el algoritmo.</p>
-<div id="alg-skiplist" class="pseudocode-container quarto-float" data-line-number="true" data-pseudocode-number="9" data-caption-prefix="Algoritmo">
+<div id="alg-skiplist" class="pseudocode-container quarto-float" data-line-number="true" data-caption-prefix="Algoritmo" data-pseudocode-number="9">
 <div class="pseudocode">
-\begin{algorithm} \caption{INSERTAR-NODO-SKIPLIST($L, \theta$)}\begin{algorithmic} \State Lista con $n$ niveles, con cabeceras $L.n, L.c[1,\dots,n]$ \State Cabeceras apuntan a nodos $x$, con sucesores y valor ($x.s, x.\theta$) \State Insertar valor $\theta$ en el lugar adecuado \State k = 0 \Comment{Asignar un nivel aleatorio al nuevo nodo con valor $\theta$} \While{aleatorio $\leq 0.5$} \State $k = k + 1$ \EndWhile \If{$L.n \leq k$} \Comment{Adicionar niveles a la cabecera de la lista hasta $k$} \State Aumentar $n$ hasta $k$, apuntando a NIL desde $n + 1$ \State $L.n = k$ \Comment{Actualizar tamaño de la lista} \EndIf \State Crear un nodo vacío $y$ con $k$ niveles, su valor es $\theta$. \For{$i = k$ descendiendo hasta 1} \Comment{Actualizar apuntadores hasta el nivel $k$} $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera} \If{$x$ es NIL} $L.c[k] = y$ \Comment{Si apuntaba al final, apunta al nuevo} \ElsIf{$\theta &lt; x.\theta$} \Comment{Nuevo antes de $x$ en nivel $k$} \State $L.c[k] = y$ \State $y.s[k] = x$ \Else \Comment{Llegamos hasta el nodo cuyo valor es mayor} \State $z = x.s[k]$ \While{$\theta &gt; z.\theta$} \Comment{Nos vamos moviendo de uno a otro} \State $x = z$ \State $z = z.s[k]$ \EndWhile \State $x.s[k] = y$ \Comment{Acomodamos el nuevo en la mitad} \State $y.s[k] = z$ \EndIf \EndFor \end{algorithmic} \end{algorithm}
+\begin{algorithm} \caption{INSERTAR-NODO-SKIPLIST($L, \theta$)}\begin{algorithmic} \State Lista con $n$ niveles, con cabeceras $L.n, L.c[1,\dots,n]$ \State Cabeceras apuntan a nodos $x$, con sucesores y valor ($x.s, x.\theta$) \State Insertar valor $\theta$ en el lugar adecuado \State k = 0 \Comment{Asignar un nivel aleatorio al nuevo nodo con valor $\theta$} \While{aleatorio $\leq 0.5$} \State $k = k + 1$ \EndWhile \If{$L.n \leq k$} \Comment{Adicionar niveles a la cabecera de la lista hasta $k$} \State Aumentar $n$ hasta $k$, apuntando a NIL desde $n + 1$ \State $L.n = k$ \Comment{Actualizar tamaño de la lista} \EndIf \State Crear un nodo vacío $y$ con $k$ niveles, su valor es $\theta$. \For{$i = k$ descendiendo hasta 1} \Comment{Actualizar apuntadores hasta el nivel $k$} \State $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera} \If{$x$ es NIL} \State $L.c[k] = y$ \Comment{Si apuntaba al final, apunta al nuevo} \ElsIf{$\theta &lt; x.\theta$} \Comment{Nuevo antes de $x$ en nivel $k$} \State $L.c[k] = y$ \State $y.s[k] = x$ \Else \Comment{Llegamos hasta el nodo cuyo valor es mayor} \State $z = x.s[k]$ \While{$\theta &gt; z.\theta$} \Comment{Nos vamos moviendo de uno a otro} \State $x = z$ \State $z = z.s[k]$ \EndWhile \State $x.s[k] = y$ \Comment{Acomodamos el nuevo en la mitad} \State $y.s[k] = z$ \EndIf \EndFor \end{algorithmic} \end{algorithm}
 </div>
 </div>
 <p>De acuerdo con <span class="citation" data-cites="skiplists">Simic y Aibin (<a href="#ref-skiplists" role="doc-biblioref">2024</a>)</span>, el nivel de complejidad de las inserciones en una “<em>SkipList</em>” está dominado por la complejidad de las búsquedas y se espera que sea <span class="math inline">\(O(\log_2 n)\)</span>, aunque puede llegar a ser tan malo como <span class="math inline">\(O(n)\)</span>. De esta forma, se espera que el nivel de complejidad para insertar <span class="math inline">\(n\)</span> elementos de un arreglo sea <span class="math inline">\(O(n \log_2 n)\)</span>.</p>
@@ -1015,7 +1012,9 @@ window.Quarto = {
 <span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_tiempo, (experimento, numero, <span class="bu">Dates</span>.<span class="fu">value</span>( <span class="fu">now</span>() <span class="op">-</span> x ) ))</span>
 <span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_tiempo, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>tiempo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_tiempo, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>tiempo) <span class="op">|&gt;</span> </span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="fu">markdown_table</span>(formatter <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">cfmt</span>(<span class="st">"%'.0f"</span>, x))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="tbl-tiempos" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="24">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1023,87 +1022,77 @@ window.Quarto = {
 Tabla&nbsp;1: Tiempo de ejecución de los algoritmos analizados, en milisegundos
 </figcaption>
 <div aria-describedby="tbl-tiempos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="25">
-<div><div style="float: left;"><span>6×6 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
-<table class="data-frame do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="25">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 24%">
+</colgroup>
 <thead>
 <tr class="header">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">desorden</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">burbuja!</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">ordena_une!</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">heapsort</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">quicksort!</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">ordenar_skiplist</th>
-</tr>
-<tr class="subheader headerLastRow even">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
+<th>desorden</th>
+<th>burbuja!</th>
+<th>ordena_une!</th>
+<th>heapsort</th>
+<th>quicksort!</th>
+<th>ordenar_skiplist</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">815.0</td>
-<td style="text-align: right;">11.0</td>
-<td style="text-align: right;">482.0</td>
-<td style="text-align: right;">932.0</td>
-<td style="text-align: right;">12481.0</td>
+<td>16</td>
+<td>1,094</td>
+<td>16</td>
+<td>601</td>
+<td>1,231</td>
+<td>22,037</td>
 </tr>
 <tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">704.0</td>
-<td style="text-align: right;">18.0</td>
-<td style="text-align: right;">447.0</td>
-<td style="text-align: right;">873.0</td>
-<td style="text-align: right;">12262.0</td>
+<td>32</td>
+<td>1,004</td>
+<td>23</td>
+<td>592</td>
+<td>1,239</td>
+<td>20,786</td>
 </tr>
 <tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: right;">64</td>
-<td style="text-align: right;">712.0</td>
-<td style="text-align: right;">17.0</td>
-<td style="text-align: right;">436.0</td>
-<td style="text-align: right;">889.0</td>
-<td style="text-align: right;">12372.0</td>
+<td>64</td>
+<td>1,042</td>
+<td>18</td>
+<td>594</td>
+<td>1,235</td>
+<td>21,346</td>
 </tr>
 <tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">730.0</td>
-<td style="text-align: right;">15.0</td>
-<td style="text-align: right;">427.0</td>
-<td style="text-align: right;">873.0</td>
-<td style="text-align: right;">12194.0</td>
+<td>128</td>
+<td>1,039</td>
+<td>20</td>
+<td>588</td>
+<td>1,235</td>
+<td>21,417</td>
 </tr>
 <tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: right;">256</td>
-<td style="text-align: right;">826.0</td>
-<td style="text-align: right;">13.0</td>
-<td style="text-align: right;">450.0</td>
-<td style="text-align: right;">896.0</td>
-<td style="text-align: right;">12043.0</td>
+<td>256</td>
+<td>1,066</td>
+<td>26</td>
+<td>598</td>
+<td>1,233</td>
+<td>21,533</td>
 </tr>
 <tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">512</td>
-<td style="text-align: right;">797.0</td>
-<td style="text-align: right;">17.0</td>
-<td style="text-align: right;">431.0</td>
-<td style="text-align: right;">864.0</td>
-<td style="text-align: right;">12563.0</td>
+<td>512</td>
+<td>1,129</td>
+<td>18</td>
+<td>615</td>
+<td>1,232</td>
+<td>20,583</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </figure>
@@ -1143,7 +1132,8 @@ Tabla&nbsp;1: Tiempo de ejecución de los algoritmos analizados, en milisegundos
 <span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
 <span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_cuenta, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>operaciones)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_cuenta, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>operaciones) <span class="op">|&gt;</span> </span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="fu">markdown_table</span>(formatter <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">cfmt</span>(<span class="st">"%'.0f"</span>, x))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="tbl-operaciones" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="25">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1151,87 +1141,77 @@ Tabla&nbsp;1: Tiempo de ejecución de los algoritmos analizados, en milisegundos
 Tabla&nbsp;2: Número de operaciones ejecutadas por los algoritmos analizados
 </figcaption>
 <div aria-describedby="tbl-operaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="26">
-<div><div style="float: left;"><span>6×6 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
-<table class="data-frame do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="26">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 24%">
+</colgroup>
 <thead>
 <tr class="header">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">desorden</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">burbuja!</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">ordena_une!</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">heapsort</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">quicksort!</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">ordenar_skiplist</th>
-</tr>
-<tr class="subheader headerLastRow even">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
+<th>desorden</th>
+<th>burbuja!</th>
+<th>ordena_une!</th>
+<th>heapsort</th>
+<th>quicksort!</th>
+<th>ordenar_skiplist</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">19513.9</td>
-<td style="text-align: right;">959.51</td>
-<td style="text-align: right;">4792.68</td>
-<td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3834.61</td>
+<td>16</td>
+<td>19,514</td>
+<td>960</td>
+<td>4,793</td>
+<td>1,918</td>
+<td>3,832</td>
 </tr>
 <tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">40245.4</td>
-<td style="text-align: right;">959.51</td>
-<td style="text-align: right;">4792.68</td>
-<td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3821.19</td>
+<td>32</td>
+<td>40,245</td>
+<td>960</td>
+<td>4,793</td>
+<td>1,918</td>
+<td>3,840</td>
 </tr>
 <tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: right;">64</td>
-<td style="text-align: right;">76862.9</td>
-<td style="text-align: right;">959.51</td>
-<td style="text-align: right;">4792.68</td>
-<td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3845.71</td>
+<td>64</td>
+<td>76,863</td>
+<td>960</td>
+<td>4,793</td>
+<td>1,918</td>
+<td>3,844</td>
 </tr>
 <tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">1.47028e5</td>
-<td style="text-align: right;">959.51</td>
-<td style="text-align: right;">4792.68</td>
-<td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3832.87</td>
+<td>128</td>
+<td>147,028</td>
+<td>960</td>
+<td>4,793</td>
+<td>1,918</td>
+<td>3,840</td>
 </tr>
 <tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: right;">256</td>
-<td style="text-align: right;">2.69257e5</td>
-<td style="text-align: right;">959.51</td>
-<td style="text-align: right;">4792.68</td>
-<td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3834.94</td>
+<td>256</td>
+<td>269,257</td>
+<td>960</td>
+<td>4,793</td>
+<td>1,918</td>
+<td>3,845</td>
 </tr>
 <tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">512</td>
-<td style="text-align: right;">4.86561e5</td>
-<td style="text-align: right;">959.51</td>
-<td style="text-align: right;">4792.68</td>
-<td style="text-align: right;">1917.52</td>
-<td style="text-align: right;">3838.39</td>
+<td>512</td>
+<td>486,561</td>
+<td>960</td>
+<td>4,793</td>
+<td>1,918</td>
+<td>3,848</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </figure>
@@ -1756,7 +1736,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
 <span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: software</span></span>
 <span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span>, <span class="bu">DataFrames</span>, <span class="bu">JSON</span>, <span class="bu">Random</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span>, <span class="bu">DataFrames</span>, <span class="bu">Format</span>, <span class="bu">MarkdownTables</span>, <span class="bu">JSON</span>, <span class="bu">Random</span></span>
 <span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> <span class="fu">Xoshiro</span>(<span class="fl">20250304</span>)</span>
 <span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a></span>
@@ -1826,7 +1806,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-95"><a href="#cb31-95" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-96"><a href="#cb31-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Merge sort</span></span>
 <span id="cb31-97"><a href="#cb31-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-98"><a href="#cb31-98" aria-hidden="true" tabindex="-1"></a>El algoritmo "*merge sort*" (unifica-ordena) ordena el subarrego <span class="in">`A[p:r]`</span>, comenzando desde el arreglo completo <span class="in">`A[1:n]`</span> y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (<span class="in">`A[p:q]`</span> y <span class="in">`A[q + 1, r]`</span>), para obtener el arreglo <span class="in">`A[p:r]`</span> ordenado, hasta llegar nuevamente al arreglo completo <span class="co">[</span><span class="ot">@cormen, pp. 34-35</span><span class="co">]</span>. Esta segunda parte del procedimiento se implementa mediante el @alg-unir, disponible en @cormen<span class="co">[</span><span class="ot">p. 36</span><span class="co">]</span>, que fue implementado en <span class="in">`Julia`</span> mediante la función <span class="in">`une!()`</span>.</span>
+<span id="cb31-98"><a href="#cb31-98" aria-hidden="true" tabindex="-1"></a>El algoritmo "*merge sort*" (unifica-ordena) ordena el subarrego <span class="in">`A[p:r]`</span>, comenzando desde el arreglo completo <span class="in">`A[1:n]`</span> y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (<span class="in">`A[p:q]`</span> y <span class="in">`A[q + 1:r]`</span>), para obtener el arreglo <span class="in">`A[p:r]`</span> ordenado, hasta llegar nuevamente al arreglo completo <span class="co">[</span><span class="ot">@cormen, pp. 34-35</span><span class="co">]</span>. Esta segunda parte del procedimiento se implementa mediante el @alg-unir, disponible en @cormen<span class="co">[</span><span class="ot">p. 36</span><span class="co">]</span>, que fue implementado en <span class="in">`Julia`</span> mediante la función <span class="in">`une!()`</span>.</span>
 <span id="cb31-99"><a href="#cb31-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-100"><a href="#cb31-100" aria-hidden="true" tabindex="-1"></a><span class="in">```pseudocode</span></span>
 <span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: alg-unir</span></span>
@@ -2007,7 +1987,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-284"><a href="#cb31-284" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-285"><a href="#cb31-285" aria-hidden="true" tabindex="-1"></a>Una pila binaria (*binary heap*) es una estructura de datos en un arreglo que puede verse como un árbol binario (*binary tree*) que se encuentra completamente lleno en todos los niveles excepto, probablemente, en el inferior (que se encuentra lleno desde la izquierda hasta un determinado punto). Un arreglo $A<span class="co">[</span><span class="ot">1:n</span><span class="co">]</span>$ que representa a una pila es un objeto con el atributo $A.tamano<span class="sc">\_</span>pila$ que señala cuántos elementos de la pila están almacenados en el arreglo $A$. En la pila, el elemento $A<span class="co">[</span><span class="ot">1</span><span class="co">]</span>$ es la raíz del árbol y cada elemento con índice $i = 1, \dots, n$ tiene un padre (con índice $\lfloor i/2 \rfloor$), un hijo a la izquierda (con índice $2i$) y un hijo a la derecha (con índice $2i + 1$). Existen dos clases de pilas: máximas y mínimas; las primeras tienen la propiedad de que el padre de cualquier elemento es mayor o igual que este ($A<span class="co">[</span><span class="ot">\lfloor i/2 \rfloor</span><span class="co">]</span> \geq A<span class="co">[</span><span class="ot">i</span><span class="co">]</span>, \forall i$) <span class="co">[</span><span class="ot">@cormen, sección 6.1</span><span class="co">]</span>. </span>
 <span id="cb31-286"><a href="#cb31-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-287"><a href="#cb31-287" aria-hidden="true" tabindex="-1"></a>Para implementar esta estructura de datos se generó una estructura mutable en <span class="in">`Julia`</span> denominada <span class="in">`Pila`</span>, que contiene los atributos <span class="in">`tamano`</span> y <span class="in">`arreglo`</span>; esta estructura puede construirse a partir de un arreglo, que se convierte en el segundo atributo, mientras que el primero es el tamaño del propio arreglo que construye la estructura. A continuación, se muestra la estructura y su constructor.</span>
+<span id="cb31-287"><a href="#cb31-287" aria-hidden="true" tabindex="-1"></a>Para implementar esta estructura de datos se generó una estructura mutable en <span class="in">`Julia`</span> denominada <span class="in">`Pila`</span>, que contiene los atributos <span class="in">`tamano`</span> y <span class="in">`arreglo`</span>; esta estructura puede construirse a partir de un arreglo, que se convierte en el segundo atributo, mientras que el primero es el tamaño del propio arreglo que la construye. A continuación, se muestra la estructura y su constructor.</span>
 <span id="cb31-288"><a href="#cb31-288" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-291"><a href="#cb31-291" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
 <span id="cb31-292"><a href="#cb31-292" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: estructura_pila</span></span>
@@ -2187,12 +2167,12 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-476"><a href="#cb31-476" aria-hidden="true" tabindex="-1"></a><span class="in">    \EndFor</span></span>
 <span id="cb31-477"><a href="#cb31-477" aria-hidden="true" tabindex="-1"></a><span class="in">    \State Intercambiar $A[i + 1]$ con $A[r]$</span></span>
 <span id="cb31-478"><a href="#cb31-478" aria-hidden="true" tabindex="-1"></a><span class="in">    \Comment{El pivote va en la mitad de lo identificado}</span></span>
-<span id="cb31-479"><a href="#cb31-479" aria-hidden="true" tabindex="-1"></a><span class="in">    \State \Return $i + 1$</span></span>
+<span id="cb31-479"><a href="#cb31-479" aria-hidden="true" tabindex="-1"></a><span class="in">    \Return $i + 1$</span></span>
 <span id="cb31-480"><a href="#cb31-480" aria-hidden="true" tabindex="-1"></a><span class="in">\end{algorithmic}</span></span>
 <span id="cb31-481"><a href="#cb31-481" aria-hidden="true" tabindex="-1"></a><span class="in">\end{algorithm}</span></span>
 <span id="cb31-482"><a href="#cb31-482" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb31-483"><a href="#cb31-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-484"><a href="#cb31-484" aria-hidden="true" tabindex="-1"></a>Este algoritmo se implementó en <span class="in">`Julia`</span> mediante la función <span class="in">`particion!()`</span>, que tiene un argumento opcional para contabilizar el número de veces que se itera el procedimiento en la línea 4 del @alg-particion y un argumento opcional para correr la versión aleatorizada.</span>
+<span id="cb31-484"><a href="#cb31-484" aria-hidden="true" tabindex="-1"></a>Este algoritmo se implementó en <span class="in">`Julia`</span> mediante la función <span class="in">`particion!()`</span>, que tiene argumentos opcionales para contabilizar el número de veces que se itera el procedimiento en la línea 4 del @alg-particion y para correr la versión aleatorizada.</span>
 <span id="cb31-485"><a href="#cb31-485" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-488"><a href="#cb31-488" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
 <span id="cb31-489"><a href="#cb31-489" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: particion</span></span>
@@ -2243,7 +2223,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-534"><a href="#cb31-534" aria-hidden="true" tabindex="-1"></a><span class="in">\end{algorithm}</span></span>
 <span id="cb31-535"><a href="#cb31-535" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb31-536"><a href="#cb31-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-537"><a href="#cb31-537" aria-hidden="true" tabindex="-1"></a>Este algoritmo se implementó en <span class="in">`Julia`</span> mediante la función <span class="in">`quicksort!()`</span>, que tiene un argumento opcional para contabilizar el número de veces que se itera el procedimiento de la línea 4 del @alg-particion invocado recursivamente, así como un argumento opcional para ejecutar la versión aleatorizada.</span>
+<span id="cb31-537"><a href="#cb31-537" aria-hidden="true" tabindex="-1"></a>Este algoritmo se implementó en <span class="in">`Julia`</span> mediante la función <span class="in">`quicksort!()`</span>, que tiene argumentos opcionales para contabilizar el número de veces que se itera el procedimiento de la línea 4 del @alg-particion invocado recursivamente, así como para ejecutar la versión aleatorizada.</span>
 <span id="cb31-538"><a href="#cb31-538" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-539"><a href="#cb31-539" aria-hidden="true" tabindex="-1"></a>De acuerdo con @cormen<span class="co">[</span><span class="ot">pp. 193-194</span><span class="co">]</span>, el tiempo esperado de ejecución de "*quicksort*" es $\Theta(n \log_2 n)$, aunque puede llegar a requerir hasta $\Theta (n^2)$ en el peor caso.</span>
 <span id="cb31-540"><a href="#cb31-540" aria-hidden="true" tabindex="-1"></a></span>
@@ -2324,7 +2304,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-621"><a href="#cb31-621" aria-hidden="true" tabindex="-1"></a>De acuerdo con @skiplists_pugh<span class="co">[</span><span class="ot">pp. 669-670</span><span class="co">]</span>, para insertar un nodo con valor $v$ simplemente se realiza una búsqueda y un empalme. Al respecto, @skiplists señalan que se debe:</span>
 <span id="cb31-622"><a href="#cb31-622" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-623"><a href="#cb31-623" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Buscar el lugar en donde se acomodará el elemento</span>
-<span id="cb31-624"><a href="#cb31-624" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Elegir su nivel, que se elige de forma aleatoria aumentándolo en una unidad cada vez que un ensayo de Bernoulli con probabilidad $p$ arroje un éxito (por lo tanto, el número de niveles de cada nodo se distribuirá como una distribución de probabilidad geométrica).</span>
+<span id="cb31-624"><a href="#cb31-624" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Elegir su nivel de forma aleatoria, aumentándolo en una unidad cada vez que un ensayo de Bernoulli con probabilidad $p$ arroje un éxito (por lo tanto, el número de niveles de cada nodo se distribuirá como una distribución de probabilidad geométrica).</span>
 <span id="cb31-625"><a href="#cb31-625" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Actualizar el puntero que debe dirigirse hacia el nuevo nodo.</span>
 <span id="cb31-626"><a href="#cb31-626" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-627"><a href="#cb31-627" aria-hidden="true" tabindex="-1"></a>Para elegir el lugar de ubicación del nuevo elemento, se parte de la cabecera de la lista en el nivel que se le asignó al nuevo nodo y se buscan dos nodos consecutivos $x, \, z$ tales que $x.valor &lt; v \leq z.valor$. Si estos nodos existen, se actualizan los punteros para que $x$ apunte al nuevo nodo y este, a su vez, apunte a $z$. Este procedimiento se repite en todos los niveles inferiores de la lista. Al respecto, @skiplists plantean un algoritmo para implementar este procedimiento, cuya adaptación se muestra en el @alg-skiplist. Este algoritmo se implementó en <span class="in">`Julia`</span> mediante la función <span class="in">`inserta_skiplist!()`</span>, que contiene un argumento opcional para contabilizar el número de actualizaciones de punteros que realiza el algoritmo.</span>
@@ -2355,9 +2335,9 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-652"><a href="#cb31-652" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-653"><a href="#cb31-653" aria-hidden="true" tabindex="-1"></a><span class="in">    \For{$i = k$ descendiendo hasta 1}</span></span>
 <span id="cb31-654"><a href="#cb31-654" aria-hidden="true" tabindex="-1"></a><span class="in">        \Comment{Actualizar apuntadores hasta el nivel $k$}</span></span>
-<span id="cb31-655"><a href="#cb31-655" aria-hidden="true" tabindex="-1"></a><span class="in">        $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera}</span></span>
+<span id="cb31-655"><a href="#cb31-655" aria-hidden="true" tabindex="-1"></a><span class="in">        \State $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera}</span></span>
 <span id="cb31-656"><a href="#cb31-656" aria-hidden="true" tabindex="-1"></a><span class="in">        \If{$x$ es NIL}</span></span>
-<span id="cb31-657"><a href="#cb31-657" aria-hidden="true" tabindex="-1"></a><span class="in">            $L.c[k] = y$</span></span>
+<span id="cb31-657"><a href="#cb31-657" aria-hidden="true" tabindex="-1"></a><span class="in">            \State $L.c[k] = y$</span></span>
 <span id="cb31-658"><a href="#cb31-658" aria-hidden="true" tabindex="-1"></a><span class="in">            \Comment{Si apuntaba al final, apunta al nuevo}</span></span>
 <span id="cb31-659"><a href="#cb31-659" aria-hidden="true" tabindex="-1"></a><span class="in">        \ElsIf{$\theta &lt; x.\theta$}</span></span>
 <span id="cb31-660"><a href="#cb31-660" aria-hidden="true" tabindex="-1"></a><span class="in">            \Comment{Nuevo antes de $x$ en nivel $k$}</span></span>
@@ -2546,49 +2526,52 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb31-857"><a href="#cb31-857" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_tiempo, (experimento, numero, <span class="bu">Dates</span>.<span class="fu">value</span>( <span class="fu">now</span>() <span class="op">-</span> x ) ))</span>
 <span id="cb31-858"><a href="#cb31-858" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb31-859"><a href="#cb31-859" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb31-860"><a href="#cb31-860" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_tiempo, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>tiempo)</span>
-<span id="cb31-861"><a href="#cb31-861" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb31-862"><a href="#cb31-862" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-863"><a href="#cb31-863" aria-hidden="true" tabindex="-1"></a>Se hizo el procedimiento análogo para obtener el número de operaciones promedio que realizó cada algoritmo en los arreglos de cada archivo electrónico. En la @tbl-operaciones se muestran los resultados obtenidos. En este caso, se obtuvieron resultados más cercanos a los teóricamente esperados pues el número de operaciones de <span class="in">`burbuja!()`</span> fue muy elevado en comparación con los demás, y los mejores rendimientos obtenidos fueron para <span class="in">`ordena_une!()`</span> y <span class="in">`skiplist()`</span>. Asimismo, se observa que, salvo para el caso de <span class="in">`burbuja!()`</span>, el nivel de desorden de los arreglos de entrada no afecta el desempeño de los algoritmos.</span>
+<span id="cb31-860"><a href="#cb31-860" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-861"><a href="#cb31-861" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_tiempo, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>tiempo) <span class="op">|&gt;</span> </span>
+<span id="cb31-862"><a href="#cb31-862" aria-hidden="true" tabindex="-1"></a><span class="fu">markdown_table</span>(formatter <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">cfmt</span>(<span class="st">"%'.0f"</span>, x))</span>
+<span id="cb31-863"><a href="#cb31-863" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb31-864"><a href="#cb31-864" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-867"><a href="#cb31-867" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb31-868"><a href="#cb31-868" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-operaciones</span></span>
-<span id="cb31-869"><a href="#cb31-869" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Número de operaciones ejecutadas por los algoritmos analizados</span></span>
-<span id="cb31-870"><a href="#cb31-870" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-871"><a href="#cb31-871" aria-hidden="true" tabindex="-1"></a>datos2 <span class="op">=</span> <span class="fu">deepcopy</span>(datos)</span>
+<span id="cb31-865"><a href="#cb31-865" aria-hidden="true" tabindex="-1"></a>Se hizo el procedimiento análogo para obtener el número de operaciones promedio que realizó cada algoritmo en los arreglos de cada archivo electrónico. En la @tbl-operaciones se muestran los resultados obtenidos. En este caso, se obtuvieron resultados más cercanos a los teóricamente esperados pues el número de operaciones de <span class="in">`burbuja!()`</span> fue muy elevado en comparación con los demás, y los mejores rendimientos obtenidos fueron para <span class="in">`ordena_une!()`</span> y <span class="in">`skiplist()`</span>. Asimismo, se observa que, salvo para el caso de <span class="in">`burbuja!()`</span>, el nivel de desorden de los arreglos de entrada no afecta el desempeño de los algoritmos.</span>
+<span id="cb31-866"><a href="#cb31-866" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-869"><a href="#cb31-869" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb31-870"><a href="#cb31-870" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-operaciones</span></span>
+<span id="cb31-871"><a href="#cb31-871" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Número de operaciones ejecutadas por los algoritmos analizados</span></span>
 <span id="cb31-872"><a href="#cb31-872" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-873"><a href="#cb31-873" aria-hidden="true" tabindex="-1"></a>labsort_cuenta <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
-<span id="cb31-874"><a href="#cb31-874" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{String}</span>(), </span>
-<span id="cb31-875"><a href="#cb31-875" aria-hidden="true" tabindex="-1"></a>    desorden <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(),</span>
-<span id="cb31-876"><a href="#cb31-876" aria-hidden="true" tabindex="-1"></a>    operaciones <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>()</span>
-<span id="cb31-877"><a href="#cb31-877" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb31-878"><a href="#cb31-878" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">64</span>, <span class="fl">128</span>, <span class="fl">256</span>, <span class="fl">512</span>]</span>
-<span id="cb31-879"><a href="#cb31-879" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> experimento <span class="kw">in</span> experimentos</span>
-<span id="cb31-880"><a href="#cb31-880" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">Symbol</span>(experimento)</span>
-<span id="cb31-881"><a href="#cb31-881" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">getfield</span>(<span class="bu">Main</span>, f)</span>
-<span id="cb31-882"><a href="#cb31-882" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb31-883"><a href="#cb31-883" aria-hidden="true" tabindex="-1"></a>        iteraciones <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb31-884"><a href="#cb31-884" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos2[numero])</span>
-<span id="cb31-885"><a href="#cb31-885" aria-hidden="true" tabindex="-1"></a>            iteraciones <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb31-886"><a href="#cb31-886" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> experimento <span class="kw">in</span> [<span class="st">"heapsort"</span>, <span class="st">"ordenar_skiplist"</span>]</span>
-<span id="cb31-887"><a href="#cb31-887" aria-hidden="true" tabindex="-1"></a>                c1, _ <span class="op">=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
-<span id="cb31-888"><a href="#cb31-888" aria-hidden="true" tabindex="-1"></a>                c <span class="op">+=</span> c1</span>
-<span id="cb31-889"><a href="#cb31-889" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
-<span id="cb31-890"><a href="#cb31-890" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span></span>
-<span id="cb31-891"><a href="#cb31-891" aria-hidden="true" tabindex="-1"></a>                    c <span class="op">+=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
-<span id="cb31-892"><a href="#cb31-892" aria-hidden="true" tabindex="-1"></a>                <span class="cf">catch</span></span>
-<span id="cb31-893"><a href="#cb31-893" aria-hidden="true" tabindex="-1"></a>                    iteraciones <span class="op">-=</span> <span class="fl">1</span></span>
-<span id="cb31-894"><a href="#cb31-894" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
-<span id="cb31-895"><a href="#cb31-895" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
-<span id="cb31-896"><a href="#cb31-896" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb31-897"><a href="#cb31-897" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_cuenta, (experimento, numero, c <span class="op">/</span> iteraciones))</span>
-<span id="cb31-898"><a href="#cb31-898" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb31-899"><a href="#cb31-899" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb31-900"><a href="#cb31-900" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-901"><a href="#cb31-901" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_cuenta, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>operaciones)</span>
-<span id="cb31-902"><a href="#cb31-902" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb31-903"><a href="#cb31-903" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-904"><a href="#cb31-904" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referencias</span></span>
+<span id="cb31-873"><a href="#cb31-873" aria-hidden="true" tabindex="-1"></a>datos2 <span class="op">=</span> <span class="fu">deepcopy</span>(datos)</span>
+<span id="cb31-874"><a href="#cb31-874" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-875"><a href="#cb31-875" aria-hidden="true" tabindex="-1"></a>labsort_cuenta <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb31-876"><a href="#cb31-876" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{String}</span>(), </span>
+<span id="cb31-877"><a href="#cb31-877" aria-hidden="true" tabindex="-1"></a>    desorden <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(),</span>
+<span id="cb31-878"><a href="#cb31-878" aria-hidden="true" tabindex="-1"></a>    operaciones <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>()</span>
+<span id="cb31-879"><a href="#cb31-879" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-880"><a href="#cb31-880" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">64</span>, <span class="fl">128</span>, <span class="fl">256</span>, <span class="fl">512</span>]</span>
+<span id="cb31-881"><a href="#cb31-881" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> experimento <span class="kw">in</span> experimentos</span>
+<span id="cb31-882"><a href="#cb31-882" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">Symbol</span>(experimento)</span>
+<span id="cb31-883"><a href="#cb31-883" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="fu">getfield</span>(<span class="bu">Main</span>, f)</span>
+<span id="cb31-884"><a href="#cb31-884" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb31-885"><a href="#cb31-885" aria-hidden="true" tabindex="-1"></a>        iteraciones <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb31-886"><a href="#cb31-886" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asunto <span class="kw">in</span> <span class="fu">keys</span>(datos2[numero])</span>
+<span id="cb31-887"><a href="#cb31-887" aria-hidden="true" tabindex="-1"></a>            iteraciones <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb31-888"><a href="#cb31-888" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> experimento <span class="kw">in</span> [<span class="st">"heapsort"</span>, <span class="st">"ordenar_skiplist"</span>]</span>
+<span id="cb31-889"><a href="#cb31-889" aria-hidden="true" tabindex="-1"></a>                c1, _ <span class="op">=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
+<span id="cb31-890"><a href="#cb31-890" aria-hidden="true" tabindex="-1"></a>                c <span class="op">+=</span> c1</span>
+<span id="cb31-891"><a href="#cb31-891" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb31-892"><a href="#cb31-892" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span></span>
+<span id="cb31-893"><a href="#cb31-893" aria-hidden="true" tabindex="-1"></a>                    c <span class="op">+=</span> <span class="fu">f</span>(datos2[numero][asunto], <span class="fl">0</span>)</span>
+<span id="cb31-894"><a href="#cb31-894" aria-hidden="true" tabindex="-1"></a>                <span class="cf">catch</span></span>
+<span id="cb31-895"><a href="#cb31-895" aria-hidden="true" tabindex="-1"></a>                    iteraciones <span class="op">-=</span> <span class="fl">1</span></span>
+<span id="cb31-896"><a href="#cb31-896" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
+<span id="cb31-897"><a href="#cb31-897" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb31-898"><a href="#cb31-898" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb31-899"><a href="#cb31-899" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(labsort_cuenta, (experimento, numero, c <span class="op">/</span> iteraciones))</span>
+<span id="cb31-900"><a href="#cb31-900" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb31-901"><a href="#cb31-901" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb31-902"><a href="#cb31-902" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-903"><a href="#cb31-903" aria-hidden="true" tabindex="-1"></a><span class="fu">unstack</span>(labsort_cuenta, <span class="op">:</span>desorden, <span class="op">:</span>funcion, <span class="op">:</span>operaciones) <span class="op">|&gt;</span> </span>
+<span id="cb31-904"><a href="#cb31-904" aria-hidden="true" tabindex="-1"></a><span class="fu">markdown_table</span>(formatter <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">cfmt</span>(<span class="st">"%'.0f"</span>, x))</span>
+<span id="cb31-905"><a href="#cb31-905" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-906"><a href="#cb31-906" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-907"><a href="#cb31-907" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referencias</span></span>
 </code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

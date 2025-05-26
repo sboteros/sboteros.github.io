@@ -8,7 +8,7 @@ categories:
       - Julia
       - Notación asintótica
       - Órdenes de crecimiento
-image: orders_magnitude.png
+image: https://upload.wikimedia.org/wikipedia/commons/f/fa/Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png
 ---
 
 <a title="Pablo Carlos Budassi, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Orders_of_magnitude_(english_annotations,_horizontal_layout).png"><img width="512" alt="Orders of magnitude (english annotations, horizontal layout)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png/512px-Orders_of_magnitude_%28english_annotations%2C_horizontal_layout%29.png?20180823125235"></a>
@@ -46,7 +46,7 @@ En esta sección se presentan dos esquemas de comparación de las funciones que 
 
 ## Comparación mediante el método gráfico {#sec-grafico}
 
-Como se observa en la @fig-constante_logaritmo, la función constante ($g(n) = 1$) es menor a la logarítmica ($g(n) = \log n$) para valores pequeños de $n$, pero es superada por esta a medida que crece $n$; no obstante, a medida que $n$ aumenta, el crecimiento de la función logarítmica se hace más pequeño. De la @fig-constante_logaritmo se observa que la función constante tiene un mejor rendimiento que la logarítmica para valores de $n$ suficientemente grandes.
+Como se observa en la @fig-constante_logaritmo, la función constante ($g(n) = 1$) es menor a la logarítmica ($g(n) = \log n$) para valores pequeños de $n$, pero es superada por esta a medida que $n$ crece; no obstante, a medida que $n$ aumenta, el crecimiento de la función logarítmica se hace más pequeño. De la @fig-constante_logaritmo se observa que la función constante tiene un mejor rendimiento que la logarítmica para valores de $n$ suficientemente grandes.
 
 ```{julia}
 #| label: fig-constante_logaritmo
@@ -58,7 +58,7 @@ plot!(1:a, [log2(n) for n in 1:a], label = L"g(n) = \log n",
       xlabel = L"n", ylabel = L"g(n)")
 ```
 
-De forma similar, en la @fig-lineal_polilog se observa que la función lineal ($g(n) = n$) es menor que la polilogarítmica ($g(n) = n \log n$) para valores pequeños de $n$, pero es superada por esta a medida que $n$ crece. Lo anterior pues, como se observa en la misma gráfica, el crecimiento de la función polilogarítmica es mayor a medida que crece $n$. Con base en lo observado, se concluye que la función lineal tiene un mejor rendimiento que la polilogarítmica para valores de $n$ suficientemente grandes.
+De forma similar, en la @fig-lineal_polilog se observa que la función lineal ($g(n) = n$) es menor que la polilogarítmica ($g(n) = n \log n$) para valores pequeños de $n$, pero es superada por esta a medida que $n$ crece. Lo anterior pues, como se observa en la misma gráfica, el crecimiento de la función polilogarítmica es mayor a medida que $n$ crece. Con base en lo observado, se concluye que la función lineal tiene un mejor rendimiento que la polilogarítmica para valores de $n$ suficientemente grandes.
 
 ```{julia}
 #| label: fig-lineal_polilog
@@ -70,7 +70,7 @@ plot!(1:a, [n * log2(n) for n in 1:a], label = L"g(n) = n \log n",
       xlabel = L"n", ylabel = L"g(n)")
 ```
 
-Por su parte, en la @fig-cubica_cuadratica se nota que la eficiencia entre las funciones polinómicas depende del grado del polinomio. Así, la función cuadrática ($g(n) = n^2$) es menor que la cúbica ($g(n) = n^3$) para cualquier valor de $n$, y las diferencias aumentan a medida que $n$ crece. Lo anterior pues, a medida que aumenta $n$, el crecimiento de la función cúbica se hace mayor que el de la cuadrática. Con base en lo observado en la @fig-cubica_cuadratica, se concluye que la función cuadrática tiene un mejor rendimiento que la cúbica.
+Por su parte, en la @fig-cubica_cuadratica se nota que la eficiencia entre las funciones polinómicas depende del grado del polinomio. Así, la función cuadrática ($g(n) = n^2$) es menor que la cúbica ($g(n) = n^3$) para cualquier valor de $n$, y las diferencias aumentan a medida que $n$ crece. Lo anterior pues, a medida que $n$ aumenta, el crecimiento de la función cúbica se hace mayor que el de la cuadrática. Con base en lo observado en la @fig-cubica_cuadratica, se concluye que la función cuadrática tiene un mejor rendimiento que la cúbica.
 
 ```{julia}
 #| label: fig-cubica_cuadratica
@@ -82,7 +82,7 @@ plot!(1:a, [n^3 for n in 1:a], label = L"g(n) = n^3",
       xlabel = L"n", ylabel = L"g(n)")
 ```
 
-Análogamente, en la @fig-exponencial_factorial, se observa que la función exponencial ($g(n) = 3^n$) tiene un mejor rendimiento que la factorial ($g(n) = n!$). Así, aunque la función exponencial es inferior a la factorial para valores pequeños de $n$, crece a un ritmo superior; debido a esto, la función factorial es mucho mayor que la exponencial para valores de $n$ suficientemente grandes.
+Análogamente, en la @fig-exponencial_factorial, se observa que la función exponencial ($g(n) = 3^n$) tiene un mejor rendimiento que la factorial ($g(n) = n!$). Así, aunque la función exponencial es inferior a la factorial para valores de $n$ pequeños, crece a un ritmo superior; debido a esto, la función factorial es mucho mayor que la exponencial para valores de $n$ suficientemente grandes.
 
 ```{julia}
 #| label: fig-exponencial_factorial

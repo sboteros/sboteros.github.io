@@ -23,7 +23,7 @@ using Dates, DataFrames, JSON, StatsPlots
 
 @sadit_algoritmos[capítulo 6] discute algoritmos de unión e intersección de conjuntos que pueden usar algoritmos de búsqueda adaptables. Cuando los conjuntos tienen tamaños muy diferentes entre sí, en lugar de realizar búsquedas paralelas entre ellos para encontrar el siguiente candidato a la inclusión en el resultado, se pueden buscar los elementos del conjunto pequeño en el grande, para alinearlo, de forma que se mejora el rendimiento de la unión e intersección. Adicionalmente, mediante el uso de diferentes algoritmos de búsqueda como los discutidos en @sadit_algoritmos[capítulo 5], se obtienen mejores resultados.
 
-Como consecuencia de la aplicación de esta clase de algoritmos, es posible realizar multiplicaciones rápidas en matrices dispersas. Lo anterior, pues la presencia de un elemento diferente de cero en una columna o fila de la matriz, se puede interpretar como el índice del mismo en un conjunto ordenado y, por lo tanto, el elemento $c_{ij} = \sum_k a_{ik} b_{kj}$ corresponde a la intersección de los elementos correspondientes de $A$ y $B$ en donde se buscan los índices $k$ para con entradas diferentes de cero.
+Como consecuencia de la aplicación de esta clase de algoritmos, es posible realizar multiplicaciones rápidas en matrices dispersas. Lo anterior, pues la presencia de un elemento diferente de cero en una columna o fila de la matriz, se puede interpretar como el índice del mismo en un conjunto ordenado y, por lo tanto, el elemento $c_{ij} = \sum_k a_{ik} b_{kj}$ corresponde a la intersección de los elementos correspondientes de $A$ y $B$ en donde se buscan los índices $k$ con entradas diferentes de cero.
 
 En la @sec-busquedas se presentan e implementan en `Julia` los algoritmos de búsqueda, descritos en @sadit_algoritmos[capítulo 5], tanto para el caso base (la búsqueda binaria), cuyo costo depende del tamaño del arreglo, como para los algoritmos adaptables. Como se observa en dicha sección, la particularidad de estos últimos es que su costo de ejecución depende del punto de inserción del valor buscado, $p$, y no del tamaño del arreglo.
 
@@ -33,7 +33,7 @@ A continuación, en la @sec-experimentos se realizan diversos experimentos para 
 
 # Búsqueda adaptativa {#sec-busquedas}
 
-Como se analizó en el documento denominado "*Reporte 4A. Búsqueda por comparación*", existen algoritmos de búsqueda bajo el modelo de comparación que identifican cuál es la posición de inserción de un valor $x$ dentro de un arreglo ordenado $A$, de forma tal que después de insertar el valor en el arreglo este último permanezca ordenado. En dicho documento se obtuvieron funciones de `Julia` para realizar búsquedas binarias y secuenciales.
+Como se analizó en el post sobre [búsqueda por comparación](../20250401-busqueda_comparacion/index.qmd), existen algoritmos de búsqueda bajo el modelo de comparación que identifican cuál es la posición de inserción de un valor $x$ dentro de un arreglo ordenado $A$, de forma tal que después de insertar el valor en el arreglo este último permanezca ordenado. En dicho documento se obtuvieron funciones de `Julia` para realizar búsquedas binarias y secuenciales.
 
 El costo del modelo básico para realizar esta búsqueda, $O(\log_2 n)$, depende del tamaño del arreglo y es obtenido por el algoritmo de búsqueda binaria no acotada. Esta se implementó en `Julia` mediante la función `busqueda_binaria()`.
 
@@ -63,9 +63,7 @@ function busqueda_binaria(
 end
 ```
 
-Sin embargo, este costo puede mejorarse mediante algoritmos de búsqueda adaptativos, que no dependan de $n$ sino de la solución al problema, $p$. Uno de estos algoritmos es el de búsqueda secuencial $B_0$, cuyo costo es $c(p) = p + 1$. Este algoritmo fue implementado en `Julia` mediante la función `busqueda_b0()`.[^ArgumentoInicio]
-
-[^ArgumentoInicio]: Se adicionó el argumento `inicio` a esta función y las que se presentan a continuación, en comparación con las funciones disponibles en el documento denominado "*Reporte 4A. Búsqueda por comparación*".
+Sin embargo, este costo puede mejorarse mediante algoritmos de búsqueda adaptativos, que no dependan de $n$ sino de la solución al problema, $p$. Uno de estos algoritmos es el de búsqueda secuencial $B_0$, cuyo costo es $c(p) = p + 1$. Este algoritmo fue implementado en `Julia` mediante la función `busqueda_b0()`.
 
 ```{julia}
 #| label: busqueda_b0
@@ -164,11 +162,11 @@ $$
 \log_2 \binom{n + m}{m} = n \log_2 \frac{n + m}{n} + m \log_2 \frac{n + m}{m}
 $${#eq-costo_problema}
 
-En términos generales, el problema para resolver estas intersecciones o uniones consiste en buscar el valor candidato en uno de los conjuntos. Este valor es el siguiente candidato para ser unido o intersecado. Cuando los conjuntos participantes del procedimiento tienen tamaños similares, se pueden recorrer cada uno de los vectores que los representan para buscar el siguiente elemento del conjunto resultado, como se explica en la @sec-similar. En la @sec-similar se plantea este problema a partir del algoritmo de unión simple descrito en @sadit_algoritmos[sección 6.2] y de una implementación propia de este algoritmo para la intersección simple.
+En términos generales, el problema para resolver estas intersecciones o uniones consiste en buscar el valor candidato en uno de los conjuntos. Este valor es el siguiente candidato para ser unido o intersecado. Cuando los conjuntos participantes del procedimiento tienen tamaños similares, se pueden recorrer cada uno de los vectores que los representan para buscar el siguiente elemento del conjunto resultado, como se explica en la @sec-similar. En esa sección se plantea este problema a partir del algoritmo de unión simple descrito en @sadit_algoritmos[sección 6.2] y de una implementación propia de este algoritmo para la intersección simple.
 
 Sin embargo, el costo señalado en la @eq-costo_problema puede mejorarse considerablemente al implementar algoritmos adaptativos para el caso en que $m \ll n$ o visceversa. Al respecto, en la @sec-baeza_yates, se presenta la implementación del algoritmo de intersección de @baeza2004fast disponible en @sadit_algoritmos [sección 6.3.1], así como una implementación propia para la unión. Finalmente, en la @sec-barbay_kenyon se presenta el algoritmo de @BK2002 para la intersección simultánea de varios conjuntos, adaptado de @sadit_algoritmos[sección 6.4.2]. 
 
-Los algoritmos de la @sec-baeza_yates y la @sec-barbay_kenyon, utilizan como insumos a aquellos desarrollados en el documento denominado "*Reporte 4A. Búsqueda por comparación*", cuyas funciones se implementaron en la @sec-busquedas, que pueden reducir el costo del problema bajo análisis. 
+Los algoritmos de la @sec-baeza_yates y la @sec-barbay_kenyon, utilizan como insumos a aquellos desarrollados en el post sobre [búsqueda por comparación](../20250401-busqueda_comparacion/index.qmd), cuyas funciones se implementaron en la @sec-busquedas, que pueden reducir el costo del problema bajo análisis.
 
 ## Conjuntos de tamaño similar {#sec-similar}
 
@@ -293,7 +291,7 @@ Sin pérdida de generalidad, asúmase que $A$ es el conjunto mas pequeño. Enton
     - El conjunto inferior, que tiene los elementos de $A$ hasta antes de $M$ y los de $B$ hasta el ubicado en $p$ o una posición antes.
     - El conjunto formado por $A[M]$ y $B[p]$.
     - El conjunto posterior, que tiene los elementos de $A$ después de $M$ y los de $B$ desde el ubicado en $p$ o uno posterior.
-+ Resolver la unión o intersección trivialmente para el segundo conjunto y recurrir los dos restantes hasta llegar al caso trivial.
++ Resolver la unión o intersección trivialmente para el segundo conjunto y recurrir los restantes hasta llegar al caso trivial.
 
 Cuando el tamaño de la lista $B$ es suficientemente alto, resulta útil el uso de algoritmos adaptativos para buscar la posición de inserción de $A[M]$ en dicho arreglo, pues ofrece mejoras en el rendimiento con respecto a una búsqueda secuencial o binaria [@sadit_algoritmos, cap. 5]. Por lo tanto, las funciones que se desarrollan en esta sección permiten elegir el algoritmo de búsqueda con el que se realiza el procedimiento descrito en el primer inciso anterior, para lo que pueden utilizarse las señaladas en la @sec-busquedas.
 
@@ -301,7 +299,7 @@ A continuación se desarrollan estas ideas y se implementan en `Julia`, con base
 
 ### Unión
 
-En el caso de la unión, el caso base es $C_= = \{ A[M] \cup B[p] \}$, que se resuelve trivialmente al entregar el arreglo ordenado de esos dos elementos en el orden adecuado, si son diferentes, o un solo elemento, si son iguales. En este caso, se consume tanto el elemento $M[A]$ como el elemento $B[p]$, por lo que estos no se encuentran en los otros dos subconjuntos sobre los que se realiza la recursión, que son $C_< = \{ A[1, \dots, M - 1] \cup B[1, \dots, p - 1]\}$ y $C_> = \{ A[M + 1, \dots, m] \cup B[p + 1, \dots, n] \}$. Este procedimiento se implementó en `Julia` mediante la función `union_baezayates!()`.
+En el caso de la unión, el caso base es $C_= = \{ A[M] \cup B[p] \}$, que se resuelve trivialmente al entregar el arreglo ordenado de esos dos elementos en el orden adecuado, si son diferentes, o un solo elemento, si son iguales. En este caso, se consume tanto el elemento $A[M]$ como el elemento $B[p]$, por lo que estos no se encuentran en los otros dos subconjuntos sobre los que se realiza la recursión, que son $C_< = \{ A[1, \dots, M - 1] \cup B[1, \dots, p - 1]\}$ y $C_> = \{ A[M + 1, \dots, m] \cup B[p + 1, \dots, n] \}$. Este procedimiento se implementó en `Julia` mediante la función `union_baezayates!()`.
 
 ```{julia}
 #| label: funcion_union_baezayates
@@ -575,7 +573,7 @@ Se obtuvieron conjuntos de pares, grupos de tres o de cuatro vectores odenados a
 
 ## Datos {#sec-datos}
 
-Se obtuvieron diccionarios de arreglos ordenados disponibles en 3 archivos electrónicos en formato de Notación de Objetos de JavaScript (JSON, por sus siglas en inglés), [disponibles aquí](https://www.dropbox.com/scl/fo/bs85g2jqcu54icfeom1bj/AFvzDu1Pe3QwXbBPwqQ8ER8?rlkey=vljj3beohjmut920wus1tyvjz&st=grnd9fr4&dl=0).^[Datos originalmente disponibles [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](../../legal.qmd).]. Cada uno de estos diccionarios se incorporó como un diccionario interior de otro denominado `datos`, cuyas claves corresponden al número de conjuntos disponibles en cada observación. Las observaciones disponibles en cada entrada del diccionario son pares o grupos de 3 o 4 vectores ordenados.
+Se obtuvieron diccionarios de arreglos ordenados disponibles en 3 archivos electrónicos, [disponibles aquí](https://www.dropbox.com/scl/fo/bs85g2jqcu54icfeom1bj/AFvzDu1Pe3QwXbBPwqQ8ER8?rlkey=vljj3beohjmut920wus1tyvjz&st=grnd9fr4&dl=0).^[Datos originalmente disponibles [@sadit_algoritmos](https://github.com/sadit/ALGO-IR/). Revise la licencia en dicha página y consulte el [aviso legal](../../legal.qmd).] El contenido de cada archivo se incorporó como un diccionario interior de otro denominado `datos`, cuyas claves corresponden al número de conjuntos disponibles en cada observación. Las observaciones disponibles en cada entrada del diccionario son pares o grupos de 3 o 4 vectores ordenados.
 
 ```{julia}
 #| label: datos

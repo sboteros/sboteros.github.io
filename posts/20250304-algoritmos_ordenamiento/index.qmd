@@ -19,7 +19,7 @@ image: portada_ordenamiento.png
 ```{julia}
 #| label: software
 
-using Dates, DataFrames, JSON, Random
+using Dates, DataFrames, Format, MarkdownTables, JSON, Random
 rng = Xoshiro(20250304)
 ```
 
@@ -89,7 +89,7 @@ println( x, c )
 
 ## Merge sort
 
-El algoritmo "*merge sort*" (unifica-ordena) ordena el subarrego `A[p:r]`, comenzando desde el arreglo completo `A[1:n]` y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (`A[p:q]` y `A[q + 1, r]`), para obtener el arreglo `A[p:r]` ordenado, hasta llegar nuevamente al arreglo completo [@cormen, pp. 34-35]. Esta segunda parte del procedimiento se implementa mediante el @alg-unir, disponible en @cormen[p. 36], que fue implementado en `Julia` mediante la función `une!()`.
+El algoritmo "*merge sort*" (unifica-ordena) ordena el subarrego `A[p:r]`, comenzando desde el arreglo completo `A[1:n]` y haciendo recursiones hasta llegar al caso base, que es un subarreglo con un único elemento (que, por definición, está ordenado). Cuando las recursiones se unen, se unifican dos subarreglos que ya se encuentran ordenados (`A[p:q]` y `A[q + 1:r]`), para obtener el arreglo `A[p:r]` ordenado, hasta llegar nuevamente al arreglo completo [@cormen, pp. 34-35]. Esta segunda parte del procedimiento se implementa mediante el @alg-unir, disponible en @cormen[p. 36], que fue implementado en `Julia` mediante la función `une!()`.
 
 ```pseudocode
 #| label: alg-unir
@@ -270,7 +270,7 @@ println( x, c )
 
 Una pila binaria (*binary heap*) es una estructura de datos en un arreglo que puede verse como un árbol binario (*binary tree*) que se encuentra completamente lleno en todos los niveles excepto, probablemente, en el inferior (que se encuentra lleno desde la izquierda hasta un determinado punto). Un arreglo $A[1:n]$ que representa a una pila es un objeto con el atributo $A.tamano\_pila$ que señala cuántos elementos de la pila están almacenados en el arreglo $A$. En la pila, el elemento $A[1]$ es la raíz del árbol y cada elemento con índice $i = 1, \dots, n$ tiene un padre (con índice $\lfloor i/2 \rfloor$), un hijo a la izquierda (con índice $2i$) y un hijo a la derecha (con índice $2i + 1$). Existen dos clases de pilas: máximas y mínimas; las primeras tienen la propiedad de que el padre de cualquier elemento es mayor o igual que este ($A[\lfloor i/2 \rfloor] \geq A[i], \forall i$) [@cormen, sección 6.1]. 
 
-Para implementar esta estructura de datos se generó una estructura mutable en `Julia` denominada `Pila`, que contiene los atributos `tamano` y `arreglo`; esta estructura puede construirse a partir de un arreglo, que se convierte en el segundo atributo, mientras que el primero es el tamaño del propio arreglo que construye la estructura. A continuación, se muestra la estructura y su constructor.
+Para implementar esta estructura de datos se generó una estructura mutable en `Julia` denominada `Pila`, que contiene los atributos `tamano` y `arreglo`; esta estructura puede construirse a partir de un arreglo, que se convierte en el segundo atributo, mientras que el primero es el tamaño del propio arreglo que la construye. A continuación, se muestra la estructura y su constructor.
 
 ```{julia}
 #| label: estructura_pila
@@ -450,12 +450,12 @@ El algoritmo *quicksort* utiliza un procedimiento que particiona un subarreglo $
     \EndFor
     \State Intercambiar $A[i + 1]$ con $A[r]$
     \Comment{El pivote va en la mitad de lo identificado}
-    \State \Return $i + 1$
+    \Return $i + 1$
 \end{algorithmic}
 \end{algorithm}
 ```
 
-Este algoritmo se implementó en `Julia` mediante la función `particion!()`, que tiene un argumento opcional para contabilizar el número de veces que se itera el procedimiento en la línea 4 del @alg-particion y un argumento opcional para correr la versión aleatorizada.
+Este algoritmo se implementó en `Julia` mediante la función `particion!()`, que tiene argumentos opcionales para contabilizar el número de veces que se itera el procedimiento en la línea 4 del @alg-particion y para correr la versión aleatorizada.
 
 ```{julia}
 #| label: particion
@@ -506,7 +506,7 @@ El @alg-quicksort particiona el vector que recibe como entrada y ordena recursiv
 \end{algorithm}
 ```
 
-Este algoritmo se implementó en `Julia` mediante la función `quicksort!()`, que tiene un argumento opcional para contabilizar el número de veces que se itera el procedimiento de la línea 4 del @alg-particion invocado recursivamente, así como un argumento opcional para ejecutar la versión aleatorizada.
+Este algoritmo se implementó en `Julia` mediante la función `quicksort!()`, que tiene argumentos opcionales para contabilizar el número de veces que se itera el procedimiento de la línea 4 del @alg-particion invocado recursivamente, así como para ejecutar la versión aleatorizada.
 
 De acuerdo con @cormen[pp. 193-194], el tiempo esperado de ejecución de "*quicksort*" es $\Theta(n \log_2 n)$, aunque puede llegar a requerir hasta $\Theta (n^2)$ en el peor caso.
 
@@ -587,7 +587,7 @@ Lista_Salto() = Lista_Salto{Float64}()
 De acuerdo con @skiplists_pugh[pp. 669-670], para insertar un nodo con valor $v$ simplemente se realiza una búsqueda y un empalme. Al respecto, @skiplists señalan que se debe:
 
 + Buscar el lugar en donde se acomodará el elemento
-+ Elegir su nivel, que se elige de forma aleatoria aumentándolo en una unidad cada vez que un ensayo de Bernoulli con probabilidad $p$ arroje un éxito (por lo tanto, el número de niveles de cada nodo se distribuirá como una distribución de probabilidad geométrica).
++ Elegir su nivel de forma aleatoria, aumentándolo en una unidad cada vez que un ensayo de Bernoulli con probabilidad $p$ arroje un éxito (por lo tanto, el número de niveles de cada nodo se distribuirá como una distribución de probabilidad geométrica).
 + Actualizar el puntero que debe dirigirse hacia el nuevo nodo.
 
 Para elegir el lugar de ubicación del nuevo elemento, se parte de la cabecera de la lista en el nivel que se le asignó al nuevo nodo y se buscan dos nodos consecutivos $x, \, z$ tales que $x.valor < v \leq z.valor$. Si estos nodos existen, se actualizan los punteros para que $x$ apunte al nuevo nodo y este, a su vez, apunte a $z$. Este procedimiento se repite en todos los niveles inferiores de la lista. Al respecto, @skiplists plantean un algoritmo para implementar este procedimiento, cuya adaptación se muestra en el @alg-skiplist. Este algoritmo se implementó en `Julia` mediante la función `inserta_skiplist!()`, que contiene un argumento opcional para contabilizar el número de actualizaciones de punteros que realiza el algoritmo.
@@ -618,9 +618,9 @@ Para elegir el lugar de ubicación del nuevo elemento, se parte de la cabecera d
 
     \For{$i = k$ descendiendo hasta 1}
         \Comment{Actualizar apuntadores hasta el nivel $k$}
-        $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera}
+        \State $x = L.c[k]$ \Comment{Apuntador $k$ de la cabecera}
         \If{$x$ es NIL}
-            $L.c[k] = y$
+            \State $L.c[k] = y$
             \Comment{Si apuntaba al final, apunta al nuevo}
         \ElsIf{$\theta < x.\theta$}
             \Comment{Nuevo antes de $x$ en nivel $k$}
@@ -809,7 +809,9 @@ for numero in [16, 32, 64, 128, 256, 512]
         push!(labsort_tiempo, (experimento, numero, Dates.value( now() - x ) ))
     end
 end
-unstack(labsort_tiempo, :desorden, :funcion, :tiempo)
+
+unstack(labsort_tiempo, :desorden, :funcion, :tiempo) |> 
+markdown_table(formatter = x -> cfmt("%'.0f", x))
 ```
 
 Se hizo el procedimiento análogo para obtener el número de operaciones promedio que realizó cada algoritmo en los arreglos de cada archivo electrónico. En la @tbl-operaciones se muestran los resultados obtenidos. En este caso, se obtuvieron resultados más cercanos a los teóricamente esperados pues el número de operaciones de `burbuja!()` fue muy elevado en comparación con los demás, y los mejores rendimientos obtenidos fueron para `ordena_une!()` y `skiplist()`. Asimismo, se observa que, salvo para el caso de `burbuja!()`, el nivel de desorden de los arreglos de entrada no afecta el desempeño de los algoritmos.
@@ -848,7 +850,8 @@ for numero in [16, 32, 64, 128, 256, 512]
     end
 end
 
-unstack(labsort_cuenta, :desorden, :funcion, :operaciones)
+unstack(labsort_cuenta, :desorden, :funcion, :operaciones) |> 
+markdown_table(formatter = x -> cfmt("%'.0f", x))
 ```
 
 # Referencias
