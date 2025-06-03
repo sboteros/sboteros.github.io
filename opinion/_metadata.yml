@@ -6,3 +6,4 @@ lang: es
 execute:
   echo: true
   warning: false
+bibliography: bibliografia.bib

@@ -99,9 +99,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-e6987b654c55bcabac1e7ea4129f2820.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-59d0126ba8b6239b2edaf0f627b445e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-251800d11c3f6f82ab665ea40147498b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-edd17c17daf40540d4ae0d9584d341ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-251800d11c3f6f82ab665ea40147498b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -481,7 +481,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de modificación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">23 de mayo de 2025</p>
+      <p class="date-modified">3 de junio de 2025</p>
     </div>
   </div>
     
@@ -513,7 +513,7 @@ window.Quarto = {
 <section id="sec-matmul" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Multiplicación de matrices</h1>
 <p><span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 374</a>)</span> consideran el <a href="#alg-matrixmultiplication" class="quarto-xref">Algoritmo 1</a> que calcula <span class="math inline">\(C = C + A B\)</span> para tres matrices <span class="math inline">\(A = (a_{ij}),\, B = (b_{ij}),\, C = (c_{ij})\)</span> con dimensiones <span class="math inline">\(p \times q,\, q \times r, \, p \times r\)</span>, respectivamente. Este algoritmo sirve para el cálculo de <span class="math inline">\(A B\)</span>, para lo cual únicamente se requiere inicializar <span class="math inline">\(C\)</span> como una matriz de ceros. Este código se implementó en <code>Julia</code> mediante la función <code>matmul!()</code>.</p>
-<div id="alg-matrixmultiplication" class="pseudocode-container quarto-float" data-pseudocode-number="1" data-caption-prefix="Algoritmo" data-line-number="true">
+<div id="alg-matrixmultiplication" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="1" data-line-number="true">
 <div class="pseudocode">
 \begin{algorithm} \caption{MULTIPLICAR-MATRIZ-RECTANGULAR($A, B, C, p, q, r$)}\begin{algorithmic} \For{$i=1$ a $p$} \For{$j = 1$ a $r$} \For{$k = 1$ a $q$} \State $c_{ij} = c_{ij} + a_{ik} \cdot b_{kj}$ \EndFor \EndFor \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -714,7 +714,7 @@ Figura&nbsp;1: Distribución del tiempo de ejecución de <code>matmul!()</code>,
 <li>Se adicionó la verificación de que el elemento <span class="math inline">\(b_{kj} \neq 0\)</span> (línea 5) antes de realizar la operación costosa de multiplicado de la línea 6.</li>
 </ul>
 <p>Con base en estas modificaciones, la iteración de la línea 4 únicamente se realiza <span class="math inline">\(n_1^A \cdot n\)</span> veces, en lugar de <span class="math inline">\(n^3\)</span> como con el algoritmo original.</p>
-<div id="alg-matrixmultiplication_disperse" class="pseudocode-container quarto-float" data-pseudocode-number="2" data-caption-prefix="Algoritmo" data-line-number="true">
+<div id="alg-matrixmultiplication_disperse" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="2" data-line-number="true">
 <div class="pseudocode">
 \begin{algorithm} \caption{MULTIPLICAR-MATRIZ-RECTANGULAR-DISPERSA($A, B, C, p, q, r$)}\begin{algorithmic} \For{$i=1$ a $p$} \For{$k = 1$ a $q$} \If{$a_{ik} \neq 0$} \For{$j = 1$ a $r$} \If{$b_{kj} \neq 0$} \State $c_{ij} = c_{ij} + a_{ik} \cdot b_{kj}$ \EndIf \EndFor \EndIf \EndFor \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -892,7 +892,7 @@ Tabla&nbsp;2: Tiempo mediano de ejecución de <code>matmul!()</code> con matrice
 <section id="sec-gaussiana" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Reducción gaussiana</h1>
 <p><span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 824-32</a>)</span> explican el procedimiento para obtener las descomposiciones <span class="math inline">\(LU\)</span> y <span class="math inline">\(LUP\)</span> de una matriz <span class="math inline">\(A\)</span> a través del método de eliminación gaussiana. A través de la descomposición <span class="math inline">\(LUP\)</span> de <span class="math inline">\(A\)</span> se obtienen una matriz triangular inferior <span class="math inline">\(L\)</span>, una matriz triangular superior <span class="math inline">\(U\)</span> y una matriz de permutación <span class="math inline">\(P\)</span> tales que <span class="math inline">\(PA = LU\)</span>. Para ello, <span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022</a>)</span> plantean el <a href="#alg-lupdecomposition" class="quarto-xref">Algoritmo 3</a>, que genera las matrices señaladas. Este código se implementó en <code>Julia</code> mediante la función <code>descomposicionlup()</code>.</p>
-<div id="alg-lupdecomposition" class="pseudocode-container quarto-float" data-pseudocode-number="3" data-caption-prefix="Algoritmo" data-line-number="true">
+<div id="alg-lupdecomposition" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="3" data-line-number="true">
 <div class="pseudocode">
 \begin{algorithm} \caption{DESCOMPOSICIÓN-LUP($A, n$)}\begin{algorithmic} \State Sea $\pi[1:n]$ un nuevo arreglo \For{$i = 1$ a $n$} \State $\pi[i] = i$ \Comment{Inicializar $\pi$ como la permutación identidad} \EndFor \For{$k = 1$ a $n$} \State $p = 0$ \For{$i = k$ a $n$} \Comment{Encontrar el mayor valor absoluto en la columna $k$} \If{$|a_{ik}| &gt; p$} \State $p = |a_{ik}|$ \State $k' = i$ \Comment{Número de fila del mayor encontrado hasta ahora} \EndIf \EndFor \If{$p = 0$} \State Error: 'Matriz singular' \EndIf \State Intercambiar $a_{ki}$ con $a_{k'i}$ \For{$i = 1$ a $n$} \State Intercambiar $a_{ki}$ con $a_{k'i}$ \Comment{Intercambiar las filas $k$ y $k'$} \EndFor \For{$i = k + 1$ a $n$} \State $a_{ik} = a_{ik} / a_{kk}$ \For{$j = k + 1$ a $n$} \State $a_{ij} = a_{ij} - a_{ik}a_{kj}$ \Comment{Calcular $L$ y $U$ en la propia $A$} \EndFor \EndFor \EndFor \end{algorithmic} \end{algorithm}
 </div>
@@ -1151,7 +1151,7 @@ Figura&nbsp;2: Distribución del tiempo de ejecución de <code>descomposicionlup
 <p><span class="citation" data-cites="grossman_lineal">Grossman (<a href="#ref-grossman_lineal" role="doc-biblioref">2012, 14-16</a>)</span> señala la diferencia entre el método de eliminación Gaussiana y el método de eliminación de Gauss-Jordan. El primero reduce la matriz <span class="math inline">\(A\)</span> a su forma escalonada por renglones, que es la que se halló mediante el procedimiento descrito en la <a href="#sec-gaussiana" class="quarto-xref">Sección&nbsp;3</a>. Por su parte, el segundo reduce la matriz <span class="math inline">\(A\)</span> a su forma escalonada reducida por renglones, donde se adiciona la restricción de que cada elemento de la columna en donde hay un pivote tiene todos los otros elementos iguales a cero. Dado que la matriz <span class="math inline">\(A\)</span> que se está analizando es cuadrada y no singular (véase las líneas 13 a 15 del <a href="#alg-lupdecomposition" class="quarto-xref">Algoritmo 3</a>), este procedimiento se reduce a convertir <span class="math inline">\(A\)</span> en <span class="math inline">\(I_n\)</span>; es decir, en encontrar la inversa de la matriz <span class="math inline">\(A\)</span>.</p>
 <p><span class="citation" data-cites="cormen">Cormen et&nbsp;al. (<a href="#ref-cormen" role="doc-biblioref">2022, 833-34</a>)</span> señalan que se puede pensar en la resolución del problema para hallar la inversa de <span class="math inline">\(A\)</span> (la matrix <span class="math inline">\(X\)</span> que resuelve <span class="math inline">\(AX = I_n\)</span>) como un problema de <span class="math inline">\(n\)</span> ecuaciones de la forma <span class="math inline">\(AX_i = e_i\)</span>, en donde <span class="math inline">\(X_i\)</span> es una columna de la inversa de <span class="math inline">\(A\)</span> y <span class="math inline">\(e_i\)</span> es la i-ésima columna de <span class="math inline">\(I_n\)</span>.</p>
 <p>Para resolver cada una de estas ecuaciones, se puede utilizar el <a href="#alg-lupsolve" class="quarto-xref">Algoritmo 4</a> que utiliza la descomposición LUP de <span class="math inline">\(A\)</span> y sustituciones hacia adelante y hacia atrás para resolver el sistema de ecuaciones <span class="math inline">\(Ax = b\)</span> <span class="citation" data-cites="cormen">(<a href="#ref-cormen" role="doc-biblioref">Cormen et&nbsp;al. 2022, 823-24</a>)</span>.</p>
-<div id="alg-lupsolve" class="pseudocode-container quarto-float" data-pseudocode-number="4" data-caption-prefix="Algoritmo" data-line-number="true">
+<div id="alg-lupsolve" class="pseudocode-container quarto-float" data-caption-prefix="Algoritmo" data-pseudocode-number="4" data-line-number="true">
 <div class="pseudocode">
 \begin{algorithm} \caption{SOLUCIÓN-LUP($L, U, \pi, b, n$)}\begin{algorithmic} \State Sean $x$ y $y$ nuevos vectores de longitud $n$ \For{$i = 1$ a $n$} \State $y_i = b_{\pi[i]} - \sum_{j = 1}^{i-1} l_{ij} y_j$ \EndFor \For{$i = n$ decreciendo a 1} \State $x_i = \left( y_i - \sum_{j = i + 1}^n u_{ij}x_j \right) / u_{ii}$ \EndFor \State Entregar $x$ \end{algorithmic} \end{algorithm}
 </div>
