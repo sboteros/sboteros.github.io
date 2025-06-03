@@ -44,3 +44,6 @@ pseudocode:
   caption-prefix: 'Algoritmo'
   reference-prefix: 'Algoritmo'
   caption-number: true
+
+bluesky-comments:
+  profile: sboteros.bsky.social

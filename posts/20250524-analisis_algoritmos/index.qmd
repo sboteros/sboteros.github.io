@@ -41,3 +41,5 @@ El uso de `Julia` resulta interesante, pero no es necesario para el curso. Es in
 En resumen, se puede decir que el curso de @sadit_algoritmos es una introducción al análisis de algoritmos útil en el campo de la recuperación de información. Incluso si el estudiante no tiene experiencia previa con esta clase de algoritmos, el enfoque incremental del material permite que puedan desarrollarse las habilidades necesarias para continuar hasta el final. Sin embargo, un área de oportunidad para el libro es plantear con mayor claridad la motivación del orden en que se desarrolla el material: la forma en que los algoritmos se insertan en el área general de recuperación de información.
 
 # Referencias
+
+{{< bluesky-comments 3lq4kdwpirs2s >}}

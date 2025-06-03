@@ -39,7 +39,9 @@
 <p>El uso de <code>Julia</code> resulta interesante, pero no es necesario para el curso. Es interesante, pues se trata de un lenguaje de alto nivel pero de alto rendimiento, al ser compilado. En este sentido, combina la facilidad de uso de lenguajes como <code>R</code>, al que se parece mucho, con la rapidez de otros más complejos como <code>C</code>. Sin embargo, puede resultar muy complejo utilizarlo con otro tipo de software, pues hay fallas en su integración con <code>VSCode</code> o <code>Quarto</code> que no se encuentran completamente solucionadas. Por ejemplo, en mi trabajo me encontré ocasionalmente con problemas de kernel muerto que no pude solucionar fácilmente en <code>Windows</code>, por lo que debía renderizar los documentos generados en <code>Ubuntu</code>; este tipo de problemas resultan frustrantes y pueden hacer más lento el proceso de aprendizaje.</p>
 <p>En resumen, se puede decir que el curso de <span class="citation" data-cites="sadit_algoritmos">Téllez Avila (2025)</span> es una introducción al análisis de algoritmos útil en el campo de la recuperación de información. Incluso si el estudiante no tiene experiencia previa con esta clase de algoritmos, el enfoque incremental del material permite que puedan desarrollarse las habilidades necesarias para continuar hasta el final. Sin embargo, un área de oportunidad para el libro es plantear con mayor claridad la motivación del orden en que se desarrolla el material: la forma en que los algoritmos se insertan en el área general de recuperación de información.</p>
 <section id="referencias" class="level1" data-number="1">
-
+<h1 data-number="1"><span class="header-section-number">1</span> Referencias</h1>
+    <bluesky-comments post="at://did:plc:gf6djnilaqha7qs5e3d32yb5/app.bsky.feed.post/3lq4kdwpirs2s" filter-config="{&quot;filterEmptyReplies&quot;:true,&quot;mutePatterns&quot;:[],&quot;muteUsers&quot;:[]}" profile="sboteros.bsky.social"></bluesky-comments>
+  
 
 
 <!-- -->
@@ -48,7 +50,7 @@
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">1 Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-think_python" class="csl-entry">
 Downey, Allen. 2024. <em>Think Python. How to Think Like a Computer Scientist</em>. Tercera Edición. O’Reilly. <a href="https://allendowney.github.io/ThinkPython/">https://allendowney.github.io/ThinkPython/</a>.
 </div>

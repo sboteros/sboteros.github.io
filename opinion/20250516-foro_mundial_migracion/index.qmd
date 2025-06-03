@@ -114,3 +114,5 @@ Comité Local del MSC del FMMD
 [Organizaciones firmantes](https://bit.ly/firmantes_SC)
 
 [¿Quieres firmar esta carta?](https://bit.ly/Carta_SC_Firma)
+
+{{< bluesky-comments 3lq26z2v5os2j >}}

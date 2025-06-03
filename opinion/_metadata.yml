@@ -7,3 +7,6 @@ execute:
   echo: true
   warning: false
 bibliography: bibliografia.bib
+
+bluesky-comments:
+  profile: sboteros.bsky.social
