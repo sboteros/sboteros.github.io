@@ -1,5 +1,14 @@
 [
   {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/20250524-analisis_algoritmos/index.html",
+      "/posts/20250523-union_interseccion/index.html",
+      "/posts/20250401-busqueda_comparacion/index.html",
+      "/posts/20250114-ordenes_crecimiento/index.html"
+    ]
+  },
+  {
     "listing": "/opinion.html",
     "items": [
       "/opinion/20260315-analisis_elecciones/index.html",
