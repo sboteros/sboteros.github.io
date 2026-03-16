@@ -1,0 +1,105 @@
+---
+title: "Análisis de elecciones"
+author: "Santiago Botero Sierra"
+date: last-modified
+format:
+  revealjs:
+    footer: "Diálogo ciudadano - Berracos, Me Muevo por Colombia, Id(he)as"
+    progress: true
+    theme: serif
+    menu:
+      side: right
+      width: wide
+    controls: true
+    chalkboard: true
+---
+
+## Ideas principales
+
++ El Pacto Histórico ganó las elecciones
++ Pero el Centro Democrático es la segunda fuerza política
++ A nivel internacional, ganó el Centro Democrático
+    - Curul Internacional del Centro Democrático.^[Dubitada, aún no se confirma en escrutinio.]
+    - En México, el Centro Democrático es más fuerte que el progresismo
++ ¡Es muy probable que ganemos las presidenciales!
+
+## El Pacto Histórico ganó
+
+:::{.columns}
+
+:::{.column width=50%}
+
+### Senado^[Información de [Caracol](https://caracol.com.co/2026/03/09/asi-quedaron-conformadas-las-curules-de-senado-y-camara-resultados-elecciones-congreso-2026/).]
+
++ +4.4 millones de votos
++ 25 de 103 curules para el Pacto Histórico (23%)
++ Son 9 curules adicionales
+
+:::
+
+:::{.column width=50%}
+
+### Cámara^[Cálculos propios con datos del [Boletín 79, del preconteo](https://resultados.registraduria.gov.co/resultados/1/00/0/?s=resultados-votes).]
+
++ ~4 millones de votos
++ 29 listas
+
+:::
+
+:::
+
+## El Centro Democrático es segundo
+
+:::{.columns}
+
+:::{.column width=50%}
+
+### Senado
+
++ +3 millones de votos en Senado
++ 17 curules (16%)
++ Son 3 curules adicionales
+
+:::
+
+:::{.column width=50%}
+
+### Cámara
+
++ +3 millones de votos
++ 6 listas
+
+:::
+
+:::
+
+## En México domina el Centro Democrático
+
++ 4,824 votos para Cámara^[[Boletín 79, del preconteo](https://resultados.registraduria.gov.co/resultados/1/8800590/0/?s=resultados-votes).]
++ 1,988 para el Centro Democrático (+41%)
+    - Sus votos solo fueron por la lista
++ 879  para el Pacto Histórico (+18%)
+    - Nuestros votos fueron por lista, 334
+    - Por 3 candidatos diferentes, entre 122 y 256
+
+## Es muy probable que volvamos a ganar presidencia^[[Colombia.com](https://www.colombia.com/elecciones/2026/ivan-cepeda-lidera-intencion-de-voto-en-nueva-encuesta-presidencial-573462)]
+
+:::{.columns}
+
+:::{.column width=50%}
+
+### Primera vuelta:
++ Iván Cepeda, 36.4%
++ Abelardo de la Espriella, 27.9%
++ Paloma Valencia, 17.5%
+
++ Parece que perderíamos en segunda vuelta
+
+:::
+
+:::{.column width=50%}
+
++ No deseo ni realidad: trabajo
++ Política internacional
+
+:::

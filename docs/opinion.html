@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,18 +35,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-251800d11c3f6f82ab665ea40147498b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-edd17c17daf40540d4ae0d9584d341ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-251800d11c3f6f82ab665ea40147498b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-982a2366ae4e074115c0a6f4da07d393.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-0c57618b43a51b262730c522d47403eb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-982a2366ae4e074115c0a6f4da07d393.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,7 +62,7 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "No se han encontrado resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -118,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -136,13 +137,13 @@ window.Quarto = {
 
 <link rel="stylesheet" href="styles.css">
 <link rel="alternate" type="application/rss+xml" title="sboteros" href="opinion.xml" data-external="1"><meta property="og:title" content="Opinión – sboteros">
-<meta property="og:image" content="www.sboteros.com/opinion/20250603-conejos_luna/portada_conejos_luna.png">
+<meta property="og:image" content="www.sboteros.com/opinion/20260315-analisis_elecciones/portada-analisis-elecciones.png">
 <meta property="og:site_name" content="sboteros">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image:height" content="1536">
 <meta property="og:image:width" content="1024">
 <meta name="twitter:title" content="Opinión – sboteros">
-<meta name="twitter:image" content="www.sboteros.com/opinion/20250603-conejos_luna/portada_conejos_luna.png">
+<meta name="twitter:image" content="www.sboteros.com/opinion/20260315-analisis_elecciones/portada-analisis-elecciones.png">
 <meta name="twitter:image-height" content="1536">
 <meta name="twitter:image-width" content="1024">
 <meta name="twitter:card" content="summary_large_image">
@@ -318,7 +319,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/img/logo_128.ico" alt="" class="navbar-logo">
+    <img src="./assets/img/logo_128.ico" alt="" class="navbar-logo light-content">
+    <img src="./assets/img/logo_128.ico" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">sboteros</span>
@@ -389,7 +391,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Rm9ybyUyME11bmRpYWwlMjBzb2JyZSUyME1pZ3JhY2klQzMlQjNuJTIweSUyMERlc2Fycm9sbG8=">Foro Mundial sobre Migración y Desarrollo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlncmFjaSVDMyVCM24=">Migración <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlncmFudGUzMw==">Migrante33 <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Rm9ybyUyME11bmRpYWwlMjBzb2JyZSUyME1pZ3JhY2klQzMlQjNuJTIweSUyMERlc2Fycm9sbG8=">Foro Mundial sobre Migración y Desarrollo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlncmFjaSVDMyVCM24=">Migración <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlncmFudGUzMw==">Migrante33 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -404,7 +406,35 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1748930400000" data-listing-file-modified-sort="1748979332013" data-listing-date-modified-sort="1748979332000" data-listing-reading-time-sort="5" data-listing-word-count-sort="891">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1773554400000" data-listing-file-modified-sort="1773699794114" data-listing-date-modified-sort="1773699794000" data-listing-reading-time-sort="1" data-listing-word-count-sort="180">
+<div class="thumbnail"><a href="./opinion/20260315-analisis_elecciones/index.html" class="no-external">
+
+<img loading="lazy" src="./opinion/20260315-analisis_elecciones/portada-analisis-elecciones.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./opinion/20260315-analisis_elecciones/index.html" class="no-external">Análisis de las elecciones de Colombia</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./opinion/20260315-analisis_elecciones/index.html" class="no-external"></a>
+</div>
+<div class="delink listing-description"><a href="./opinion/20260315-analisis_elecciones/index.html" class="no-external">
+<p>Análisis de las elecciones del 8M en Colombia: victoria del Pacto Histórico, uribismo vigente y optimismo cauto hacia una posible presidencial con Iván Cepeda.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./opinion/20260315-analisis_elecciones/index.html" class="no-external">
+<div class="listing-date">
+15 mar 2026
+</div>
+<div class="listing-author">
+Santiago Botero Sierra
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1748930400000" data-listing-file-modified-sort="1773680354135" data-listing-date-modified-sort="1773680354000" data-listing-reading-time-sort="5" data-listing-word-count-sort="891">
 <div class="thumbnail"><a href="./opinion/20250603-conejos_luna/index.html" class="no-external">
 
 <img loading="lazy" src="./opinion/20250603-conejos_luna/portada_conejos_luna.png" class="thumbnail-image">
@@ -432,7 +462,7 @@ Santiago Botero Sierra
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="TWlncmFudGUzMyUyQ01pZ3JhY2klQzMlQjNuJTJDRm9ybyUyME11bmRpYWwlMjBzb2JyZSUyME1pZ3JhY2klQzMlQjNuJTIweSUyMERlc2Fycm9sbG8=" data-listing-date-sort="1747375200000" data-listing-file-modified-sort="1748979424778" data-listing-date-modified-sort="1748979424000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1887">
+<div class="quarto-post image-right" data-index="2" data-categories="TWlncmFudGUzMyUyQ01pZ3JhY2klQzMlQjNuJTJDRm9ybyUyME11bmRpYWwlMjBzb2JyZSUyME1pZ3JhY2klQzMlQjNuJTIweSUyMERlc2Fycm9sbG8=" data-listing-date-sort="1747375200000" data-listing-file-modified-sort="1773680354133" data-listing-date-modified-sort="1773680354000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1887">
 <div class="thumbnail"><a href="./opinion/20250516-foro_mundial_migracion/index.html" class="no-external">
 
 <img loading="lazy" src="./opinion/20250516-foro_mundial_migracion/portada_fmm.png" class="thumbnail-image">
@@ -536,13 +566,14 @@ Santiago Botero Sierra, Comité Local del MSC del FMMD, Migrante33 , Rostro Cari
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

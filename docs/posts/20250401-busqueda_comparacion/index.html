@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -90,18 +90,19 @@ div.csl-indent {
 <link href="../../assets/img/logo_512.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-251800d11c3f6f82ab665ea40147498b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-edd17c17daf40540d4ae0d9584d341ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-251800d11c3f6f82ab665ea40147498b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-982a2366ae4e074115c0a6f4da07d393.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-0c57618b43a51b262730c522d47403eb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-982a2366ae4e074115c0a6f4da07d393.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -118,7 +119,7 @@ div.csl-indent {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "No se han encontrado resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -164,7 +165,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -366,7 +367,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../assets/img/logo_128.ico" alt="" class="navbar-logo">
+    <img src="../../assets/img/logo_128.ico" alt="" class="navbar-logo light-content">
+    <img src="../../assets/img/logo_128.ico" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">sboteros</span>
@@ -484,9 +486,9 @@ window.Quarto = {
   </div>
   
     <div>
-    <div class="quarto-title-meta-heading">Fecha de modificación</div>
+    <div class="quarto-title-meta-heading">Fecha de última modificación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">3 de junio de 2025</p>
+      <p class="date-modified">16 de marzo de 2026</p>
     </div>
   </div>
     
@@ -501,8 +503,8 @@ window.Quarto = {
 <div id="cell-software" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span>, <span class="bu">DataFrames</span>, <span class="bu">JSON</span>, <span class="bu">MarkdownTables</span>, <span class="bu">Random</span>, <span class="bu">StatsPlots</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> <span class="fu">Xoshiro</span>(<span class="fl">20250331</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span>, <span class="bu">DataFrames</span>, <span class="bu">JSON</span>, <span class="bu">MarkdownTables</span>, <span class="bu">Random</span>, <span class="bu">StatsPlots</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> <span class="fu">Xoshiro</span>(<span class="fl">20250331</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="software" class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>Xoshiro(0xb6218ccaee99c301, 0xc600d4c1d7a2a0ea, 0x84b975df6153e011, 0x1dd4e5c247a2ef30, 0x7095a0bd51999064)</code></pre>
@@ -525,7 +527,7 @@ window.Quarto = {
 <div id="cell-funcion_busqueda_binaria" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_binaria</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_binaria</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    A<span class="op">::</span><span class="dt">Vector{T}</span>, </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">::</span><span class="dt">T</span>, </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{Nothing, Int64} </span><span class="op">=</span> <span class="cn">nothing</span>,</span>
@@ -545,7 +547,7 @@ window.Quarto = {
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> x <span class="op">&lt;=</span> A[inicio] ? inicio <span class="op">:</span> inicio <span class="op">+</span> <span class="fl">1</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p, c</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="funcion_busqueda_binaria" class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>busqueda_binaria (generic function with 4 methods)</code></pre>
@@ -562,7 +564,7 @@ window.Quarto = {
 <div id="cell-funcion_busqueda_b0" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_b0</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_b0</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    A1<span class="op">::</span><span class="dt">Vector{T}</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">::</span><span class="dt">T</span>,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{Nothing, Int64} </span><span class="op">=</span> <span class="cn">nothing</span>,</span>
@@ -577,7 +579,7 @@ window.Quarto = {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p, c</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="funcion_busqueda_b0" class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>busqueda_b0 (generic function with 3 methods)</code></pre>
@@ -591,7 +593,7 @@ window.Quarto = {
 <div id="cell-funcion_busqueda_b1" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_b1</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_b1</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    A1<span class="op">::</span><span class="dt">Vector{T}</span>, </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">::</span><span class="dt">T</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{Nothing, Int64} </span><span class="op">=</span> <span class="cn">nothing</span>,</span>
@@ -616,7 +618,7 @@ window.Quarto = {
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    p, c <span class="op">=</span> <span class="fu">busqueda_binaria</span>(A, x, c, p <span class="op">+</span> <span class="fl">1</span>, <span class="fu">min</span>(n, iteracion <span class="op">+</span> <span class="fl">1</span>))</span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p, c</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="funcion_busqueda_b1" class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>busqueda_b1 (generic function with 3 methods)</code></pre>
@@ -630,7 +632,7 @@ window.Quarto = {
 <div id="cell-funcion_busqueda_b2" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_b2</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_b2</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    A1<span class="op">::</span><span class="dt">Vector{T}</span>, </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">::</span><span class="dt">T</span>,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{Nothing, Int64} </span><span class="op">=</span> <span class="cn">nothing</span>,</span>
@@ -658,7 +660,7 @@ window.Quarto = {
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    p, c <span class="op">=</span> <span class="fu">busqueda_b1</span>(A[(p1 <span class="op">+</span> <span class="fl">1</span>)<span class="op">:</span><span class="fu">min</span>(valor, n)], x, c)</span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p <span class="op">+</span> p1, c</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="funcion_busqueda_b2" class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>busqueda_b2 (generic function with 3 methods)</code></pre>
@@ -671,7 +673,7 @@ window.Quarto = {
 <div id="cell-estructuras_skiplist" class="cell" data-execution_count="10">
 <details open="" class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Estructuras de datos</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Estructuras de datos</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Nodos</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">mutable struct</span> Nodo{T}</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    valor<span class="op">::</span><span class="dt">T</span></span>
@@ -771,7 +773,7 @@ window.Quarto = {
 <span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>        siguiente <span class="op">=</span> siguiente.sucesores[<span class="fl">1</span>]</span>
 <span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c, ordenar, listado</span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="estructuras_skiplist" class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>ordenar_skiplist (generic function with 3 methods)</code></pre>
@@ -787,7 +789,7 @@ window.Quarto = {
 <div id="cell-funcion_busqueda_skiplist" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_skiplist</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">busqueda_skiplist</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    lista<span class="op">::</span><span class="dt">Lista_Salto{T}</span>, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    valor<span class="op">::</span><span class="dt">T</span>, </span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Union{ Int64, Nothing } </span><span class="op">=</span> <span class="cn">nothing</span> ) <span class="kw">where</span> {T}</span>
@@ -822,7 +824,7 @@ window.Quarto = {
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inferior, c</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="funcion_busqueda_skiplist" class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>busqueda_skiplist (generic function with 2 methods)</code></pre>
@@ -839,7 +841,7 @@ window.Quarto = {
 <div id="importa_datos" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">Dict</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">Dict</span>()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="st">"016"</span>, <span class="st">"032"</span>, <span class="st">"064"</span>, <span class="st">"128"</span>, <span class="st">"256"</span>, <span class="st">"512"</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    datos[<span class="fu">parse</span>(<span class="dt">Int64</span>, numero)] <span class="op">=</span> JSON.<span class="fu">parsefile</span>(</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"../20250304-algoritmos_ordenamiento/listas-posteo-con-perturbaciones-p=</span><span class="sc">$</span>(numero)<span class="st">.json"</span> )</span>
@@ -850,14 +852,14 @@ window.Quarto = {
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    datos[numero] <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">String</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}, datos[numero])</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">Int64</span>, <span class="dt">Dict</span>{<span class="dt">String</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}}, datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">Int64</span>, <span class="dt">Dict</span>{<span class="dt">String</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}}, datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Como las funciones <code>busqueda_binaria()</code>, <code>busqueda_b0()</code>, <code>busqueda_b1()</code> y <code>busqueda_b2()</code> requieren como entrada un arreglo ordenado y la función <code>busqueda_skiplist()</code> requiere una SkipList, entonces se procesaron los arreglos desordenados originalmente disponibles en cada diccionario interior para convertirlos en uno de estos dos tipos de insumo. Para ello, cada uno de los arreglos originales se procesó mediante la función <code>ordenar_skiplist()</code> y se conservaron las respuestas del arreglo ordenado y la SkipList que se obtienen a partir de esta función; estos arreglos se registraron en los diccionarios denominados <code>ordenado</code> y <code>skiplist</code>, respectivamente.</p>
 <div id="arreglos_ordenados" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ordenado <span class="op">=</span> <span class="fu">Dict</span><span class="dt">{Int64, Dict{String, Vector{Int64}}}</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ordenado <span class="op">=</span> <span class="fu">Dict</span><span class="dt">{Int64, Dict{String, Vector{Int64}}}</span>()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>skiplist <span class="op">=</span> <span class="fu">Dict</span><span class="dt">{Int64, Dict{String, Lista_Salto{Int64}}}</span>()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> <span class="fu">keys</span>(datos)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    ordenado[numero] <span class="op">=</span> <span class="fu">Dict</span><span class="dt">{String, Vector{Int64}}</span>()</span>
@@ -867,21 +869,21 @@ window.Quarto = {
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        ordenado[numero][asunto] <span class="op">=</span> x</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        skiplist[numero][asunto] <span class="op">=</span> y</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Asimismo, se obtuvieron números para consultar en los diferentes arreglos a partir de 4 archivos electrónicos, <a href="https://www.dropbox.com/scl/fo/8zrqyv1603qfxj2a3w29b/ALkCU_d2_-Ui5zVZ5BBd1DE?rlkey=mwkqer63q8uyzivplmg4ygwuh&amp;st=wr2ej92s&amp;dl=0">disponibles aquí</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Estos se registraron en un diccionario denominado <code>consultas</code>, cuyas claves son asociadas al archivo electrónico correspondiente y cuyos valores son los arreglos con los números de consulta que se realizarán.</p>
 <div id="consultas" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>consultas <span class="op">=</span> <span class="fu">Dict</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>consultas <span class="op">=</span> <span class="fu">Dict</span>()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    consultas[numero] <span class="op">=</span> JSON.<span class="fu">parsefile</span>(<span class="st">"consultas-</span><span class="sc">$</span>(numero)<span class="st">-listas-posteo.json"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> numero <span class="kw">in</span> <span class="fu">keys</span>(consultas)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    consultas[numero] <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Int64</span>}, consultas[numero])</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>consultas <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">Int64</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}, consultas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>consultas <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Dict</span>{<span class="dt">Int64</span>, <span class="dt">Vector</span>{<span class="dt">Int64</span>}}, consultas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -897,7 +899,7 @@ window.Quarto = {
 <div id="labbusc_tiempo" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>experimentos <span class="op">=</span> [</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>experimentos <span class="op">=</span> [</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"busqueda_binaria"</span>, <span class="st">"BB"</span>), </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"busqueda_b0"</span>, <span class="st">"B0"</span>), </span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"busqueda_b1"</span>, <span class="st">"B1"</span>),</span>
@@ -936,21 +938,21 @@ window.Quarto = {
 <span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
 <span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
 <span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Con base en esta información se generaron gráficos de dispersión, para cada archivo de consultas, que muestran el logaritmo en base 10 del tiempo que toma cada función para ejecutar las consultas en los vectores ordenados como función del valor consultado <span class="math inline">\(p\)</span>. Estas se muestran en la <a href="#fig-labbusc_tiempo" class="quarto-xref">Figura&nbsp;1</a>.</p>
 <div id="grafico-busquedas_tiempo" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jitter</span>(n<span class="op">::</span><span class="dt">Real</span>, factor <span class="op">=</span> <span class="fl">0.1</span>) <span class="op">=</span> n <span class="op">+</span> (<span class="fl">0.5</span> <span class="op">-</span> <span class="fu">rand</span>()) <span class="op">*</span> factor</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jitter</span>(n<span class="op">::</span><span class="dt">Real</span>, factor <span class="op">=</span> <span class="fl">0.1</span>) <span class="op">=</span> n <span class="op">+</span> (<span class="fl">0.5</span> <span class="op">-</span> <span class="fu">rand</span>()) <span class="op">*</span> factor</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>labbusc_tiempo <span class="op">=</span> <span class="fu">filter</span>(row <span class="op">-&gt;</span> !<span class="fu">isnan</span>(row.tiempo) <span class="op">&amp;&amp;</span> row.tiempo <span class="op">&gt;</span> <span class="fl">0</span>, labbusc_tiempo)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    grafico <span class="op">=</span> <span class="fu">filter</span>(row <span class="op">-&gt;</span> row.num_consulta <span class="op">==</span> i, labbusc_tiempo)</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    plot <span class="op">=</span> <span class="pp">@df</span> grafico <span class="fu">scatter</span>(<span class="op">:</span>consulta, <span class="fu">jitter</span>.(<span class="fu">log10</span>.(<span class="op">:</span>tiempo)), group <span class="op">=</span> <span class="op">:</span>funcion) </span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">savefig</span>(plot, <span class="st">"busquedas_</span><span class="sc">$</span>(i)<span class="st">_tiempo.png"</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="fig-labbusc_tiempo" class="quarto-layout-panel">
@@ -1005,7 +1007,7 @@ Figura&nbsp;1: Tiempos de ejecución
 <div id="labbusc_cuenta" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>labbusc_cuenta <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>labbusc_cuenta <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{String}</span>(), </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    num_consulta <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(), </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    consulta <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Int64}</span>(), </span>
@@ -1033,19 +1035,19 @@ Figura&nbsp;1: Tiempos de ejecución
 <span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
 <span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
 <span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Con base en esta información se generaron gráficos de dispersión, para cada archivo de consultas, que muestran el número de comparaciones que requiere cada función para ejecutar las consultas en los vectores ordenados, como función del valor consultado <span class="math inline">\(p\)</span>. Estas se muestran en la <a href="#fig-labbusc_cuenta" class="quarto-xref">Figura&nbsp;2</a>.</p>
 <div id="grafico-busquedas_cuenta" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>labbusc_cuenta <span class="op">=</span> <span class="fu">filter</span>(row <span class="op">-&gt;</span> !<span class="fu">isnan</span>(row.contabilidad) <span class="op">&amp;&amp;</span> row.contabilidad <span class="op">&gt;</span> <span class="fl">0</span>, labbusc_cuenta)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>labbusc_cuenta <span class="op">=</span> <span class="fu">filter</span>(row <span class="op">-&gt;</span> !<span class="fu">isnan</span>(row.contabilidad) <span class="op">&amp;&amp;</span> row.contabilidad <span class="op">&gt;</span> <span class="fl">0</span>, labbusc_cuenta)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    grafico <span class="op">=</span> <span class="fu">filter</span>(row <span class="op">-&gt;</span> row.num_consulta <span class="op">==</span> i, labbusc_cuenta)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    plot <span class="op">=</span> <span class="pp">@df</span> grafico <span class="fu">scatter</span>(<span class="op">:</span>consulta, <span class="fu">jitter</span>.(<span class="op">:</span>contabilidad), group <span class="op">=</span> <span class="op">:</span>funcion) </span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">savefig</span>(plot, <span class="st">"busquedas_</span><span class="sc">$</span>(i)<span class="st">_cuenta.png"</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="fig-labbusc_cuenta" class="quarto-layout-panel">
@@ -1183,13 +1185,14 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1582,7 +1585,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> 'Algoritmos de búsqueda por comparación'</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-04-01</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> julia-1.11</span></span>
@@ -2194,7 +2197,7 @@ Téllez Avila, Eric Sadit. 2025. <em>Curso Introductorio al Análisis de Algorit
 <span id="cb22-648"><a href="#cb22-648" aria-hidden="true" tabindex="-1"></a>Se esperaba que los algoritmos implementados tuvieran un desempeño proporcional al logaritmo del valor buscado, por lo que tenían un desempeño óptimo. Sin embargo, los resultados obtenidos arrojaron un desempeño con una tendencia no discernible con respecto al valor buscado y orden de los ejes inesperado: en el caso de los tiempos de ejecución, el eje es igual para cada consulta, mientras qque en el de la contabilidad de operaciones, este tiene la misma escala que el eje horizontal. Esta situación es diferente a la esperada y puede obedecer a errores en la implementación de los algoritmos o a un rendimiento inesperado de estos. Es necesario una mayor profundización en el estudio de los algoritmos para determinar la causa de este comportamiento.</span>
 <span id="cb22-649"><a href="#cb22-649" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-650"><a href="#cb22-650" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referencia</span></span>
-</code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

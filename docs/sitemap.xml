@@ -1,51 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>www.sboteros.com/posts.html</loc>
-    <lastmod>2025-06-03T14:35:55.070Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/posts/20250523-union_interseccion/index.html</loc>
-    <lastmod>2025-06-03T14:35:55.102Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/posts/20250304-algoritmos_ordenamiento/index.html</loc>
-    <lastmod>2025-06-03T14:35:55.081Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/posts/20250114-ordenes_crecimiento/index.html</loc>
-    <lastmod>2025-06-03T14:35:55.070Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/opinion/20250516-foro_mundial_migracion/index.html</loc>
-    <lastmod>2025-06-03T19:37:04.778Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/about.html</loc>
-    <lastmod>2025-06-03T14:35:54.974Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/legal.html</loc>
-    <lastmod>2025-06-03T19:41:35.107Z</lastmod>
+    <loc>www.sboteros.com/presentaciones/20260315_analisis-elecciones-8m/index.html</loc>
+    <lastmod>2026-03-16T20:56:15.208Z</lastmod>
   </url>
   <url>
     <loc>www.sboteros.com/opinion.html</loc>
-    <lastmod>2025-06-03T14:35:55.060Z</lastmod>
+    <lastmod>2026-03-16T16:59:14.132Z</lastmod>
   </url>
   <url>
-    <loc>www.sboteros.com/posts/20250217-operaciones_matriciales/index.html</loc>
-    <lastmod>2025-06-03T14:35:55.070Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/posts/20250401-busqueda_comparacion/index.html</loc>
-    <lastmod>2025-06-03T14:35:55.092Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/posts/20250524-analisis_algoritmos/index.html</loc>
-    <lastmod>2025-06-03T19:38:37.616Z</lastmod>
-  </url>
-  <url>
-    <loc>www.sboteros.com/opinion/20250603-conejos_luna/index.html</loc>
-    <lastmod>2025-06-03T19:35:32.013Z</lastmod>
+    <loc>www.sboteros.com/opinion/20260315-analisis_elecciones/index.html</loc>
+    <lastmod>2026-03-16T22:23:14.114Z</lastmod>
   </url>
 </urlset>

@@ -1,3 +1,4 @@
 /.quarto/
 /assets/datos
 /.luarc.json
+**/*.quarto_ipynb
