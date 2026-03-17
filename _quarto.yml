@@ -7,7 +7,7 @@ website:
   description: 'Análisis de datos, programación y opinión'
   navbar:
     left:
-      - href: about.qmd
+      - href: index.qmd
         text: 'Sobre mí'
       - href: posts.qmd
         text: 'Ciencia de Datos'
